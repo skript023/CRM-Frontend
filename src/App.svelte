@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Login from "./lib/Login.svelte";
+  import Login from "./routes/+Login.svelte";
 </script>
 
 <main><Login/></main>
