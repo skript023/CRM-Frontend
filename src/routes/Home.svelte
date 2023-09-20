@@ -13,7 +13,7 @@ onMount(() => {
 </script>
 
 <!-- Sidenav -->
-<body class="">
+<body>
   <!--Main Navigation-->
   <header>
     <!-- Sidenav -->

@@ -1,12 +1,15 @@
 
 <script lang="ts">
+  import { onMount } from "svelte";
 import {
 	Input,
 	Ripple,
 	initTE,
 } from "tw-elements";
 
-initTE({ Input, Ripple });
+onMount(()=>{
+	initTE({ Input, Ripple });
+})
 </script>
 
 <section class="h-screen">
