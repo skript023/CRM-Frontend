@@ -3,11 +3,12 @@
     import { onMount } from "svelte";
     import Navigation from "./Navigation.svelte";
 
-    let search = ''
+    let search = null as string | null
     let users = [] as User[]
+    let backup = [] as User[]
 
     onMount(() => {
-        fetch('http://localhost:3000/user/', 
+        fetch('https://crm-backend.glitch.me/user/', 
         {
             method: 'GET',
             credentials: 'include',
@@ -19,7 +20,8 @@
         {
             if (res.status === 200)
             {
-                users = await res.json()
+                backup = await res.json()
+                users = backup
             }
             else
             {
@@ -28,30 +30,42 @@
         }).
         catch((e) => 
         {
+            console.log(e)
             window.location.href = "/"
         })
     });
 
-    const onSubmit = () =>{
-        users = users.filter(param => param.username === search)
+    const onSubmit = () =>
+    {
+        if (search?.length === 0)
+        {
+            users = backup
+        }
+        else
+        {
+            users = users.filter(param => param.username === search)
+        }
+
     }
 </script>
 
 <Navigation>
     <div class="overflow-x-auto">
         <form on:submit|preventDefault={onSubmit}>
-            <div class="pt-2 relative mx-auto text-gray-600">
-                <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-                    type="search" name="search" placeholder="Search" bind:value={search}>
-                <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
-                    <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
-                        viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve"
-                        width="512px" height="512px">
-                        <path
-                        d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-                    </svg>
-                </button>
+            <div class='max-w-lg mx-auto max-h-xs mb-12'>
+                <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-gray-700 overflow-hidden">
+                    <div class="grid place-items-center h-full w-12 text-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+            
+                    <input
+                    class="peer h-full w-full outline-none text-sm text-gray-300 pr-2 px-5"
+                    type="text"
+                    id="search"
+                    placeholder="Search something.." bind:value={search}/> 
+                </div>
             </div>
         </form>
         <table class="table">

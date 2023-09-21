@@ -1,11 +1,9 @@
 <script lang="ts">
     let username = ''
     let password = ''
-    let message =''
     
     const onClick = ()=> {
-        console.log(`${username}`)
-        fetch('http://localhost:3000/auth/login', {
+        fetch('https://crm-backend.glitch.me/auth/login', {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -19,6 +17,7 @@
         then((res) => {
             if (res.status === 200)
             {
+                res.json().then((value) => { console.log(value.message) })
                 window.location.href = "/dashboard"
             }
         }).
