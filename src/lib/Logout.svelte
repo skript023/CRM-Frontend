@@ -13,19 +13,19 @@
             if (res.status === 200)
             {
                 const json = await res.json();
-
-                toast.push(json.message, {
-                    theme: {
-                        '--toastColor': 'mintcream',
-                        '--toastBackground': 'rgba(72,187,120,0.9)',
-                        '--toastBarBackground': '#2F855A'
-                    }
-                })
+                toast.push(`<p class="text-center">${json.message}</p>`)
 
                 navigate('/', {replace: true})
             }
         }).
         catch((e) => {
+            toast.push(`<p class="text-center">${e}</p>`, {
+                theme: {
+                    '--toastColor': 'red',
+                    '--toastBackground': 'rgba(187,72,120,0.9)',
+                    '--toastBarBackground': 'red'
+                }
+            })
             navigate('/', {replace: true})
         })
     })

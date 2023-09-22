@@ -2,8 +2,8 @@
     import { toast } from '@zerodevx/svelte-toast';
     import { navigate } from 'svelte-routing';
 
-    let username = ''
-    let password = ''
+    let username = null as string | null
+    let password = null as string | null
     
     const onClick = ()=> {
         fetch('https://crm-backend.glitch.me/auth/login', {
@@ -21,14 +21,12 @@
             if (res.status === 200)
             {
                 const json = await res.json()
-                toast.push(json.message, {
-                    theme: {
-                        '--toastColor': 'mintcream',
-                        '--toastBackground': 'rgba(72,187,120,0.9)',
-                        '--toastBarBackground': '#2F855A'
-                    }
-                })
+                toast.push(`<p class="text-center">${json.message}</p>`)
+                
                 navigate('/dashboard', {replace: true})
+                
+                username = null
+                password = null
             }
         }).
         catch((e) =>{
@@ -52,14 +50,14 @@
                 <label for={null} class="label">
                     <span class="text-base label-text">Username</span>
                 </label>
-                <input type="text" placeholder="Username" class="w-full input input-bordered" bind:value={username}/>
+                <input type="text" placeholder="Username" class="w-full input input-bordered" bind:value={username} required/>
             </div>
             <div>
                 <label for={null} class="label">
                     <span class="text-base label-text">Password</span>
                 </label>
                 <input type="password" placeholder="Enter Password"
-                    class="w-full input input-bordered" bind:value={password}/>
+                    class="w-full input input-bordered" bind:value={password} required/>
             </div>
             
             <div>

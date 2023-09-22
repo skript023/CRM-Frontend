@@ -4,11 +4,9 @@
     import Navigation from "./Navigation.svelte";
     import { toast } from '@zerodevx/svelte-toast';
     import { navigate } from 'svelte-routing';
-    import { DataHandler, check, Datatable, Th, ThFilter } from '@vincjo/datatables'
+    import { DataHandler } from '@vincjo/datatables'
 
-    let search = null as string | null
     let users = [] as User[]
-    let isReady = false
     let isLoaded = false
 
     onMount(() => {
@@ -45,122 +43,78 @@
             })
             navigate('/', {replace: true})
         })
-
-        isReady = true
     });
-
-    const onSubmit = () =>
-    {
-        if (search?.length === 0)
-        {
-            // users = backup
-        }
-        else
-        {
-            toast.push('Searching')
-            users = users.filter(param => param.username === search)
-        }
-
-    }
 
     $: handler = new DataHandler(users, { rowsPerPage: 50 })
     $: rows = handler.getRows()
-    $: selected = handler.getSelected()
-    $: isAllSelected = handler.isAllSelected()
 </script>
 
 <Navigation>
-    {#if isReady}
-    <Datatable {handler}>
-        <table class="items-center text-center">
-            <thead>
-                <tr>
-                    <th class="selection">
-                        <input
-                            type="checkbox"
-                            on:click={() => handler.selectAll({ selectBy: '_id' })}
-                            checked={$isAllSelected}
-                        />
-                    </th>
-                    <Th {handler} orderBy="_id">Object ID</Th>
-                    <Th {handler} orderBy="fullname">Fullname</Th>
-                    <Th {handler} orderBy="username">Username</Th>
-                    <Th {handler} orderBy="email">Email</Th>
-                </tr>
-                <tr>
-                    <th class="selection" />
-                    <ThFilter {handler} filterBy="_id" comparator={check.isEqualTo} />
-                    <ThFilter {handler} filterBy="fullname" />
-                    <ThFilter {handler} filterBy="username" />
-                    <ThFilter {handler} filterBy="email" />
-                </tr>
-            </thead>
-            <tbody>
-                {#if isLoaded}
-                    {#each $rows as row, i}
-                        <tr class:active={$selected.includes(row._id)}>
-                            <td class="selection">
-                                <input
-                                    type="checkbox"
-                                    on:click={() => handler.select(row._id)}
-                                    checked={$selected.includes(row._id)}
-                                />
-                            </td>
-                            <td>{@html row._id}</td>
-                            <td>{@html row.fullname}</td>
-                            <td>{@html row.username}</td>
-                            <td>{@html row.email}</td>
-                        </tr>
-                    {/each}
-                {:else}
-                    <tr>
-                        <td class="selection">
-                            <span class="loading loading-bars loading-xs"></span>
-                        </td>
-                        <td><span class="loading loading-bars loading-xs"></span></td>
-                        <td><span class="loading loading-bars loading-xs"></span></td>
-                        <td><span class="loading loading-bars loading-xs"></span></td>
-                        <td><span class="loading loading-bars loading-xs"></span></td>
-                    </tr>
-                {/if}
-            </tbody>
-        </table>
-
-        <style>
-            @tailwind base;
-            @tailwind components;
-            @tailwind utilities;
-
-            thead {
-                background: dark;
-            }
-            tbody td {
-                border: 1px solid #575753;
-                padding: 4px 20px;
-            }
-            tbody tr {
-                transition: all, 0.2s;
-            }
-            tbody tr:hover {
-                background: #575753;
-            }
-        </style>
-    </Datatable>
-    {:else}
-        <span class="loading loading-spinner loading-lg flex justify-stretch"></span>
-    {/if}
-    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
-            <h3 class="font-bold text-lg">Session invalid</h3>
-            <p class="py-4">Session invalid please re-login</p>
-            <p class="py-4">Press ESC key or click the button below to close</p>
-            <div class="modal-action">
-                <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                <form method="dialog" on:keydown={() => navigate('/', {replace: true})}>
-                <!-- if there is a button in form, it will close the modal -->
-                <button class="btn" on:click={() => navigate('/', {replace: true})}>Close</button>
-                </form>
+    <div class="container">
+        <div class="grid grid-cols-6 gap-1">
+            <div class="col-span-4 col-start-4 mr-12 border-2 border-slate-600">
+                <div class="stats shadow">
+      
+                    <div class="stat">
+                        <div class="stat-figure text-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div class="stat-title">Downloads</div>
+                        <div class="stat-value">31K</div>
+                        <div class="stat-desc">Jan 1st - Feb 1st</div>
+                    </div>
+                    
+                    <div class="stat">
+                        <div class="stat-figure text-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                        </div>
+                        <div class="stat-title">New Users</div>
+                        <div class="stat-value">4,200</div>
+                        <div class="stat-desc">↗︎ 400 (22%)</div>
+                    </div>
+                    
+                    <div class="stat">
+                        <div class="stat-figure text-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+                        </div>
+                        <div class="stat-title">New Registers</div>
+                        <div class="stat-value">1,200</div>
+                        <div class="stat-desc">↘︎ 90 (14%)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-start-2 col-end-3 h-56 border-2 border-slate-600">
+                <div class="chat chat-start">
+                    <div class="chat-image avatar">
+                        <div class="w-10 rounded-full">
+                            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="" />
+                        </div>
+                    </div>
+                    <div class="chat-header">
+                        Obi-Wan Kenobi
+                        <time class="text-xs opacity-50">12:45</time>
+                    </div>
+                    <div class="chat-bubble">You were the Chosen One!</div>
+                        <div class="chat-footer opacity-50">
+                        Delivered
+                        </div>
+                    </div>
+                    <div class="chat chat-end">
+                        <div class="chat-image avatar">
+                            <div class="w-10 rounded-full">
+                                <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" alt=""/>
+                            </div>
+                        </div>
+                        <div class="chat-header">
+                            Anakin
+                            <time class="text-xs opacity-50">12:46</time>
+                        </div>
+                        <div class="chat-bubble">I hate you!</div>
+                        <div class="chat-footer opacity-50">
+                            Seen at 12:46
+                        </div>
+                  </div>
             </div>
         </div>
-    </dialog>
+    </div>
 </Navigation>

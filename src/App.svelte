@@ -4,6 +4,7 @@
 	import Login from './Login.svelte';
 	import Home from './lib/Home.svelte';
   	import Logout from './lib/Logout.svelte';
+  	import User from './lib/User.svelte';
 
 	export let url = "";
 	const options = {
@@ -14,6 +15,7 @@
 <SvelteToast {options} />
 <Router {url}>
 	<Route path="/dashboard" component={Home} />
+	<Route path="/dashboard/user" component={User} />
 	<Route path="/logout" component={Logout}/>
 	<Route path="/"><Login /></Route>
 </Router>

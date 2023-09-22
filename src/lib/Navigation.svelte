@@ -1,7 +1,8 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import type { User } from "./interface/user.interface";
+    import { navigate } from "svelte-routing";
     import { toast } from '@zerodevx/svelte-toast'
+    import type { User } from "./interface/user.interface";
 
     let user = {} as User;
 
@@ -72,8 +73,22 @@
                 </div>
             </header>
             <main class="mb-auto h-10">
-                <div class="flex flex-col w-auto border-opacity-50">
+                <div>
                     <slot/>
+                    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+                        <div class="modal-box">
+                            <h3 class="font-bold text-lg">Session invalid</h3>
+                            <p class="py-4">Session invalid please re-login</p>
+                            <p class="py-4">Press ESC key or click the button below to close</p>
+                            <div class="modal-action">
+                                <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                                <form method="dialog" on:keydown={() => navigate('/', {replace: true})}>
+                                <!-- if there is a button in form, it will close the modal -->
+                                <button class="btn" on:click={() => navigate('/', {replace: true})}>Close</button>
+                                </form>
+                            </div>
+                        </div>
+                    </dialog>
                 </div>
             </main>
             <footer class="footer footer-center p-4 h-10 bg-base-300 text-base-content">
