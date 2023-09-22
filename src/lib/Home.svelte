@@ -30,7 +30,7 @@
             }
             else
             {
-                const modal = document.getElementById('my_modal_5')
+                const modal = document.getElementById('my_modal_5') as HTMLElement | any
                 modal.showModal()
             }
         }).
