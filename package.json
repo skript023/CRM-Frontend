@@ -12,6 +12,7 @@
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.4.2",
     "@tsconfig/svelte": "^5.0.0",
+    "@vincjo/datatables": "^1.12.5",
     "@zerodevx/svelte-toast": "^0.9.5",
     "autoprefixer": "^10.4.16",
     "daisyui": "^3.7.7",
