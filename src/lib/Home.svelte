@@ -2,6 +2,8 @@
     import type { User } from './interface/user.interface';
     import { onMount } from "svelte";
     import Navigation from "./Navigation.svelte";
+    import { toast } from '@zerodevx/svelte-toast';
+    import { navigate } from 'svelte-routing';
 
     let search = null as string | null
     let users = [] as User[]
@@ -22,16 +24,30 @@
             {
                 backup = await res.json()
                 users = backup
+
+                toast.push('Users data loaded', {
+                    theme: {
+                        '--toastColor': 'mintcream',
+                        '--toastBackground': 'rgba(72,187,120,0.9)',
+                        '--toastBarBackground': '#2F855A'
+                    }
+                })
             }
             else
             {
-                window.location.href = "/"
+                navigate('/', {replace: true})
             }
         }).
         catch((e) => 
         {
-            console.log(e)
-            window.location.href = "/"
+            toast.push(e, {
+                theme: {
+                    '--toastColor': 'red',
+                    '--toastBackground': 'rgba(187,72,120,0.9)',
+                    '--toastBarBackground': 'red'
+                }   
+            })
+            navigate('/', {replace: true})
         })
     });
 
@@ -43,6 +59,7 @@
         }
         else
         {
+            toast.push('Searching')
             users = users.filter(param => param.username === search)
         }
 
@@ -76,6 +93,7 @@
                 <th>Fullname</th>
                 <th>Username</th>
                 <th>Email</th>
+                <th>Role</th>
                 </tr>
             </thead>
             <tbody>
@@ -86,6 +104,7 @@
                         <td>{user.fullname}</td>
                         <td>{user.username}</td>
                         <td>{user.email}</td>
+                        <td>{user.role.name}</td>
                     </tr>
                 {/each}
             </tbody>

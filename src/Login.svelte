@@ -1,4 +1,7 @@
 <script lang="ts">
+    import { toast } from '@zerodevx/svelte-toast';
+    import { navigate } from 'svelte-routing';
+
     let username = ''
     let password = ''
     
@@ -17,13 +20,25 @@
         then(async (res) => {
             if (res.status === 200)
             {
-                const data = await res.json()
-                console.log(data.message)
-                window.location.href = "/dashboard"
+                const json = await res.json()
+                toast.push(json.message, {
+                    theme: {
+                        '--toastColor': 'mintcream',
+                        '--toastBackground': 'rgba(72,187,120,0.9)',
+                        '--toastBarBackground': '#2F855A'
+                    }
+                })
+                navigate('/dashboard', {replace: true})
             }
         }).
         catch((e) =>{
-            console.log(e)
+            toast.push(e, {
+                theme: {
+                    '--toastColor': 'mintcream',
+                    '--toastBackground': 'rgba(187,72,120,0.9)',
+                    '--toastBarBackground': 'red'
+                }   
+            })
         })
     }
 </script>

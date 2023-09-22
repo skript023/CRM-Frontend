@@ -1,5 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { toast } from "@zerodevx/svelte-toast";
+  import { navigate } from "svelte-routing";
 
     onMount(() => {
         console.log('logout')
@@ -7,19 +9,24 @@
             method: 'GET',
             credentials: 'include'
         }).
-        then((res) => {
+        then(async (res) => {
             if (res.status === 200)
             {
-                res.json().then((json) => {
-                    console.log(json)
+                const json = await res.json();
+
+                toast.push(json.message, {
+                    theme: {
+                        '--toastColor': 'mintcream',
+                        '--toastBackground': 'rgba(72,187,120,0.9)',
+                        '--toastBarBackground': '#2F855A'
+                    }
                 })
 
-                window.location.href = '/'
+                navigate('/', {replace: true})
             }
         }).
         catch((e) => {
-            console.log(e)
-            window.location.href = '/'
+            navigate('/', {replace: true})
         })
     })
 </script>

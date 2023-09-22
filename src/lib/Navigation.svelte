@@ -1,3 +1,31 @@
+<script lang="ts">
+    import { onMount } from "svelte";
+    import type { User } from "./interface/user.interface";
+    import { toast } from '@zerodevx/svelte-toast'
+
+    let user = {} as User;
+
+    onMount(() => {
+        fetch('https://crm-backend.glitch.me/user/profile', {
+            method: 'GET',
+            credentials: 'include'
+        }).
+        then(async (res) => {
+            user = await res.json();
+        }).
+        catch((e) => {
+            toast.push(e, {
+                theme: {
+                    '--toastColor': 'mintcream',
+                    '--toastBackground': 'rgba(187,72,120,0.9)',
+                    '--toastBarBackground': 'red'
+                }   
+            })
+        })
+    })
+
+</script>
+
 <div class="drawer">
     <input id="my-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content">
@@ -64,7 +92,7 @@
                     <img alt="profile" src="https://scontent.fcgk8-2.fna.fbcdn.net/v/t39.30808-6/355859180_6500746203297381_6020865479366609276_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=a2f6c7&_nc_eui2=AeFQtswtevDDitEuVw6hX9ai8CPyaLgMPSPwI_JouAw9I5FWFJMwmoNQbf_7XrzCOAxGe-zs3TVTZy_uR1rRaV3c&_nc_ohc=uUklxOhLy70AX84VGuD&_nc_zt=23&_nc_ht=scontent.fcgk8-2.fna&oh=00_AfAITebVOGP1NAO-SGlqHsRhmPbdNpNHQbVvOLM1ujR9PA&oe=65106655" />
                 </div>
                 <p class="indent-12 text-lg mt-8">
-                    Name
+                    {user.fullname}
                 </p>
             </div>
             <div class="divider">Menu</div> 
