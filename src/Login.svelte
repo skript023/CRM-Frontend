@@ -14,10 +14,11 @@
                 password
             })
         }).
-        then((res) => {
+        then(async (res) => {
             if (res.status === 200)
             {
-                res.json().then((value) => { console.log(value.message) })
+                const data = await res.json()
+                console.log(data.message)
                 window.location.href = "/dashboard"
             }
         }).

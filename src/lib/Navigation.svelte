@@ -35,8 +35,8 @@
                                     </div>
                                 </div>
                                 <ul class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                    <li><a href={null}>Item 1</a></li>
-                                    <li><a href={null}>Item 2</a></li>
+                                    <li><a href="/profile">Profile</a></li>
+                                    <li><a href="/logout">Logout</a></li>
                                 </ul>
                             </div>
                         </ul>

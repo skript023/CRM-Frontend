@@ -64,7 +64,7 @@
                     class="peer h-full w-full outline-none text-sm text-gray-300 pr-2 px-5"
                     type="text"
                     id="search"
-                    placeholder="Search something.." bind:value={search}/> 
+                    placeholder="Search username.." bind:value={search}/> 
                 </div>
             </div>
         </form>
