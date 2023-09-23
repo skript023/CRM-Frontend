@@ -12,7 +12,15 @@
             credentials: 'include'
         }).
         then(async (res) => {
-            user = await res.json();
+            if (res.status === 200)
+            {
+                user = await res.json();
+            }
+            else
+            {
+                const modal = document.getElementById('modal-disconnect') as HTMLElement | any
+                modal.showModal()
+            }
         }).
         catch((e) => {
             toast.push(e, {
@@ -24,8 +32,6 @@
             })
         })
     })
-    const role = user.role
-    $: console.log(role)
 </script>
 
 <div class="drawer">
@@ -77,7 +83,7 @@
                 <div>
                     <slot/>
                     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle" on:keydown={() => navigate('/', {replace: true})}>
+                    <dialog id="modal-disconnect" class="modal modal-bottom sm:modal-middle" on:keydown={() => navigate('/', {replace: true})}>
                         <div class="modal-box">
                             <h3 class="font-bold text-lg">Session invalid</h3>
                             <p class="py-4">Session invalid please re-login</p>
@@ -108,37 +114,25 @@
                 <div class="w-24 rounded-full">
                     <img alt="profile" src="https://scontent.fcgk8-2.fna.fbcdn.net/v/t39.30808-6/355859180_6500746203297381_6020865479366609276_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=a2f6c7&_nc_eui2=AeFQtswtevDDitEuVw6hX9ai8CPyaLgMPSPwI_JouAw9I5FWFJMwmoNQbf_7XrzCOAxGe-zs3TVTZy_uR1rRaV3c&_nc_ohc=uUklxOhLy70AX84VGuD&_nc_zt=23&_nc_ht=scontent.fcgk8-2.fna&oh=00_AfAITebVOGP1NAO-SGlqHsRhmPbdNpNHQbVvOLM1ujR9PA&oe=65106655" />
                 </div>
-                <p class="indent-12 text-lg mt-8">
-                    {user.fullname}
+                <p class="indent-8 text-lg mt-8">
+                    {user?.fullname}
                 </p>
-                <!-- <p class="indent-12 text-sm mt-8">
-                    {user.role.name}
-                </p> -->
             </div>
             <div class="divider">Menu</div> 
             <!-- Sidebar content here -->
             <li><a href="/dashboard">Dashboard</a></li>
-            <!-- {#if user.role.name === 'admin'}
+            {#if user?.role?.name === 'admin'}
                 <div class="divider uppercase">admin</div>
                 <li>
                     <details open>
-                    <summary>Users</summary>
-                    <ul>
-                        <li><a href={null}>All Users</a></li>
-                        <li><a href={null}>Add User</a></li>
-                        <li>
-                        <details open>
-                            <summary>Parent</summary>
-                            <ul>
-                            <li><a href={null}>level 3 item 1</a></li>
-                            <li><a href={null}>level 3 item 2</a></li>
-                            </ul>
-                        </details>
-                        </li>
-                    </ul>
+                        <summary>Users</summary>
+                        <ul>
+                            <li><a href="/dashboard/user">Manage Users</a></li>
+                            <li><a href="/dashboard/user/add">Add User</a></li>
+                        </ul>
                     </details>
                 </li>
-            {/if} -->
+            {/if}
         </ul>
     </div>
 </div>

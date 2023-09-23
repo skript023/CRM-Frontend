@@ -10,39 +10,7 @@
     let isLoaded = false
 
     onMount(() => {
-        fetch('https://crm-backend.glitch.me/user/', 
-        {
-            method: 'GET',
-            credentials: 'include',
-            headers: {
-                "Content-Type": "application/json"
-            },
-        }).
-        then(async (res) => 
-        {
-            if (res.status === 200)
-            {
-                users = await res.json()
-
-                isLoaded = true
-            }
-            else
-            {
-                const modal = document.getElementById('my_modal_5') as HTMLElement | any
-                modal.showModal()
-            }
-        }).
-        catch((e) => 
-        {
-            toast.push(e, {
-                theme: {
-                    '--toastColor': 'red',
-                    '--toastBackground': 'rgba(187,72,120,0.9)',
-                    '--toastBarBackground': 'red'
-                }   
-            })
-            navigate('/', {replace: true})
-        })
+        
     });
 
     $: handler = new DataHandler(users, { rowsPerPage: 50 })
