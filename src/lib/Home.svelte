@@ -50,246 +50,496 @@
 </script>
 
 <Navigation>
-    <div class="grid grid-cols-1 gap-4 px-4 mt-8 sm:grid-cols-4 sm:px-8">
-        <div class="flex items-center bg-white border rounded-sm overflow-hidden shadow">
-            <div class="p-4 bg-green-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
-                    </path>
-                </svg></div>
-            <div class="px-4 text-gray-700">
-                <h3 class="text-sm tracking-wider">Total Member</h3>
-                <p class="text-3xl">12,768</p>
-            </div>
-        </div>
-        <div class="flex items-center bg-white border rounded-sm overflow-hidden shadow">
-            <div class="p-4 bg-blue-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2">
-                    </path>
-                </svg></div>
-            <div class="px-4 text-gray-700">
-                <h3 class="text-sm tracking-wider">Total Post</h3>
-                <p class="text-3xl">39,265</p>
-            </div>
-        </div>
-        <div class="flex items-center bg-white border rounded-sm overflow-hidden shadow">
-            <div class="p-4 bg-indigo-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z">
-                    </path>
-                </svg></div>
-            <div class="px-4 text-gray-700">
-                <h3 class="text-sm tracking-wider">Total Comment</h3>
-                <p class="text-3xl">142,334</p>
-            </div>
-        </div>
-        <div class="flex items-center bg-white border rounded-sm overflow-hidden shadow">
-            <div class="p-4 bg-red-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4">
-                    </path>
-                </svg></div>
-            <div class="px-4 text-gray-700">
-                <h3 class="text-sm tracking-wider">Server Load</h3>
-                <p class="text-3xl">34.12%</p>
-            </div>
-        </div>
-    </div>
+   <!-- h-full ml-14 mt-14 mb-10 md:ml-64 -->
+   <div class="h-screen mx-14 md:mx-64">
     
-    <div class="grid grid-cols-1 gap-4 px-4 mt-8 sm:grid-cols-3 sm:px-8">
-        <div></div>
-        <div></div>
-        <div class="flex-1 p:2 sm:p-6 justify-between flex flex-col h-2/3 w-12/12 bg-gray-100 border-2 border-gray-300 sm:pr-12">
-            <div class="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
-               <div class="relative flex items-center space-x-4">
-                  <div class="relative">
-                     <span class="absolute text-green-500 right-0 bottom-0">
-                        <svg width="20" height="20">
-                           <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
-                        </svg>
-                     </span>
-                  <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="" class="w-10 sm:w-16 h-10 sm:h-16 rounded-full">
-                  </div>
-                  <div class="flex flex-col leading-tight">
-                     <div class="text-2xl mt-1 flex items-center">
-                        <span class="text-gray-700 mr-3">Anderson Vanhron</span>
-                     </div>
-                     <span class="text-lg text-gray-600">Junior Developer</span>
-                  </div>
-               </div>
-               <div class="flex items-center space-x-2">
-                  <button type="button" class="inline-flex items-center justify-center rounded-lg border h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
-                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                     </svg>
-                  </button>
-                  <button type="button" class="inline-flex items-center justify-center rounded-lg border h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
-                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                     </svg>
-                  </button>
-                  <button type="button" class="inline-flex items-center justify-center rounded-lg border h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
-                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-                     </svg>
-                  </button>
-               </div>
+      <!-- Statistics Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-4 gap-4">
+         <div class="bg-sky-100 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-sky-600 font-medium group">
+            <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
+               <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
             </div>
-            <div id="messages" class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
-               <div class="chat-message">
-                  <div class="flex items-end">
-                     <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
-                        <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">Can be verified on any platform using docker</span></div>
-                     </div>
-                     <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" class="w-6 h-6 rounded-full order-1">
-                  </div>
-               </div>
-               <div class="chat-message">
-                  <div class="flex items-end justify-end">
-                     <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
-                        <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">Your error message says permission denied, npm global installs must be given root privileges.</span></div>
-                     </div>
-                     <img src="https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" class="w-6 h-6 rounded-full order-2">
-                  </div>
-               </div>
-               <div class="chat-message">
-                  <div class="flex items-end">
-                     <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
-                        <div><span class="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">Command was run with root privileges. I'm sure about that.</span></div>
-                        <div><span class="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">I've update the description so it's more obviously now</span></div>
-                        <div><span class="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">FYI https://askubuntu.com/a/700266/510172</span></div>
-                        <div>
-                           <span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
-                              Check the line above (it ends with a # so, I'm running it as root )
-                              <pre># npm install -g @vue/devtools</pre>
-                           </span>
+            <div class="text-right">
+               <p class="text-2xl">1,257</p>
+               <p>Visitors</p>
+            </div>
+         </div>
+         <div class="bg-sky-100 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-sky-600 font-medium group">
+            <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
+               <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+            </div>
+            <div class="text-right">
+               <p class="text-2xl">557</p>
+               <p>Orders</p>
+            </div>
+         </div>
+         <div class="bg-sky-100 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-sky-600 font-medium group">
+            <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
+               <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+            </div>
+            <div class="text-right">
+               <p class="text-2xl">$11,257</p>
+               <p>Sales</p>
+            </div>
+         </div>
+         <div class="bg-sky-100 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-sky-600 font-medium group">
+            <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
+               <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <div class="text-right">
+               <p class="text-2xl">$75,257</p>
+               <p>Balances</p>
+            </div>
+         </div>
+      </div>
+      <!-- ./Statistics Cards -->
+  
+      <div class="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
+  
+        <!-- Social Traffic -->
+        <div class="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-sky-50 w-full shadow-lg rounded border-2 border-sky-100">
+          <div class="rounded-t mb-0 px-0 border-0">
+            <div class="flex flex-wrap items-center px-4 py-2">
+              <div class="relative w-full max-w-full flex-grow flex-1">
+                <h3 class="font-semibold text-base ">Social Traffic</h3>
+              </div>
+              <div class="relative w-full max-w-full flex-grow flex-1 text-right">
+                <button class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button>
+              </div>
+            </div>
+            <div class="block w-full overflow-x-auto">
+              <table class="items-center w-full bg-transparent border-collapse">
+                <thead>
+                  <tr>
+                    <th class="px-4 bg-sky-100 align-middle border border-solid border-sky-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Referral</th>
+                    <th class="px-4 bg-sky-100 align-middle border border-solid border-sky-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Visitors</th>
+                    <th class="px-4 bg-sky-100 align-middle border border-solid border-sky-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="">
+                    <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Facebook</th>
+                    <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">5,480</td>
+                    <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <div class="flex items-center">
+                        <span class="mr-2">70%</span>
+                        <div class="relative w-full">
+                          <div class="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
+                            <div style="width: 70%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-600"></div>
+                          </div>
                         </div>
-                     </div>
-                     <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" class="w-6 h-6 rounded-full order-1">
-                  </div>
-               </div>
-               <div class="chat-message">
-                  <div class="flex items-end justify-end">
-                     <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
-                        <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">Any updates on this issue? I'm getting the same error when trying to install devtools. Thanks</span></div>
-                     </div>
-                     <img src="https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" class="w-6 h-6 rounded-full order-2">
-                  </div>
-               </div>
-               <div class="chat-message">
-                  <div class="flex items-end">
-                     <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
-                        <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">Thanks for your message David. I thought I'm alone with this issue. Please, ? the issue to support it :)</span></div>
-                     </div>
-                     <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" class="w-6 h-6 rounded-full order-1">
-                  </div>
-               </div>
-               <div class="chat-message">
-                  <div class="flex items-end justify-end">
-                     <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
-                        <div><span class="px-4 py-2 rounded-lg inline-block bg-blue-600 text-white ">Are you using sudo?</span></div>
-                        <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">Run this command sudo chown -R `whoami` /Users//.npm-global/ then install the package globally without using sudo</span></div>
-                     </div>
-                     <img src="https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" class="w-6 h-6 rounded-full order-2">
-                  </div>
-               </div>
-               <div class="chat-message">
-                  <div class="flex items-end">
-                     <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
-                        <div><span class="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">It seems like you are from Mac OS world. There is no /Users/ folder on linux ?</span></div>
-                        <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">I have no issue with any other packages installed with root permission globally.</span></div>
-                     </div>
-                     <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" class="w-6 h-6 rounded-full order-1">
-                  </div>
-               </div>
-               <div class="chat-message">
-                  <div class="flex items-end justify-end">
-                     <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
-                        <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">yes, I have a mac. I never had issues with root permission as well, but this helped me to solve the problem</span></div>
-                     </div>
-                     <img src="https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" class="w-6 h-6 rounded-full order-2">
-                  </div>
-               </div>
-               <div class="chat-message">
-                  <div class="flex items-end">
-                     <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
-                        <div><span class="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">I get the same error on Arch Linux (also with sudo)</span></div>
-                        <div><span class="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">I also have this issue, Here is what I was doing until now: #1076</span></div>
-                        <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">even i am facing</span></div>
-                     </div>
-                     <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" class="w-6 h-6 rounded-full order-1">
-                  </div>
-               </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="">
+                    <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Twitter</th>
+                    <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">3,380</td>
+                    <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <div class="flex items-center">
+                        <span class="mr-2">40%</span>
+                        <div class="relative w-full">
+                          <div class="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
+                            <div style="width: 40%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="">
+                    <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Instagram</th>
+                    <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">4,105</td>
+                    <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <div class="flex items-center">
+                        <span class="mr-2">45%</span>
+                        <div class="relative w-full">
+                          <div class="overflow-hidden h-2 text-xs flex rounded bg-pink-200">
+                            <div style="width: 45%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-pink-500"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="">
+                    <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Google</th>
+                    <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">4,985</td>
+                    <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <div class="flex items-center">
+                        <span class="mr-2">60%</span>
+                        <div class="relative w-full">
+                          <div class="overflow-hidden h-2 text-xs flex rounded bg-red-200">
+                            <div style="width: 60%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="">
+                    <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Linkedin</th>
+                    <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">2,250</td>
+                    <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <div class="flex items-center">
+                        <span class="mr-2">30%</span>
+                        <div class="relative w-full">
+                          <div class="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
+                            <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-700"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
-               <div class="relative flex">
-                  <span class="absolute inset-y-0 flex items-center">
-                     <button type="button" class="inline-flex items-center justify-center rounded-full h-12 w-12 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-gray-600">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
-                        </svg>
-                     </button>
-                  </span>
-                  <input type="text" placeholder="Write your message!" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3">
-                  <div class="absolute right-0 items-center inset-y-0 hidden sm:flex">
-                     <button type="button" class="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-gray-600">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
-                        </svg>
-                     </button>
-                     <button type="button" class="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-gray-600">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                     </button>
-                     <button type="button" class="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-gray-600">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                     </button>
-                     <button type="button" class="inline-flex items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none">
-                        <span class="font-bold">Send</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6 ml-2 transform rotate-90">
-                           <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
-                        </svg>
-                     </button>
+          </div>
+        </div>
+        <!-- ./Social Traffic -->
+  
+        <!-- Recent Activities -->
+         <div class="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded bg-sky-50">
+            <div class="rounded-t mb-0 px-0 border-0 bg-sky-50 border-b-2 border-sky-100">
+               <div class="flex flex-wrap items-center px-4 py-2">
+                  <div class="relative w-full max-w-full flex-grow flex-1">
+                     <h3 class="font-semibold text-base">Recent Activities</h3>
                   </div>
+                  <div class="relative w-full max-w-full flex-grow flex-1 text-right">
+                     <button class="bg-blue-500 text-white hover:bg-blue-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button>
+                  </div>
+               </div>
+               <div class="block w-full">
+                  <div class="px-4 align-middle border border-solid border-sky-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                     Today
+                  </div>
+                  <ul class="my-1">
+                     <li class="flex px-4">
+                        <div class="w-9 h-9 rounded-full flex-shrink-0 bg-indigo-500 my-2 mr-3">
+                           <svg class="w-9 h-9 fill-current text-indigo-50" viewBox="0 0 36 36"><path d="M18 10c-4.4 0-8 3.1-8 7s3.6 7 8 7h.6l5.4 2v-4.4c1.2-1.2 2-2.8 2-4.6 0-3.9-3.6-7-8-7zm4 10.8v2.3L18.9 22H18c-3.3 0-6-2.2-6-5s2.7-5 6-5 6 2.2 6 5c0 2.2-2 3.8-2 3.8z"></path></svg>
+                        </div>
+                        <div class="flex-grow flex items-center border-b border-gray-100 text-sm text-gray-600 py-2">
+                           <div class="flex-grow flex justify-between items-center">
+                              <div class="self-center">
+                                 <a class="font-medium hover:text-gray-900 " href="#0" style="outline: none;">Nick Mark</a> mentioned <a class="font-medium text-gray-800 dark:text-gray-50 dark:hover:text-gray-100" href="#0" style="outline: none;">Sara Smith</a> in a new post
+                              </div>
+                              <div class="flex-shrink-0 ml-2">
+                                 <a class="flex items-center font-medium text-blue-500 hover:text-blue-600"  href={null} style="outline: none">
+                                 View<span><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" class="transform transition-transform duration-500 ease-in-out"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></span>
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </li>
+                     <li class="flex px-4">
+                        <div class="w-9 h-9 rounded-full flex-shrink-0 bg-red-500 my-2 mr-3">
+                           <svg class="w-9 h-9 fill-current text-red-50" viewBox="0 0 36 36"><path d="M25 24H11a1 1 0 01-1-1v-5h2v4h12v-4h2v5a1 1 0 01-1 1zM14 13h8v2h-8z"></path></svg>
+                        </div>
+                        <div class="flex-grow flex items-center border-gray-100 text-sm text-gray-600 py-2">
+                           <div class="flex-grow flex justify-between items-center">
+                              <div class="self-center">
+                                 The post <a class="font-medium hover:text-gray-800 " href="#0" style="outline: none;">Post Name</a> was removed by <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-50 dark:hover:text-gray-100" href="#0" style="outline: none;">Nick Mark</a>
+                              </div>
+                              <div class="flex-shrink-0 ml-2">
+                                 <a class="flex items-center font-medium text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500" href="#0" style="outline: none;">
+                                    View<span><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" class="transform transition-transform duration-500 ease-in-out"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></span>
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </li>
+                  </ul>
+                  <div class="px-4 bg-sky-50 text-gray-500 align-middle border border-solid border-sky-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                     Yesterday
+                  </div>
+                  <ul class="my-1">
+                     <li class="flex px-4">
+                        <div class="w-9 h-9 rounded-full flex-shrink-0 bg-green-500 my-2 mr-3">
+                           <svg class="w-9 h-9 fill-current text-light-blue-50" viewBox="0 0 36 36"><path d="M23 11v2.085c-2.841.401-4.41 2.462-5.8 4.315-1.449 1.932-2.7 3.6-5.2 3.6h-1v2h1c3.5 0 5.253-2.338 6.8-4.4 1.449-1.932 2.7-3.6 5.2-3.6h3l-4-4zM15.406 16.455c.066-.087.125-.162.194-.254.314-.419.656-.872 1.033-1.33C15.475 13.802 14.038 13 12 13h-1v2h1c1.471 0 2.505.586 3.406 1.455zM24 21c-1.471 0-2.505-.586-3.406-1.455-.066.087-.125.162-.194.254-.316.422-.656.873-1.028 1.328.959.878 2.108 1.573 3.628 1.788V25l4-4h-3z"></path></svg>
+                        </div>
+                        <div class="flex-grow flex items-center border-gray-100 text-sm text-gray-600 dark:text-gray-50 py-2">
+                           <div class="flex-grow flex justify-between items-center">
+                              <div class="self-center">
+                                 <a class="font-medium text-black hover:text-gray-200 " href="#0" style="outline: none;">240+</a><i class="text-black"> users have subscribed to </i><a class="font-medium text-black hover:text-gray-800 " href="#0" style="outline: none;">Newsletter #1</a>
+                              </div>
+                              <div class="flex-shrink-0 ml-2">
+                                 <a class="flex items-center font-medium text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500" href="#0" style="outline: none;">
+                                    View<span><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" class="transform transition-transform duration-500 ease-in-out"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></span>
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </li>
+                  </ul>
                </div>
             </div>
          </div>
-    </div>
-     
-     <style>
-     .scrollbar-w-2::-webkit-scrollbar {
-       width: 0.25rem;
-       height: 0.25rem;
-     }
-     
-     .scrollbar-track-blue-lighter::-webkit-scrollbar-track {
-       --bg-opacity: 1;
-       background-color: #f7fafc;
-       background-color: rgba(247, 250, 252, var(--bg-opacity));
-     }
-     
-     .scrollbar-thumb-blue::-webkit-scrollbar-thumb {
-       --bg-opacity: 1;
-       background-color: #edf2f7;
-       background-color: rgba(237, 242, 247, var(--bg-opacity));
-     }
-     
-     .scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
-       border-radius: 0.25rem;
-     }
-     </style>
-     
-     <script>
-         const el = document.getElementById('messages')
-         el.scrollTop = el.scrollHeight
-     </script>
+        <!-- ./Recent Activities -->
+      </div>
+  
+      <!-- Task Summaries -->
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-4 gap-4">
+        <div class="md:col-span-2 xl:col-span-3">
+          <h3 class="divider uppercase">Task summaries of recent sprints</h3>
+        </div>
+        <div class="md:col-span-2 xl:col-span-1">
+            <div class="rounded p-3 bg-sky-50 border-b-2 border-sky-200">
+               <div class="flex justify-between py-1">
+                  <h3 class="text-sm font-semibold">Tasks in TO DO</h3>
+                  <svg class="h-4 fill-current text-gray-600 dark:text-gray-500 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 10a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4zm7 0a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4zm7 0a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4z" /></svg>
+               </div>
+               <div class="text-sm mt-2">
+                  <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-blue-100 cursor-pointer">Delete all references from the wiki</div>
+                  <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-blue-100 dark:border-gray-900 cursor-pointer">Remove analytics code</div>
+                  <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-blue-100 dark:border-gray-900 cursor-pointer">
+                     Do a mobile first layout
+                     <div class="mt-2 ml-2 flex justify-between items-start">
+                        <span class="text-xs flex items-center">
+                        <svg class="h-4 fill-current mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M11 4c-3.855 0-7 3.145-7 7v28c0 3.855 3.145 7 7 7h28c3.855 0 7-3.145 7-7V11c0-3.855-3.145-7-7-7zm0 2h28c2.773 0 5 2.227 5 5v28c0 2.773-2.227 5-5 5H11c-2.773 0-5-2.227-5-5V11c0-2.773 2.227-5 5-5zm25.234 9.832l-13.32 15.723-8.133-7.586-1.363 1.465 9.664 9.015 14.684-17.324z" /></svg>
+                        3/5
+                        </span>
+                        <img src="https://i.imgur.com/OZaT7jl.png" alt="" class="rounded-full" />
+                     </div>
+                  </div>
+                  <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Check the meta tags</div>
+                  <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">
+                     Think more tasks for this example
+                     <div class="mt-2 ml-2 flex justify-between items-start">
+                        <span class="text-xs flex items-center">
+                           <svg class="h-4 fill-current mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M11 4c-3.855 0-7 3.145-7 7v28c0 3.855 3.145 7 7 7h28c3.855 0 7-3.145 7-7V11c0-3.855-3.145-7-7-7zm0 2h28c2.773 0 5 2.227 5 5v28c0 2.773-2.227 5-5 5H11c-2.773 0-5-2.227-5-5V11c0-2.773 2.227-5 5-5zm25.234 9.832l-13.32 15.723-8.133-7.586-1.363 1.465 9.664 9.015 14.684-17.324z" /></svg>
+                           0/3
+                        </span>
+                     </div>
+                  </div>
+                  <p class="mt-3 text-gray-600 dark:text-gray-400">Add a card...</p>
+               </div>
+            </div>
+        </div>
+        <div>
+            <div class="rounded bg-sky-50 p-3">
+               <div class="flex justify-between py-1">
+                  <h3 class="text-sm font-semibold">Tasks in DEVELOPMENT</h3>
+                  <svg class="h-4 fill-current cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 10a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4zm7 0a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4zm7 0a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4z" /></svg>
+               </div>
+               <div class="text-sm mt-2">
+               <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Delete all references from the wiki</div>
+               <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Remove analytics code</div>
+               <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">
+                  Do a mobile first layout
+                  <div class="flex justify-between items-start mt-2 ml-2 text-white text-xs">
+                     <span class="bg-pink-600 rounded p-1 text-xs flex items-center">
+                     <svg class="h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c-.8 0-1.5.7-1.5 1.5v.688C7.344 4.87 5 7.62 5 11v4.5l-2 2.313V19h18v-1.188L19 15.5V11c0-3.379-2.344-6.129-5.5-6.813V3.5c0-.8-.7-1.5-1.5-1.5zm-2 18c0 1.102.898 2 2 2 1.102 0 2-.898 2-2z" /></svg>
+                     2
+                     </span>
+                  </div>
+               </div>
+               <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Check the meta tags</div>
+               <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">
+                  Think more tasks for this example
+                  <div class="text-gray-500 mt-2 ml-2 flex justify-between items-start">
+                     <span class="text-xs flex items-center">
+                     <svg class="h-4 fill-current mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M11 4c-3.855 0-7 3.145-7 7v28c0 3.855 3.145 7 7 7h28c3.855 0 7-3.145 7-7V11c0-3.855-3.145-7-7-7zm0 2h28c2.773 0 5 2.227 5 5v28c0 2.773-2.227 5-5 5H11c-2.773 0-5-2.227-5-5V11c0-2.773 2.227-5 5-5zm25.234 9.832l-13.32 15.723-8.133-7.586-1.363 1.465 9.664 9.015 14.684-17.324z" /></svg>
+                     0/3
+                     </span>
+                  </div>
+               </div>
+               <p class="mt-3 text-gray-600 dark:text-gray-400">Add a card...</p>
+               </div>
+            </div>
+        </div>
+        <div>
+          <div class="rounded bg-sky-50 p-3">
+            <div class="flex justify-between py-1 ">
+              <h3 class="text-sm font-semibold">Tasks in QA</h3>
+              <svg class="h-4 fill-current cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 10a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4zm7 0a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4zm7 0a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4z" /></svg>
+            </div>
+            <div class="text-sm mt-2">
+              <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Delete all references from the wiki</div>
+              <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Remove analytics code</div>
+              <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Do a mobile first layout</div>
+              <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Check the meta tags</div>
+              <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">
+                Think more tasks for this example
+                <div class="text-gray-500 dark:text-gray-200 mt-2 ml-2 flex justify-between items-start">
+                  <span class="text-xs flex items-center">
+                    <svg class="h-4 fill-current mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M11 4c-3.855 0-7 3.145-7 7v28c0 3.855 3.145 7 7 7h28c3.855 0 7-3.145 7-7V11c0-3.855-3.145-7-7-7zm0 2h28c2.773 0 5 2.227 5 5v28c0 2.773-2.227 5-5 5H11c-2.773 0-5-2.227-5-5V11c0-2.773 2.227-5 5-5zm25.234 9.832l-13.32 15.723-8.133-7.586-1.363 1.465 9.664 9.015 14.684-17.324z" /></svg>
+                    0/3
+                  </span>
+                </div>
+              </div>
+              <p class="mt-3 text-gray-600 dark:text-gray-400">Add a card...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ./Task Summaries -->
+  
+      <!-- Client Table -->
+      <div class="mt-4 mx-4">
+         <div class="w-full overflow-hidden rounded-lg shadow-xs">
+            <div class="w-full overflow-x-auto">
+               <table class="w-full">
+               <thead>
+                  <tr class="text-xs font-semibold tracking-wide text-left uppercase bg-sky-50 border-b-2 border-sky-100">
+                     <th class="px-4 py-3">Client</th>
+                     <th class="px-4 py-3">Amount</th>
+                     <th class="px-4 py-3">Status</th>
+                     <th class="px-4 py-3">Date</th>
+                  </tr>
+               </thead>
+               <tbody class="bg-white divide-y divide-sky-200">
+                  <tr class="bg-sky-50 hover:bg-sky-100">
+                     <td class="px-4 py-3">
+                     <div class="flex items-center text-sm">
+                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                           <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
+                           <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                        </div>
+                        <div>
+                           <p class="font-semibold">Hans Burger</p>
+                           <p class="text-xs text-gray-600 dark:text-gray-400">10x Developer</p>
+                        </div>
+                     </div>
+                     </td>
+                     <td class="px-4 py-3 text-sm">$855.85</td>
+                     <td class="px-4 py-3 text-xs">
+                     <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"> Approved </span>
+                     </td>
+                     <td class="px-4 py-3 text-sm">15-01-2021</td>
+                  </tr>
+                  <tr class="bg-sky-50 hover:bg-sky-100">
+                     <td class="px-4 py-3">
+                     <div class="flex items-center text-sm">
+                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                           <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;facepad=3&amp;fit=facearea&amp;s=707b9c33066bf8808c934c8ab394dff6" alt="" loading="lazy" />
+                           <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                        </div>
+                        <div>
+                           <p class="font-semibold">Jolina Angelie</p>
+                           <p class="text-xs text-gray-600 dark:text-gray-400">Unemployed</p>
+                        </div>
+                     </div>
+                     </td>
+                     <td class="px-4 py-3 text-sm">$369.75</td>
+                     <td class="px-4 py-3 text-xs">
+                     <span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full"> Pending </span>
+                     </td>
+                     <td class="px-4 py-3 text-sm">23-03-2021</td>
+                  </tr>
+                  <tr class="bg-sky-50 hover:bg-sky-100">
+                     <td class="px-4 py-3">
+                     <div class="flex items-center text-sm">
+                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                           <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/photo-1502720705749-871143f0e671?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;s=b8377ca9f985d80264279f277f3a67f5" alt="" loading="lazy" />
+                           <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                        </div>
+                        <div>
+                           <p class="font-semibold">Dave Li</p>
+                           <p class="text-xs text-gray-600 dark:text-gray-400">Influencer</p>
+                        </div>
+                     </div>
+                     </td>
+                     <td class="px-4 py-3 text-sm">$775.45</td>
+                     <td class="px-4 py-3 text-xs">
+                     <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700"> Expired </span>
+                     </td>
+                     <td class="px-4 py-3 text-sm">09-02-2021</td>
+                  </tr>
+                  <tr class="bg-sky-50 hover:bg-sky-100">
+                     <td class="px-4 py-3">
+                     <div class="flex items-center text-sm">
+                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                           <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/photo-1551006917-3b4c078c47c9?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
+                           <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                        </div>
+                        <div>
+                           <p class="font-semibold">Rulia Joberts</p>
+                           <p class="text-xs text-gray-600 dark:text-gray-400">Actress</p>
+                        </div>
+                     </div>
+                     </td>
+                     <td class="px-4 py-3 text-sm">$1276.75</td>
+                     <td class="px-4 py-3 text-xs">
+                     <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"> Approved </span>
+                     </td>
+                     <td class="px-4 py-3 text-sm">17-04-2021</td>
+                  </tr>
+                  <tr class="bg-sky-50 hover:bg-sky-100">
+                     <td class="px-4 py-3">
+                     <div class="flex items-center text-sm">
+                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                           <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/photo-1566411520896-01e7ca4726af?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
+                           <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                        </div>
+                        <div>
+                           <p class="font-semibold">Hitney Wouston</p>
+                           <p class="text-xs text-gray-600 dark:text-gray-400">Singer</p>
+                        </div>
+                     </div>
+                     </td>
+                     <td class="px-4 py-3 text-sm">$863.45</td>
+                     <td class="px-4 py-3 text-xs">
+                     <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700"> Denied </span>
+                     </td>
+                     <td class="px-4 py-3 text-sm">11-01-2021</td>
+                  </tr>
+               </tbody>
+               </table>
+            </div>
+            <div class="grid px-4 py-3 text-xs font-semibold tracking-wide bg-sky-50 hover:bg-sky-100">
+               <span class="flex items-center col-span-3"> Showing 21-30 of 100 </span>
+               <span class="col-span-2"></span>
+               <!-- Pagination -->
+               <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
+               <nav aria-label="Table navigation">
+                  <ul class="inline-flex items-center">
+                     <li>
+                     <button class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple" aria-label="Previous">
+                        <svg aria-hidden="true" class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                           <path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                        </svg>
+                     </button>
+                     </li>
+                     <li>
+                     <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">1</button>
+                     </li>
+                     <li>
+                     <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">2</button>
+                     </li>
+                     <li>
+                     <button class="px-3 py-1 transition-colors duration-150 bg-sky-200 border border-r-0 border-sky-300 rounded-md focus:outline-none focus:shadow-outline-purple">3</button>
+                     </li>
+                     <li>
+                     <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">4</button>
+                     </li>
+                     <li>
+                     <span class="px-3 py-1">...</span>
+                     </li>
+                     <li>
+                     <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">8</button>
+                     </li>
+                     <li>
+                     <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">9</button>
+                     </li>
+                     <li>
+                     <button class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple" aria-label="Next">
+                        <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
+                           <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                        </svg>
+                     </button>
+                     </li>
+                  </ul>
+               </nav>
+               </span>
+            </div>
+         </div>
+      </div>
+      <!-- ./Client Table -->
+  
+      
+  
+      <!-- External resources -->
+      <div class="mt-8 mx-4">
+        <div class="p-4">
+          
+        </div>
+      </div>
+      <!-- ./External resources -->
+   </div>
 </Navigation>

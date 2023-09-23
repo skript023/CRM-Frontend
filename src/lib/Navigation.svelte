@@ -24,7 +24,8 @@
             })
         })
     })
-
+    const role = user.role
+    $: console.log(role)
 </script>
 
 <div class="drawer">
@@ -75,7 +76,8 @@
             <main class="mb-auto h-10">
                 <div>
                     <slot/>
-                    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+                    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle" on:keydown={() => navigate('/', {replace: true})}>
                         <div class="modal-box">
                             <h3 class="font-bold text-lg">Session invalid</h3>
                             <p class="py-4">Session invalid please re-login</p>
@@ -109,29 +111,34 @@
                 <p class="indent-12 text-lg mt-8">
                     {user.fullname}
                 </p>
+                <!-- <p class="indent-12 text-sm mt-8">
+                    {user.role.name}
+                </p> -->
             </div>
             <div class="divider">Menu</div> 
             <!-- Sidebar content here -->
-            <li><a href={null}>Sidebar Item 1</a></li>
-            <li><a href={null}>Sidebar Item 2</a></li>
-            <li>
-                <details open>
-                  <summary>Parent</summary>
-                  <ul>
-                    <li><a href={null}>level 2 item 1</a></li>
-                    <li><a href={null}>level 2 item 2</a></li>
-                    <li>
-                      <details open>
-                        <summary>Parent</summary>
-                        <ul>
-                          <li><a href={null}>level 3 item 1</a></li>
-                          <li><a href={null}>level 3 item 2</a></li>
-                        </ul>
-                      </details>
-                    </li>
-                  </ul>
-                </details>
-            </li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <!-- {#if user.role.name === 'admin'}
+                <div class="divider uppercase">admin</div>
+                <li>
+                    <details open>
+                    <summary>Users</summary>
+                    <ul>
+                        <li><a href={null}>All Users</a></li>
+                        <li><a href={null}>Add User</a></li>
+                        <li>
+                        <details open>
+                            <summary>Parent</summary>
+                            <ul>
+                            <li><a href={null}>level 3 item 1</a></li>
+                            <li><a href={null}>level 3 item 2</a></li>
+                            </ul>
+                        </details>
+                        </li>
+                    </ul>
+                    </details>
+                </li>
+            {/if} -->
         </ul>
     </div>
 </div>
