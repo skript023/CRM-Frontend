@@ -110,15 +110,15 @@
     <div class="drawer-side z-10">
         <label for="my-drawer" class="drawer-overlay"></label>
         <ul class="menu p-4 w-80 min-h-screen bg-base-200 text-base-content">
-            <div class="avatar mb-5 mt-5">
-                <div class="w-24 rounded-full">
+            <div class="avatar mb-5 mt-5 justify-center">
+                <div class="w-48 rounded-full">
                     <img alt="profile" src="https://scontent.fcgk8-2.fna.fbcdn.net/v/t39.30808-6/355859180_6500746203297381_6020865479366609276_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=a2f6c7&_nc_eui2=AeFQtswtevDDitEuVw6hX9ai8CPyaLgMPSPwI_JouAw9I5FWFJMwmoNQbf_7XrzCOAxGe-zs3TVTZy_uR1rRaV3c&_nc_ohc=uUklxOhLy70AX84VGuD&_nc_zt=23&_nc_ht=scontent.fcgk8-2.fna&oh=00_AfAITebVOGP1NAO-SGlqHsRhmPbdNpNHQbVvOLM1ujR9PA&oe=65106655" />
                 </div>
-                <p class="indent-8 text-lg mt-8">
-                    {user?.fullname}
-                </p>
             </div>
-            <div class="divider">Menu</div> 
+            <div class="join join-vertical justify-center items-center text-lg mt-5 mb-10">
+                <p>{user?.fullname}</p>
+            </div>
+            <div class="divider uppercase">Menu</div> 
             <!-- Sidebar content here -->
             <li><a href="/dashboard">Dashboard</a></li>
             {#if user?.role?.name === 'admin'}
