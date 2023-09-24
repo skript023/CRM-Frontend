@@ -1,7 +1,9 @@
 <script lang="ts">
     import { onMount } from "svelte";
 
-    let fullname = ''
+    let first_name = ''
+    let last_name = ''
+    let fullname = first_name + last_name
     let username = ''
     let email = ''
     let password = ''
