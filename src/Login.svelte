@@ -68,7 +68,7 @@
 	<!-- Breadcrumb End -->
 
 	<!-- ====== Forms Section Start -->
-	<div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+	<div class="rounded-sm border border-stroke bg-gray-800 shadow-default dark:border-strokedark border-gray-600 dark:bg-boxdark">
 	  <div class="flex flex-wrap items-center">
 		<div class="hidden w-full xl:block xl:w-1/2">
 		  <div class="py-17.5 px-26 text-center">
@@ -164,7 +164,7 @@
 			</span>
 		  </div>
 		</div>
-		<div class="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">
+		<div class="w-full border-stroke dark:border-strokedark border-gray-600 xl:w-1/2 xl:border-l-2">
 		  <div class="w-full p-4 sm:p-12.5 xl:p-17.5">
 			<span class="mb-1.5 block font-medium">Start for free</span>
 			<h2 class="mb-9 text-2xl font-bold sm:text-title-xl2 text-center">
@@ -214,7 +214,7 @@
 			  <div class="mt-6 text-center">
 				<p class="font-medium">
 				  Don’t have any account?
-				  <a href="signup.html" class="text-primary">Sign Up</a>
+				  <a href="/signup" class="text-primary">Sign Up</a>
 				</p>
 			  </div>
 			</form>
