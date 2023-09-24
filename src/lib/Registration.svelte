@@ -27,7 +27,7 @@
 
 <div class="h-auto mx-auto py-12 mt-12 w-1/2 justify-center items-center">
     <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-xl border-2 border-gray-800 bg-gray-800">
-        <h2 class="uppercase text-center mb-12">Registration</h2>
+        <h2 class="uppercase text-center mb-12">Registeration</h2>
         <form>
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
             <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
