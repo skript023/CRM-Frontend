@@ -3,15 +3,20 @@
     import { navigate } from "svelte-routing";
     import { toast } from '@zerodevx/svelte-toast'
     import type { User } from "./interface/user.interface";
+    import { loading, Loading } from 'gros/loading';
 
     let user = {} as User;
 
-    onMount(() => {
-        fetch('https://crm-backend.glitch.me/user/profile', {
-            method: 'GET',
-            credentials: 'include'
-        }).
-        then(async (res) => {
+    onMount(async () => {
+        try 
+        {
+            loading.start('Authorization', 'It may take a few seconds')
+            
+            const res = await fetch('https://crm-backend.glitch.me/user/profile', {
+                method: 'GET',
+                credentials: 'include'
+            })
+
             if (res.status === 200)
             {
                 user = await res.json();
@@ -21,19 +26,23 @@
                 const modal = document.getElementById('modal-disconnect') as HTMLElement | any
                 modal.showModal()
             }
-        }).
-        catch((e) => {
+
+            loading.stop()
+        } 
+        catch (e : any) 
+        {
             toast.push(e, {
                 theme: {
                     '--toastColor': 'mintcream',
                     '--toastBackground': 'rgba(187,72,120,0.9)',
                     '--toastBarBackground': 'red'
-                }   
-            })
-        })
+                }
+            }) 
+        }
     })
 </script>
 
+<Loading process bootstrap/>
 <div class="drawer">
     <input id="my-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content">

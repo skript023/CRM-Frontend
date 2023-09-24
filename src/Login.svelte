@@ -1,23 +1,28 @@
 <script lang="ts">
 	import { toast } from '@zerodevx/svelte-toast';
 	import { navigate } from 'svelte-routing';
+	import { loading, Loading } from 'gros/loading'
 
 	let username = null as string | null
 	let password = null as string | null
 	
-	const onClick = ()=> {
-		fetch('https://crm-backend.glitch.me/auth/login', {
-			method: 'POST',
-			credentials: 'include',
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({
-				username,
-				password
+	const onClick = async ()=> {
+		try
+		{
+			loading.start('Authenticating', 'It may take a few seconds')
+
+			const res = await fetch('https://crm-backend.glitch.me/auth/login', {
+				method: 'POST',
+				credentials: 'include',
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					username,
+					password
+				})
 			})
-		}).
-		then(async (res) => {
+
 			if (res.status === 200)
 			{
 				const json = await res.json()
@@ -28,19 +33,23 @@
 				username = null
 				password = null
 			}
-		}).
-		catch((e) =>{
-			toast.push(e, {
+
+			loading.stop()
+		}
+		catch (error : any)
+		{
+			toast.push(error, {
 				theme: {
 					'--toastColor': 'mintcream',
 					'--toastBackground': 'rgba(187,72,120,0.9)',
 					'--toastBarBackground': 'red'
 				}   
 			})
-		})
+		}
 	}
 </script>
 
+<Loading process bootstrap/>
 <p></p>
 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
 	<!-- Breadcrumb Start -->
@@ -64,8 +73,8 @@
 		<div class="hidden w-full xl:block xl:w-1/2">
 		  <div class="py-17.5 px-26 text-center">
 			<a class="mb-12 inline-block mt-12 mr-6" href="index.html">
-			  <img class="hidden dark:block" src="./public/logo-icon.png" alt="logo icon" />
-			  <img class="dark:hidden" src="./public/logo-icon.png" alt="logo icon" />
+			  <img class="hidden dark:block" src="/logo-icon.png" alt="logo icon" />
+			  <img class="dark:hidden" src="/logo-icon.png" alt="logo icon" />
 			</a>
 
 			<p class="font-medium 2xl:px-20">

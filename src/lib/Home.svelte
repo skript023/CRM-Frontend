@@ -1,20 +1,10 @@
 <script lang="ts">
-    import type { User } from './interface/user.interface';
-    import { onMount } from "svelte";
-    import Navigation from "./Navigation.svelte";
-    import { toast } from '@zerodevx/svelte-toast';
-    import { navigate } from 'svelte-routing';
-    import { DataHandler } from '@vincjo/datatables'
-
-    let users = [] as User[]
-    let isLoaded = false
-
-    onMount(() => {
-        
-    });
-
-    $: handler = new DataHandler(users, { rowsPerPage: 50 })
-    $: rows = handler.getRows()
+   import type { User } from './interface/user.interface';
+   import { onMount } from "svelte";
+   import Navigation from "./Navigation.svelte";
+   import { toast } from '@zerodevx/svelte-toast';
+   import { navigate } from 'svelte-routing';
+   
 </script>
 
 <Navigation>
@@ -23,7 +13,7 @@
     
       <!-- Statistics Cards -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-4 gap-4">
-         <div class="bg-sky-100 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-sky-600 font-medium group">
+         <div class="bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-gray-600 font-medium group">
             <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
                <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
             </div>
@@ -32,7 +22,7 @@
                <p>Visitors</p>
             </div>
          </div>
-         <div class="bg-sky-100 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-sky-600 font-medium group">
+         <div class="bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-gray-600 font-medium group">
             <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
                <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
             </div>
@@ -41,7 +31,7 @@
                <p>Orders</p>
             </div>
          </div>
-         <div class="bg-sky-100 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-sky-600 font-medium group">
+         <div class="bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-gray-600 font-medium group">
             <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
                <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
             </div>
@@ -50,7 +40,7 @@
                <p>Sales</p>
             </div>
          </div>
-         <div class="bg-sky-100 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-sky-600 font-medium group">
+         <div class="bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-gray-600 font-medium group">
             <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
                <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </div>
@@ -65,7 +55,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
   
         <!-- Social Traffic -->
-        <div class="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-sky-50 w-full shadow-lg rounded border-2 border-sky-100">
+        <div class="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-800 w-full shadow-lg rounded border-2 border-gray-600">
           <div class="rounded-t mb-0 px-0 border-0">
             <div class="flex flex-wrap items-center px-4 py-2">
               <div class="relative w-full max-w-full flex-grow flex-1">
@@ -79,9 +69,9 @@
               <table class="items-center w-full bg-transparent border-collapse">
                 <thead>
                   <tr>
-                    <th class="px-4 bg-sky-100 align-middle border border-solid border-sky-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Referral</th>
-                    <th class="px-4 bg-sky-100 align-middle border border-solid border-sky-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Visitors</th>
-                    <th class="px-4 bg-sky-100 align-middle border border-solid border-sky-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"></th>
+                    <th class="px-4 bg-gray-800 align-middle border border-solid border-gray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Referral</th>
+                    <th class="px-4 bg-gray-800 align-middle border border-solid border-gray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Visitors</th>
+                    <th class="px-4 bg-gray-800 align-middle border border-solid border-gray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -163,8 +153,8 @@
         <!-- ./Social Traffic -->
   
         <!-- Recent Activities -->
-         <div class="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded bg-sky-50">
-            <div class="rounded-t mb-0 px-0 border-0 bg-sky-50 border-b-2 border-sky-100">
+         <div class="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded bg-gray-800">
+            <div class="rounded-t mb-0 px-0 border-0 bg-gray-800 border-b-2 border-gray-600">
                <div class="flex flex-wrap items-center px-4 py-2">
                   <div class="relative w-full max-w-full flex-grow flex-1">
                      <h3 class="font-semibold text-base">Recent Activities</h3>
@@ -174,7 +164,7 @@
                   </div>
                </div>
                <div class="block w-full">
-                  <div class="px-4 align-middle border border-solid border-sky-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  <div class="px-4 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                      Today
                   </div>
                   <ul class="my-1">
@@ -213,7 +203,7 @@
                         </div>
                      </li>
                   </ul>
-                  <div class="px-4 bg-sky-50 text-gray-500 align-middle border border-solid border-sky-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  <div class="px-4 bg-gray-800 text-gray-500 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                      Yesterday
                   </div>
                   <ul class="my-1">
@@ -224,7 +214,7 @@
                         <div class="flex-grow flex items-center border-gray-100 text-sm text-gray-600 dark:text-gray-50 py-2">
                            <div class="flex-grow flex justify-between items-center">
                               <div class="self-center">
-                                 <a class="font-medium text-black hover:text-gray-200 " href="#0" style="outline: none;">240+</a><i class="text-black"> users have subscribed to </i><a class="font-medium text-black hover:text-gray-800 " href="#0" style="outline: none;">Newsletter #1</a>
+                                 <a class="font-medium hover:text-gray-200 " href="#0" style="outline: none;">240+</a><i> users have subscribed to </i><a class="font-medium hover:text-gray-400 " href="#0" style="outline: none;">Newsletter #1</a>
                               </div>
                               <div class="flex-shrink-0 ml-2">
                                  <a class="flex items-center font-medium text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500" href="#0" style="outline: none;">
@@ -247,15 +237,15 @@
           <h3 class="divider uppercase">Task summaries of recent sprints</h3>
         </div>
         <div class="md:col-span-2 xl:col-span-1">
-            <div class="rounded p-3 bg-sky-50 border-b-2 border-sky-200">
+            <div class="rounded p-3 bg-gray-800 border-b-2 border-gray-200">
                <div class="flex justify-between py-1">
                   <h3 class="text-sm font-semibold">Tasks in TO DO</h3>
                   <svg class="h-4 fill-current text-gray-600 dark:text-gray-500 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 10a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4zm7 0a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4zm7 0a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4z" /></svg>
                </div>
                <div class="text-sm mt-2">
-                  <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-blue-100 cursor-pointer">Delete all references from the wiki</div>
-                  <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-blue-100 dark:border-gray-900 cursor-pointer">Remove analytics code</div>
-                  <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-blue-100 dark:border-gray-900 cursor-pointer">
+                  <div class="bg-gray-800 hover:bg-gray-900 p-2 rounded mt-1 border-b border-gray-400 cursor-pointer">Delete all references from the wiki</div>
+                  <div class="bg-gray-800 hover:bg-gray-900 p-2 rounded mt-1 border-b border-gray-400 dark:border-gray-900 cursor-pointer">Remove analytics code</div>
+                  <div class="bg-gray-800 hover:bg-gray-900 p-2 rounded mt-1 border-b border-gray-400 dark:border-gray-900 cursor-pointer">
                      Do a mobile first layout
                      <div class="mt-2 ml-2 flex justify-between items-start">
                         <span class="text-xs flex items-center">
@@ -265,8 +255,8 @@
                         <img src="https://i.imgur.com/OZaT7jl.png" alt="" class="rounded-full" />
                      </div>
                   </div>
-                  <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Check the meta tags</div>
-                  <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">
+                  <div class="bg-gray-800 hover:bg-gray-900 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Check the meta tags</div>
+                  <div class="bg-gray-800 hover:bg-gray-900 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">
                      Think more tasks for this example
                      <div class="mt-2 ml-2 flex justify-between items-start">
                         <span class="text-xs flex items-center">
@@ -280,15 +270,15 @@
             </div>
         </div>
         <div>
-            <div class="rounded bg-sky-50 p-3">
+            <div class="rounded bg-gray-800 p-3">
                <div class="flex justify-between py-1">
                   <h3 class="text-sm font-semibold">Tasks in DEVELOPMENT</h3>
                   <svg class="h-4 fill-current cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 10a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4zm7 0a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4zm7 0a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4z" /></svg>
                </div>
                <div class="text-sm mt-2">
-               <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Delete all references from the wiki</div>
-               <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Remove analytics code</div>
-               <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">
+               <div class="bg-gray-800 hover:bg-gray-900 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Delete all references from the wiki</div>
+               <div class="bg-gray-800 hover:bg-gray-900 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Remove analytics code</div>
+               <div class="bg-gray-800 hover:bg-gray-900 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">
                   Do a mobile first layout
                   <div class="flex justify-between items-start mt-2 ml-2 text-white text-xs">
                      <span class="bg-pink-600 rounded p-1 text-xs flex items-center">
@@ -297,8 +287,8 @@
                      </span>
                   </div>
                </div>
-               <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Check the meta tags</div>
-               <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">
+               <div class="bg-gray-800 hover:bg-gray-900 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Check the meta tags</div>
+               <div class="bg-gray-800 hover:bg-gray-900 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">
                   Think more tasks for this example
                   <div class="text-gray-500 mt-2 ml-2 flex justify-between items-start">
                      <span class="text-xs flex items-center">
@@ -312,17 +302,17 @@
             </div>
         </div>
         <div>
-          <div class="rounded bg-sky-50 p-3">
+          <div class="rounded bg-gray-800 p-3">
             <div class="flex justify-between py-1 ">
               <h3 class="text-sm font-semibold">Tasks in QA</h3>
               <svg class="h-4 fill-current cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 10a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4zm7 0a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4zm7 0a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4z" /></svg>
             </div>
             <div class="text-sm mt-2">
-              <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Delete all references from the wiki</div>
-              <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Remove analytics code</div>
-              <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Do a mobile first layout</div>
-              <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Check the meta tags</div>
-              <div class="bg-blue-100 hover:bg-blue-200 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">
+              <div class="bg-gray-800 hover:bg-gray-900 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Delete all references from the wiki</div>
+              <div class="bg-gray-800 hover:bg-gray-900 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Remove analytics code</div>
+              <div class="bg-gray-800 hover:bg-gray-900 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Do a mobile first layout</div>
+              <div class="bg-gray-800 hover:bg-gray-900 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">Check the meta tags</div>
+              <div class="bg-gray-800 hover:bg-gray-900 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer">
                 Think more tasks for this example
                 <div class="text-gray-500 dark:text-gray-200 mt-2 ml-2 flex justify-between items-start">
                   <span class="text-xs flex items-center">
@@ -344,15 +334,15 @@
             <div class="w-full overflow-x-auto">
                <table class="w-full">
                <thead>
-                  <tr class="text-xs font-semibold tracking-wide text-left uppercase bg-sky-50 border-b-2 border-sky-100">
+                  <tr class="text-xs font-semibold tracking-wide text-left uppercase bg-gray-800 border-b-2 border-gray-600">
                      <th class="px-4 py-3">Client</th>
                      <th class="px-4 py-3">Amount</th>
                      <th class="px-4 py-3">Status</th>
                      <th class="px-4 py-3">Date</th>
                   </tr>
                </thead>
-               <tbody class="bg-white divide-y divide-sky-200">
-                  <tr class="bg-sky-50 hover:bg-sky-100">
+               <tbody class="bg-white divide-y divide-gray-200">
+                  <tr class="bg-gray-800 hover:bg-gray-200">
                      <td class="px-4 py-3">
                      <div class="flex items-center text-sm">
                         <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
@@ -371,7 +361,7 @@
                      </td>
                      <td class="px-4 py-3 text-sm">15-01-2021</td>
                   </tr>
-                  <tr class="bg-sky-50 hover:bg-sky-100">
+                  <tr class="bg-gray-800 hover:bg-gray-200">
                      <td class="px-4 py-3">
                      <div class="flex items-center text-sm">
                         <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
@@ -390,7 +380,7 @@
                      </td>
                      <td class="px-4 py-3 text-sm">23-03-2021</td>
                   </tr>
-                  <tr class="bg-sky-50 hover:bg-sky-100">
+                  <tr class="bg-gray-800 hover:bg-gray-200">
                      <td class="px-4 py-3">
                      <div class="flex items-center text-sm">
                         <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
@@ -409,7 +399,7 @@
                      </td>
                      <td class="px-4 py-3 text-sm">09-02-2021</td>
                   </tr>
-                  <tr class="bg-sky-50 hover:bg-sky-100">
+                  <tr class="bg-gray-800 hover:bg-gray-200">
                      <td class="px-4 py-3">
                      <div class="flex items-center text-sm">
                         <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
@@ -428,7 +418,7 @@
                      </td>
                      <td class="px-4 py-3 text-sm">17-04-2021</td>
                   </tr>
-                  <tr class="bg-sky-50 hover:bg-sky-100">
+                  <tr class="bg-gray-800 hover:bg-gray-200">
                      <td class="px-4 py-3">
                      <div class="flex items-center text-sm">
                         <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
@@ -450,7 +440,7 @@
                </tbody>
                </table>
             </div>
-            <div class="grid px-4 py-3 text-xs font-semibold tracking-wide bg-sky-50 hover:bg-sky-100">
+            <div class="grid px-4 py-3 text-xs font-semibold tracking-wide bg-gray-800">
                <span class="flex items-center col-span-3"> Showing 21-30 of 100 </span>
                <span class="col-span-2"></span>
                <!-- Pagination -->
@@ -471,7 +461,7 @@
                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">2</button>
                      </li>
                      <li>
-                     <button class="px-3 py-1 transition-colors duration-150 bg-sky-200 border border-r-0 border-sky-300 rounded-md focus:outline-none focus:shadow-outline-purple">3</button>
+                     <button class="px-3 py-1 transition-colors duration-150 bg-gray-200 border border-r-0 border-gray-400 rounded-md focus:outline-none focus:shadow-outline-purple">3</button>
                      </li>
                      <li>
                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">4</button>
