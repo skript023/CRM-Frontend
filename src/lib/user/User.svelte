@@ -38,44 +38,45 @@
 
                     setInterval(() => 
                     {
-                        if (day === 0 && hour === 0)
-                        {
-                            document.getElementById(`day-${i}`)?.style.setProperty('--value', '0')
-                            document.getElementById(`dhoursay-${i}`)?.style.setProperty('--value', '0')
-                            document.getElementById(`min-${i}`)?.style.setProperty('--value', '0')
-                            document.getElementById(`sec-${i}`)?.style.setProperty('--value', '0')
-                        }
-                        if (hour < 0 && day >= 0)
-                        {
-                            day--
-                            document.getElementById(`day-${i}`)?.style.setProperty('--value', hour.toString())
+                        if (day <= 0 && hour <= 0)
+                            {
+                                document.getElementById(`day-${i}`)?.style.setProperty('--value', '0')
+                                document.getElementById(`hours-${i}`)?.style.setProperty('--value', '0')
+                                document.getElementById(`min-${i}`)?.style.setProperty('--value', '0')
+                                document.getElementById(`sec-${i}`)?.style.setProperty('--value', '0')
+                            }
+                            if (hour < 0 && day >= 0)
+                            {
+                                day--
+                                document.getElementById(`day-${i}`)?.style.setProperty('--value', day.toString())
 
-                            hour = 23
-                            document.getElementById(`hours-${i}`)?.style.setProperty('--value', hour.toString())
-                        }
-                        if (minute < 0 && hour >= 0)
-                        {
-                            hour--
-                            document.getElementById(`hours-${i}`)?.style.setProperty('--value', hour.toString())
+                                hour = 23
+                                document.getElementById(`hours-${i}`)?.style.setProperty('--value', hour.toString())
+                            }
+                            if (minute < 0 && hour >= 0)
+                            {
+                                hour--
+                                document.getElementById(`hours-${i}`)?.style.setProperty('--value', hour.toString())
 
-                            minute = 59
-                            document.getElementById(`min-${i}`)?.style.setProperty('--value', minute.toString())
-                        }
-                        if (second < 0 && minute >= 0)
-                        {
-                            minute--
-                            document.getElementById(`min-${i}`)?.style.setProperty('--value', minute.toString())
+                                minute = 59
+                                document.getElementById(`min-${i}`)?.style.setProperty('--value', minute.toString())
+                            }
+                            if (second < 0 && minute >= 0)
+                            {
+                                minute--
+                                document.getElementById(`min-${i}`)?.style.setProperty('--value', minute.toString())
 
-                            second = 59
-                            document.getElementById(`sec-${i}`)?.style.setProperty('--value', second.toString())
-                        }
+                                second = 59
+                                document.getElementById(`sec-${i}`)?.style.setProperty('--value', second.toString())
+                            }
 
-                        if(second >= 0)
-                        {
-                            second--
-                            document.getElementById(`sec-${i}`)?.style.setProperty('--value', second.toString())
-                        }
-                    }, 1000)
+                            if(second >= 0)
+                            {
+                                second--
+                                document.getElementById(`sec-${i}`)?.style.setProperty('--value', second.toString())
+                            }
+                    }
+                        , 1000)
                 })
             }
             else

@@ -121,7 +121,7 @@
         <ul class="menu p-4 w-80 min-h-screen bg-base-200 text-base-content">
             <div class="avatar mb-5 mt-5 justify-center">
                 <div class="w-48 rounded-full">
-                    <img alt="profile" src="https://crm-backend.glitch.me/user/avatar/${user.image}" />
+                    <img alt="profile" src={`https://crm-backend.glitch.me/user/avatar/${user.image}`} />
                 </div>
             </div>
             <div class="join join-vertical justify-center items-center text-lg mt-5 mb-10">
