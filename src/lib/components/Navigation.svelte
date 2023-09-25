@@ -76,7 +76,7 @@
                             <div class="dropdown dropdown-left dropdown-hover">
                                 <div class="avatar online">
                                     <div class="w-10 rounded-full">
-                                        <img alt="profile" src="https://scontent.fcgk8-2.fna.fbcdn.net/v/t39.30808-6/355859180_6500746203297381_6020865479366609276_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=a2f6c7&_nc_eui2=AeFQtswtevDDitEuVw6hX9ai8CPyaLgMPSPwI_JouAw9I5FWFJMwmoNQbf_7XrzCOAxGe-zs3TVTZy_uR1rRaV3c&_nc_ohc=uUklxOhLy70AX84VGuD&_nc_zt=23&_nc_ht=scontent.fcgk8-2.fna&oh=00_AfAITebVOGP1NAO-SGlqHsRhmPbdNpNHQbVvOLM1ujR9PA&oe=65106655" />
+                                        <img alt="profile" src={`https://crm-backend.glitch.me/user/avatar/${user.image}`} />
                                     </div>
                                 </div>
                                 <ul class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
@@ -121,7 +121,7 @@
         <ul class="menu p-4 w-80 min-h-screen bg-base-200 text-base-content">
             <div class="avatar mb-5 mt-5 justify-center">
                 <div class="w-48 rounded-full">
-                    <img alt="profile" src="https://scontent.fcgk8-2.fna.fbcdn.net/v/t39.30808-6/355859180_6500746203297381_6020865479366609276_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=a2f6c7&_nc_eui2=AeFQtswtevDDitEuVw6hX9ai8CPyaLgMPSPwI_JouAw9I5FWFJMwmoNQbf_7XrzCOAxGe-zs3TVTZy_uR1rRaV3c&_nc_ohc=uUklxOhLy70AX84VGuD&_nc_zt=23&_nc_ht=scontent.fcgk8-2.fna&oh=00_AfAITebVOGP1NAO-SGlqHsRhmPbdNpNHQbVvOLM1ujR9PA&oe=65106655" />
+                    <img alt="profile" src="https://crm-backend.glitch.me/user/avatar/${user.image}" />
                 </div>
             </div>
             <div class="join join-vertical justify-center items-center text-lg mt-5 mb-10">

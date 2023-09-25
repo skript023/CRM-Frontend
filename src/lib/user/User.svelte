@@ -30,10 +30,11 @@
 
                 users.map((user, i) => {
                     const date = new Date(user.expired)
-                    let day = date.getDay()
-                    let hour = date.getHours()
-                    let minute = date.getMinutes()
-                    let second = date.getSeconds()
+                    const current = new Date()
+                    let day = date.getDay() - current.getDay()
+                    let hour = date.getHours() - current.getHours()
+                    let minute = date.getMinutes() - current.getMinutes()
+                    let second = date.getSeconds() - current.getSeconds()
 
                     setInterval(() => 
                     {

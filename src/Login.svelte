@@ -29,9 +29,6 @@
 				toast.push(`<p class="text-center">${json.message}</p>`)
 				
 				navigate('/dashboard', {replace: true})
-				
-				username = null
-				password = null
 			}
 
 			loading.stop()
