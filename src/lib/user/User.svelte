@@ -314,7 +314,7 @@
                                 <td class="px-4 py-3">{user.email}</td>
                                 <td class="px-4 py-3">{user.role.name}</td>
                                 <td class="px-4 py-3">
-                                    {#if new Date(user?.expired) < new Date()}
+                                    {#if (new Date(user?.expired).getTime() - new Date().getTime()) <= 0}
                                         <p class="text-red-700">Expired</p>
                                     {:else}
                                         <span class="countdown font-mono text-2xl">
