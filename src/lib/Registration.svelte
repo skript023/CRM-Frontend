@@ -2,8 +2,11 @@
     import { toast } from "@zerodevx/svelte-toast";
     import { navigate } from "svelte-routing";
 
+    let isSubmitted = false
+
     const onSubmit = async (e : any) => 
     {
+        isSubmitted = true
         const data = new FormData(e.target)
         const first = data.get('first_name') as string
         const last = data.get('last_name') as string
@@ -36,6 +39,8 @@
                     }   
                 })
             }
+
+            isSubmitted = false
         } 
         catch (error : any) 
         {
@@ -105,14 +110,18 @@
                 </div>
             </div> -->
             <button  class="dropdown dropdown-end w-full md:w-auto lg:w-96 lg:mx-12 flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-arrow-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                Submit
+                {#if isSubmitted}
+                <span class="loading loading-spinner ml-1"></span>
+                {:else}
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-arrow-right ml-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0 -18"></path>
                     <path d="M16 12l-4 -4"></path>
                     <path d="M16 12h-8"></path>
                     <path d="M12 16l4 -4"></path>
                  </svg>
-                Submit
+                 {/if}
             </button>
         </form>
     </div>
