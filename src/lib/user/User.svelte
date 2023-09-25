@@ -33,31 +33,31 @@
 
                     const intervalId  = setInterval(() => {
                         const currentTime = new Date();
-                        const timeDifference = currentTime.getTime() - endDate.getTime()
+                        const timeDifference = endDate.getTime() - currentTime.getTime();
 
                         if (timeDifference <= 0) 
                         {
                             clearInterval(intervalId);
-                            // document.getElementById(`day-${i}`)?.style.setProperty('--value', '0');
-                            // document.getElementById(`hours-${i}`)?.style.setProperty('--value', '0');
-                            // document.getElementById(`min-${i}`)?.style.setProperty('--value', '0');
-                            // document.getElementById(`sec-${i}`)?.style.setProperty('--value', '0');
+                            document.getElementById(`day-${i}`)?.style.setProperty('--value', '0');
+                            document.getElementById(`hours-${i}`)?.style.setProperty('--value', '0');
+                            document.getElementById(`min-${i}`)?.style.setProperty('--value', '0');
+                            document.getElementById(`sec-${i}`)?.style.setProperty('--value', '0');
                             return;
                         }
 
                         let remainingSeconds = Math.floor(timeDifference / 1000);
-                        
+
                         const days = Math.floor(remainingSeconds / (3600 * 24));
                         remainingSeconds -= days * 3600 * 24;
-                        
+
                         const hours = Math.floor(remainingSeconds / 3600);
                         remainingSeconds -= hours * 3600;
                         
                         const minutes = Math.floor(remainingSeconds / 60);
                         remainingSeconds -= minutes * 60;
-                        
+
                         const seconds = remainingSeconds;
-                        
+
                         document.getElementById(`day-${i}`)?.style.setProperty('--value', days.toString());
                         document.getElementById(`hours-${i}`)?.style.setProperty('--value', hours.toString());
                         document.getElementById(`min-${i}`)?.style.setProperty('--value', minutes.toString());
