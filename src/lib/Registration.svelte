@@ -13,9 +13,7 @@
         try 
         {
             data.set('fullname',  fullname)
-            data.delete('first_name')
-            data.delete('last_name')
-            console.log(data.values())
+
             const res = await fetch('https://crm-backend.glitch.me/user/add', {
                 method: 'POST',
                 body: data
