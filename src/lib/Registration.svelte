@@ -16,7 +16,7 @@
             data.delete('first_name')
             data.delete('last_name')
             console.log(data.values())
-            const res = await fetch('http://localhost:3000/user/add', {
+            const res = await fetch('https://crm-backend.glitch.me/user/add', {
                 method: 'POST',
                 body: data
             })
@@ -31,7 +31,7 @@
             }
             else
             {
-                toast.push(`status : ${res.status} message: ${json.message}`, {
+                toast.push(`message: ${json.message}`, {
                     theme: {
                         '--toastColor': 'mintcream',
                         '--toastBackground': 'rgba(187,72,120,0.9)',
