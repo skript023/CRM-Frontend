@@ -29,52 +29,39 @@
                 isLoaded = true
 
                 users.map((user, i) => {
-                    const date = new Date(user.expired)
-                    const current = new Date()
-                    let day = date.getDay() - current.getDay()
-                    let hour = date.getHours() - current.getHours()
-                    let minute = date.getMinutes() - current.getMinutes()
-                    let second = date.getSeconds() - current.getSeconds()
+                    const endDate = new Date(user.expired);
 
-                    setInterval(() => 
-                    {
-                        if (day <= 0 && hour <= 0)
-                            {
-                                document.getElementById(`day-${i}`)?.style.setProperty('--value', '0')
-                                document.getElementById(`hours-${i}`)?.style.setProperty('--value', '0')
-                                document.getElementById(`min-${i}`)?.style.setProperty('--value', '0')
-                                document.getElementById(`sec-${i}`)?.style.setProperty('--value', '0')
-                            }
-                            if (hour < 0 && day >= 0)
-                            {
-                                day--
-                                document.getElementById(`day-${i}`)?.style.setProperty('--value', day.toString())
+                    const intervalId  = setInterval(() => {
+                        const currentTime = new Date();
+                        const timeDifference = currentTime.getTime() - endDate.getTime()
 
-                                hour = 23
-                                document.getElementById(`hours-${i}`)?.style.setProperty('--value', hour.toString())
-                            }
-                            if (minute < 0 && hour >= 0)
-                            {
-                                hour--
-                                document.getElementById(`hours-${i}`)?.style.setProperty('--value', hour.toString())
+                        if (timeDifference <= 0) 
+                        {
+                            clearInterval(intervalId);
+                            // document.getElementById(`day-${i}`)?.style.setProperty('--value', '0');
+                            // document.getElementById(`hours-${i}`)?.style.setProperty('--value', '0');
+                            // document.getElementById(`min-${i}`)?.style.setProperty('--value', '0');
+                            // document.getElementById(`sec-${i}`)?.style.setProperty('--value', '0');
+                            return;
+                        }
 
-                                minute = 59
-                                document.getElementById(`min-${i}`)?.style.setProperty('--value', minute.toString())
-                            }
-                            if (second < 0 && minute >= 0)
-                            {
-                                minute--
-                                document.getElementById(`min-${i}`)?.style.setProperty('--value', minute.toString())
-
-                                second = 59
-                                document.getElementById(`sec-${i}`)?.style.setProperty('--value', second.toString())
-                            }
-
-                            if(second >= 0)
-                            {
-                                second--
-                                document.getElementById(`sec-${i}`)?.style.setProperty('--value', second.toString())
-                            }
+                        let remainingSeconds = Math.floor(timeDifference / 1000);
+                        
+                        const days = Math.floor(remainingSeconds / (3600 * 24));
+                        remainingSeconds -= days * 3600 * 24;
+                        
+                        const hours = Math.floor(remainingSeconds / 3600);
+                        remainingSeconds -= hours * 3600;
+                        
+                        const minutes = Math.floor(remainingSeconds / 60);
+                        remainingSeconds -= minutes * 60;
+                        
+                        const seconds = remainingSeconds;
+                        
+                        document.getElementById(`day-${i}`)?.style.setProperty('--value', days.toString());
+                        document.getElementById(`hours-${i}`)?.style.setProperty('--value', hours.toString());
+                        document.getElementById(`min-${i}`)?.style.setProperty('--value', minutes.toString());
+                        document.getElementById(`sec-${i}`)?.style.setProperty('--value', seconds.toString());
                     }
                         , 1000)
                 })
@@ -327,12 +314,16 @@
                                 <td class="px-4 py-3">{user.email}</td>
                                 <td class="px-4 py-3">{user.role.name}</td>
                                 <td class="px-4 py-3">
-                                    <span class="countdown font-mono text-2xl">
-                                        <span id={`day-${i}`} style={`--value:${new Date(user.expired).getDay()}`}></span>:
-                                        <span id={`hours-${i}`} style={`--value:${new Date(user.expired).getHours()}`}></span>:
-                                        <span id={`min-${i}`} style={`--value:${new Date(user.expired).getMinutes()}`}></span>:
-                                        <span id={`sec-${i}`} style={`--value:${new Date(user.expired).getSeconds()}`}></span>
-                                    </span>
+                                    {#if new Date(user?.expired) < new Date()}
+                                        <p class="text-red-700">Expired</p>
+                                    {:else}
+                                        <span class="countdown font-mono text-2xl">
+                                            <span id={`day-${i}`} style={`--value:${0}`}></span>:
+                                            <span id={`hours-${i}`} style={`--value:${0}`}></span>:
+                                            <span id={`min-${i}`} style={`--value:${0}`}></span>:
+                                            <span id={`sec-${i}`} style={`--value:${0}`}></span>
+                                        </span>
+                                    {/if}
                                 </td>
                                 <td class="px-4 py-3"><progress class="progress progress-success w-56" value={(user.role.level * 100) / 6} max="100"></progress></td>
                                 <td class="px-4 py-3 flex items-center justify-end">
