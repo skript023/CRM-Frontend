@@ -4,7 +4,7 @@
 	import Login from './Login.svelte';
 	import Home from './lib/Home.svelte';
   	import Logout from './lib/Logout.svelte';
-  	import User from './lib/User.svelte';
+  	import User from './lib/user/User.svelte';
   	import Registration from './lib/Registration.svelte';
 
 	export let url = "";

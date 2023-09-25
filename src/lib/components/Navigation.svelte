@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import { navigate } from "svelte-routing";
     import { toast } from '@zerodevx/svelte-toast'
-    import type { User } from "./interface/user.interface";
+    import type { User } from "../interface/user.interface";
     import { loading, Loading } from 'gros/loading';
 
     let user = {} as User;

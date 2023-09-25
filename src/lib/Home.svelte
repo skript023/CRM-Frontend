@@ -1,10 +1,5 @@
 <script lang="ts">
-   import type { User } from './interface/user.interface';
-   import { onMount } from "svelte";
-   import Navigation from "./Navigation.svelte";
-   import { toast } from '@zerodevx/svelte-toast';
-   import { navigate } from 'svelte-routing';
-   
+   import Navigation from "./components/Navigation.svelte";
 </script>
 
 <Navigation>
