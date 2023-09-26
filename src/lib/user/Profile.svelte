@@ -13,12 +13,10 @@
             <div class="w-full md:w-3/12 md:mx-2">
                 <!-- Profile Card -->
                 <div class="bg-gray-800 p-3 border-t-4 border-gray-950">
-                    <div class="image overflow-hidden">
-                        <img class="h-auto w-full mx-auto"
-                            src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
-                            alt="">
+                    <div class="image overflow-hidden w-4/6 rounded-full md:mx-12">
+                        <img class="h-auto w-screen mx-auto" src={`https://crm-backend.glitch.me/user/avatar/${user?.image}`} alt="">
                     </div>
-                    <h1 class="text-gray-300 font-bold text-xl leading-8 my-1">Jane Doe</h1>
+                    <h1 class="text-gray-300 font-bold text-xl leading-8 my-1 mt-5">{ user?.fullname }</h1>
                     <h3 class="text-gray-300 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3>
                     <p class="text-sm text-gray-300 hover:text-gray-600 leading-6">Lorem ipsum dolor sit amet
                         consectetur adipisicing elit.
@@ -31,7 +29,7 @@
                         </li>
                         <li class="flex items-center py-3">
                             <span>Member since</span>
-                            <span class="ml-auto">{user?.createdAt}</span>
+                            <span class="ml-auto">{new Date(user?.createdAt.toString()).toDateString()}</span>
                         </li>
                     </ul>
                 </div>
@@ -104,12 +102,12 @@
                                 <div class="px-4 py-2">{last_name ?? '-'}</div>
                             </div>
                             <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Gender</div>
-                                <div class="px-4 py-2">Female</div>
+                                <div class="px-4 py-2 font-semibold">Username</div>
+                                <div class="px-4 py-2">{user?.username}</div>
                             </div>
                             <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Contact No.</div>
-                                <div class="px-4 py-2">+11 998001001</div>
+                                <div class="px-4 py-2 font-semibold">Role</div>
+                                <div class="px-4 py-2">{user?.role?.name}</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Current Address</div>
@@ -120,9 +118,9 @@
                                 <div class="px-4 py-2">Arlington Heights, IL, Illinois</div>
                             </div>
                             <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Email.</div>
+                                <div class="px-4 py-2 font-semibold">Email</div>
                                 <div class="px-4 py-2">
-                                    <a class="text-blue-500" href="mailto:jane@example.com">jane@example.com</a>
+                                    <a class="text-blue-500" href="mailto:{user?.email}">{user?.email}</a>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2">
@@ -131,20 +129,63 @@
                             </div>
                         </div>
                     </div>
-                    <button
-                        class="block w-full text-gray-300 text-sm font-semibold rounded-lg hover:bg-gray-500 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Show
-                        Full Information</button>
+                    <div class="collapse bg-gray-800 hover:bg-base-200">
+                        <input type="checkbox"/>
+                        <div class="collapse-title text-xl font-medium">
+                            Show More Information
+                        </div>
+                        <div class="collapse-content">
+                            <div class="text-gray-500">
+                                <div class="grid md:grid-cols-2 text-sm">
+                                    <div class="grid grid-cols-2">
+                                        <div class="px-4 py-2 font-semibold">First Name</div>
+                                        <div class="px-4 py-2">{first_name ?? '-' }</div>
+                                    </div>
+                                    <div class="grid grid-cols-2">
+                                        <div class="px-4 py-2 font-semibold">Last Name</div>
+                                        <div class="px-4 py-2">{last_name ?? '-'}</div>
+                                    </div>
+                                    <div class="grid grid-cols-2">
+                                        <div class="px-4 py-2 font-semibold">Username</div>
+                                        <div class="px-4 py-2">{user?.username}</div>
+                                    </div>
+                                    <div class="grid grid-cols-2">
+                                        <div class="px-4 py-2 font-semibold">Role</div>
+                                        <div class="px-4 py-2">{user?.role?.name}</div>
+                                    </div>
+                                    <div class="grid grid-cols-2">
+                                        <div class="px-4 py-2 font-semibold">Current Address</div>
+                                        <div class="px-4 py-2">Beech Creek, PA, Pennsylvania</div>
+                                    </div>
+                                    <div class="grid grid-cols-2">
+                                        <div class="px-4 py-2 font-semibold">Permanant Address</div>
+                                        <div class="px-4 py-2">Arlington Heights, IL, Illinois</div>
+                                    </div>
+                                    <div class="grid grid-cols-2">
+                                        <div class="px-4 py-2 font-semibold">Email</div>
+                                        <div class="px-4 py-2">
+                                            <a class="text-blue-500" href="mailto:{user?.email}">{user?.email}</a>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-2">
+                                        <div class="px-4 py-2 font-semibold">Birthday</div>
+                                        <div class="px-4 py-2">Feb 06, 1998</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- End of about section -->
     
                 <div class="my-4"></div>
     
                 <!-- Experience and education -->
-                <div class="bg-white p-3 shadow-sm rounded-sm">
+                <div class="bg-gray-800 p-3 shadow-sm rounded-sm">
     
                     <div class="grid grid-cols-2">
                         <div>
-                            <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+                            <div class="flex items-center space-x-2 font-semibold text-gray-500 leading-8 mb-3">
                                 <span class="text-green-500">
                                     <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">

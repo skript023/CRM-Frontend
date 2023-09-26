@@ -100,7 +100,7 @@
 </script>
 
 <Navigation>
-    <div class="mx-14 md:mx-64 bg-sky-100">
+    <div class="mx-14 md:mx-64 bg-sky-100 w-auto">
         <div class="bg-sky-100 dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
             <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                 <div class="w-full md:w-1/2">
