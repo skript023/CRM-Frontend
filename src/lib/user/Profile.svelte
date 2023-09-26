@@ -6,6 +6,7 @@
 </script>
 
 <Navigation bind:user>
+    {@const [first_name, last_name] = user?.fullname.split(' ') ?? []}
     <div class="container mx-auto my-5 p-5">
         <div class="md:flex no-wrap md:-mx-2 ">
             <!-- Left Side -->
@@ -18,12 +19,11 @@
                             alt="">
                     </div>
                     <h1 class="text-gray-300 font-bold text-xl leading-8 my-1">Jane Doe</h1>
-                    <h3 class="text-gray-200 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3>
-                    <p class="text-sm text-gray-500 hover:text-gray-600 leading-6">Lorem ipsum dolor sit amet
+                    <h3 class="text-gray-300 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3>
+                    <p class="text-sm text-gray-300 hover:text-gray-600 leading-6">Lorem ipsum dolor sit amet
                         consectetur adipisicing elit.
                         Reprehenderit, eligendi dolorum sequi illum qui unde aspernatur non deserunt</p>
-                    <ul
-                        class="bg-gray-900 text-gray-300 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                    <ul class="bg-gray-900 text-gray-300 hover:text-gray-500 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                         <li class="flex items-center py-3">
                             <span>Status</span>
                             <span class="ml-auto">
@@ -38,7 +38,7 @@
                 <!-- End of profile card -->
                 <div class="my-4"></div>
                 <!-- Friends card -->
-                <div class="bg-white p-3 hover:shadow">
+                <div class="bg-gray-800 p-3 hover:shadow hover:shadow-gray-700">
                     <div class="flex items-center space-x-3 font-semibold text-gray-900 text-xl leading-8">
                         <span class="text-green-500">
                             <svg class="h-5 fill-current" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -54,25 +54,25 @@
                             <img class="h-16 w-16 rounded-full mx-auto"
                                 src="https://cdn.australianageingagenda.com.au/wp-content/uploads/2015/06/28085920/Phil-Beckett-2-e1435107243361.jpg"
                                 alt="">
-                            <a href="#" class="text-main-color">Kojstantin</a>
+                            <a href={null} class="text-main-color">Kojstantin</a>
                         </div>
                         <div class="text-center my-2">
                             <img class="h-16 w-16 rounded-full mx-auto"
                                 src="https://avatars2.githubusercontent.com/u/24622175?s=60&amp;v=4"
                                 alt="">
-                            <a href="#" class="text-main-color">James</a>
+                            <a href={null} class="text-main-color">James</a>
                         </div>
                         <div class="text-center my-2">
                             <img class="h-16 w-16 rounded-full mx-auto"
                                 src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
                                 alt="">
-                            <a href="#" class="text-main-color">Natie</a>
+                            <a href={null} class="text-main-color">Natie</a>
                         </div>
                         <div class="text-center my-2">
                             <img class="h-16 w-16 rounded-full mx-auto"
                                 src="https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/f04b52da-12f2-449f-b90c-5e4d5e2b1469_361x361.png"
                                 alt="">
-                            <a href="#" class="text-main-color">Casey</a>
+                            <a href={null} class="text-main-color">Casey</a>
                         </div>
                     </div>
                 </div>
@@ -82,8 +82,8 @@
             <div class="w-full md:w-9/12 mx-2 h-64">
                 <!-- Profile tab -->
                 <!-- About Section -->
-                <div class="bg-white p-3 shadow-sm rounded-sm">
-                    <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+                <div class="bg-gray-800 p-3 shadow-sm rounded-sm">
+                    <div class="flex items-center space-x-2 font-semibold text-gray-500 leading-8">
                         <span class="text-green-500">
                             <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -93,15 +93,15 @@
                         </span>
                         <span class="tracking-wide">About</span>
                     </div>
-                    <div class="text-gray-700">
+                    <div class="text-gray-500">
                         <div class="grid md:grid-cols-2 text-sm">
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">First Name</div>
-                                <div class="px-4 py-2">Jane</div>
+                                <div class="px-4 py-2">{first_name ?? '-' }</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Last Name</div>
-                                <div class="px-4 py-2">Doe</div>
+                                <div class="px-4 py-2">{last_name ?? '-'}</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Gender</div>
@@ -122,7 +122,7 @@
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Email.</div>
                                 <div class="px-4 py-2">
-                                    <a class="text-blue-800" href="mailto:jane@example.com">jane@example.com</a>
+                                    <a class="text-blue-500" href="mailto:jane@example.com">jane@example.com</a>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2">
@@ -132,7 +132,7 @@
                         </div>
                     </div>
                     <button
-                        class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Show
+                        class="block w-full text-gray-300 text-sm font-semibold rounded-lg hover:bg-gray-500 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Show
                         Full Information</button>
                 </div>
                 <!-- End of about section -->
