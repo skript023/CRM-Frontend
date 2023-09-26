@@ -4,12 +4,20 @@
     import Navigation from "../components/Navigation.svelte";
     import { toast } from '@zerodevx/svelte-toast';
     import { navigate } from 'svelte-routing';
-    import { DataHandler, Datatable, Th } from 'gros/datatable'
+    import { DataHandler } from 'gros/datatable'
 
     let search = ''
     let users = [] as User[]
     let isLoaded = false
-    let date = null as Date | null
+
+    $: handler = new DataHandler(users, { rowsPerPage: 50 })
+    $: rows = handler.getRows()
+
+    $: rowCount = handler.getRowCount()
+    $: pageNumber = handler.getPageNumber()
+    $: pageCount = handler.getPageCount()
+    $: pages = handler.getPages({ ellipsis: true })
+    $: sorted = handler.getSort()
 
     onMount(() => {
         fetch('https://crm-backend.glitch.me/user/', 
@@ -38,10 +46,10 @@
                         if (timeDifference <= 0) 
                         {
                             clearInterval(intervalId);
-                            document.getElementById(`day-${i}`)?.style.setProperty('--value', '0');
-                            document.getElementById(`hours-${i}`)?.style.setProperty('--value', '0');
-                            document.getElementById(`min-${i}`)?.style.setProperty('--value', '0');
-                            document.getElementById(`sec-${i}`)?.style.setProperty('--value', '0');
+                            document.getElementById(`day-${user._id}`)?.style.setProperty('--value', '0');
+                            document.getElementById(`hours-${user._id}`)?.style.setProperty('--value', '0');
+                            document.getElementById(`min-${user._id}`)?.style.setProperty('--value', '0');
+                            document.getElementById(`sec-${user._id}`)?.style.setProperty('--value', '0');
                             return;
                         }
 
@@ -58,12 +66,12 @@
 
                         const seconds = remainingSeconds;
 
-                        document.getElementById(`day-${i}`)?.style.setProperty('--value', days.toString());
-                        document.getElementById(`hours-${i}`)?.style.setProperty('--value', hours.toString());
-                        document.getElementById(`min-${i}`)?.style.setProperty('--value', minutes.toString());
-                        document.getElementById(`sec-${i}`)?.style.setProperty('--value', seconds.toString());
+                        document.getElementById(`day-${user._id}`)?.style.setProperty('--value', days.toString());
+                        document.getElementById(`hours-${user._id}`)?.style.setProperty('--value', hours.toString());
+                        document.getElementById(`min-${user._id}`)?.style.setProperty('--value', minutes.toString());
+                        document.getElementById(`sec-${user._id}`)?.style.setProperty('--value', seconds.toString());
                     }
-                        , 1000)
+                    , 1000)
                 })
             }
             else
@@ -89,15 +97,6 @@
             navigate('/', {replace: true})
         })
     });
-
-    $: handler = new DataHandler(users, { rowsPerPage: 50 })
-    $: rows = handler.getRows()
-
-    $: rowCount = handler.getRowCount()
-    $: pageNumber = handler.getPageNumber()
-    $: pageCount = handler.getPageCount()
-    $: pages = handler.getPages({ ellipsis: true })
-    $: sorted = handler.getSort()
 </script>
 
 <Navigation>
@@ -300,7 +299,36 @@
                                     {/if}
                                 </button>
                             </th>
-                            <th scope="col" class="px-4 py-3">Level</th>
+                            <th scope="col" class="px-4 py-3">
+                                Level
+                                <button on:click={() => handler.sort('role')} class="absolute items-center" type="button">
+                                    {#if $sorted.direction === 'asc' && $sorted.identifier === 'expired'}
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1.5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M4 6l7 0"></path>
+                                            <path d="M4 12l7 0"></path>
+                                            <path d="M4 18l9 0"></path>
+                                            <path d="M15 9l3 -3l3 3"></path>
+                                            <path d="M18 6l0 12"></path>
+                                        </svg>
+                                    {:else if $sorted.direction === 'desc' && $sorted.identifier === 'expired'}
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1.5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M4 6l9 0"></path>
+                                            <path d="M4 12l7 0"></path>
+                                            <path d="M4 18l7 0"></path>
+                                            <path d="M15 15l3 3l3 -3"></path>
+                                            <path d="M18 6l0 12"></path>
+                                        </svg>
+                                    {:else}
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1.5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M3 9l4 -4l4 4m-4 -4v14"></path>
+                                            <path d="M21 15l-4 4l-4 -4m4 4v-14"></path>
+                                        </svg>
+                                    {/if}
+                                </button>
+                            </th>
                             <th scope="col" class="px-4 py-3">
                                 <span class="sr-only">Actions</span>
                             </th>
@@ -318,10 +346,10 @@
                                         <p class="text-red-700">Expired</p>
                                     {:else}
                                         <span class="countdown font-mono text-2xl">
-                                            <span id={`day-${i}`} style={`--value:${0}`}></span>:
-                                            <span id={`hours-${i}`} style={`--value:${0}`}></span>:
-                                            <span id={`min-${i}`} style={`--value:${0}`}></span>:
-                                            <span id={`sec-${i}`} style={`--value:${0}`}></span>
+                                            <span id={`day-${user._id}`} style={`--value:${0}`}></span>:
+                                            <span id={`hours-${user._id}`} style={`--value:${0}`}></span>:
+                                            <span id={`min-${user._id}`} style={`--value:${0}`}></span>:
+                                            <span id={`sec-${user._id}`} style={`--value:${0}`}></span>
                                         </span>
                                     {/if}
                                 </td>

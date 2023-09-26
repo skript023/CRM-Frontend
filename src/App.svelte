@@ -6,6 +6,7 @@
   	import Logout from './lib/Logout.svelte';
   	import User from './lib/user/User.svelte';
   	import Registration from './lib/Registration.svelte';
+  import Profile from './lib/user/Profile.svelte';
 
 	export let url = "";
 	const options = {
@@ -17,6 +18,7 @@
 <Router {url}>
 	<Route path="/dashboard" component={Home} />
 	<Route path="/dashboard/user" component={User} />
+	<Route path="/dashboard/user/profile" component={Profile} />
 	<Route path="/logout" component={Logout}/>
 	<Route path="/signup" component={Registration}/>
 	<Route path="/"><Login /></Route>

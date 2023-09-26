@@ -1,4 +1,4 @@
-interface Access {
+export interface Access {
     create: boolean;
     read: boolean;
     update: boolean;
@@ -7,7 +7,7 @@ interface Access {
     system: boolean;
 }
 
-interface Role {
+export interface Role {
     _id: string;
     level: number;
     name: string;
