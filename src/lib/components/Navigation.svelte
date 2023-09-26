@@ -5,7 +5,7 @@
     import type { User } from "../interface/user.interface";
     import { loading, Loading } from 'gros/loading';
 
-    let user = {} as User;
+    export let user = {} as User;
 
     onMount(async () => {
         try 

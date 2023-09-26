@@ -1,16 +1,17 @@
 <script lang="ts">
-  import Navigation from "../components/Navigation.svelte";
+    import Navigation from "../components/Navigation.svelte";
+    import type {User} from "../interface/user.interface";
 
-    
+    let user: User;
 </script>
 
-<Navigation>
+<Navigation bind:user>
     <div class="container mx-auto my-5 p-5">
         <div class="md:flex no-wrap md:-mx-2 ">
             <!-- Left Side -->
             <div class="w-full md:w-3/12 md:mx-2">
                 <!-- Profile Card -->
-                <div class="bg-gray-800 p-3 border-t-4 border-green-400">
+                <div class="bg-gray-800 p-3 border-t-4 border-gray-950">
                     <div class="image overflow-hidden">
                         <img class="h-auto w-full mx-auto"
                             src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
@@ -22,15 +23,15 @@
                         consectetur adipisicing elit.
                         Reprehenderit, eligendi dolorum sequi illum qui unde aspernatur non deserunt</p>
                     <ul
-                        class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                        class="bg-gray-900 text-gray-300 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                         <li class="flex items-center py-3">
                             <span>Status</span>
-                            <span class="ml-auto"><span
-                                    class="bg-green-500 py-1 px-2 rounded text-white text-sm">Active</span></span>
+                            <span class="ml-auto">
+                                <span class="bg-green-500 py-1 px-2 rounded text-white text-sm">Active</span></span>
                         </li>
                         <li class="flex items-center py-3">
                             <span>Member since</span>
-                            <span class="ml-auto">Nov 07, 2016</span>
+                            <span class="ml-auto">{user?.createdAt}</span>
                         </li>
                     </ul>
                 </div>
