@@ -5,7 +5,7 @@
     import { toast } from '@zerodevx/svelte-toast';
     import { navigate } from 'svelte-routing';
     import { DataHandler } from 'gros/datatable'
-  import SortableTableHeader from '../components/SortableTableHeader.svelte';
+    import SortableTableHeader from '../components/SortableTableHeader.svelte';
 
     let search = ''
     let products = [] as Product[]

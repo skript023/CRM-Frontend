@@ -3,7 +3,7 @@
     import { onMount } from "svelte";
     import { navigate } from "svelte-routing";
     import type {Role} from '../interface/user.interface';
-  import Navigation from "../components/Navigation.svelte";
+    import Navigation from "../components/Navigation.svelte";
 
     let selected_role =''
     let isSubmitted = false
