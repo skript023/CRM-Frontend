@@ -6,6 +6,7 @@
     import { loading, Loading } from 'gros/loading';
 
     export let user = {} as User;
+    export let drawer_checked = false;
 
     onMount(async () => {
         try 
@@ -44,7 +45,7 @@
 
 <Loading process bootstrap/>
 <div class="drawer">
-    <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+    <input id="my-drawer" type="checkbox" class="drawer-toggle" bind:checked={drawer_checked}/>
     <div class="drawer-content">
         <!-- Page content here -->
         <div class="flex flex-col h-screen justify-between">
@@ -138,6 +139,15 @@
                         <ul>
                             <li><a href="/dashboard/user">Manage Users</a></li>
                             <li><a href="/dashboard/user/add">Add User</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li>
+                    <details open>
+                        <summary>Products</summary>
+                        <ul>
+                            <li><a href="/dashboard/product">Manage Products</a></li>
+                            <li><a href="/dashboard/product/add">Add Product</a></li>
                         </ul>
                     </details>
                 </li>

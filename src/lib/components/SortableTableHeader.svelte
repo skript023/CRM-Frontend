@@ -6,6 +6,17 @@
     const identifier = orderBy?.toString()
     const sorted = handler.getSort()
 </script>
+
+<style>
+    @media(max-width: 650px)
+    {
+        th
+        {
+            display: none;
+        }
+    }
+</style>
+
 <th scope="col" class="relative px-4 py-3">
     <div class="flex items-center justify-start">
         <span><slot/></span>

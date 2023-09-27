@@ -1,0 +1,20 @@
+export enum ProductGrade
+{
+    development = 'DEVELOPMENT',
+    enterprise = 'ENTERPRISE',
+    premium = 'PREMIUM',
+    basic = 'BASIC'
+}
+
+export interface Product
+{
+    _id: string
+    code: number
+    name: string
+    grade: ProductGrade
+    game: string
+    target: string
+    file: string
+    version: string
+    status: string
+}

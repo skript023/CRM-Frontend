@@ -4,7 +4,7 @@
 
 <Navigation>
    <!-- h-full ml-14 mt-14 mb-10 md:ml-64 -->
-   <div class="h-screen mx-14 md:mx-64">
+   <div class="h-screen w-11/12 mx-auto">
     
       <!-- Statistics Cards -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-4 gap-4">
