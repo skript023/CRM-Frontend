@@ -29,6 +29,8 @@
         }).
         then(async (res) => {
             user = await res.json()
+            const role = document.getElementById('role') as any
+            role.selectedIndex = 0
         })
     })
 
@@ -45,7 +47,7 @@
             data.set('fullname',  fullname)
 
             const res = await fetch(`https://crm-backend.glitch.me/user/update/${url.searchParams.get('user')}`, {
-                method: 'POST',
+                method: 'PATCH',
                 body: data
             })
             
@@ -100,7 +102,7 @@
                     <label for="" class="label">
                         <span class="label-text">Role</span>
                     </label>
-                    <select name="role" class="select select-bordered select-sm bg-gray-700 text-center disabled:text-white">
+                    <select id="role" name="role" class="select select-bordered select-sm bg-gray-700 text-center disabled:text-white">
                         <option disabled selected value={null}>-- Select Role --</option>
                         {#each roles as role}
                             <option value={role?._id}>{role?.name}</option>

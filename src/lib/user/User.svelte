@@ -5,6 +5,7 @@
     import { toast } from '@zerodevx/svelte-toast';
     import { navigate } from 'svelte-routing';
     import { DataHandler } from 'gros/datatable'
+  import SortableTableHeader from '../components/SortableTableHeader.svelte';
 
     let search = ''
     let users = [] as User[]
@@ -149,65 +150,40 @@
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th scope="col" class="px-4 py-3">
+                            <SortableTableHeader {handler} orderBy="fullname">
                                 Fullname
-                                <button on:click={() => handler.sort('fullname')} class="absolute items-center" type="button">
-                                    {#if $sorted.direction === 'asc' && $sorted.identifier === 'fullname'}
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1.5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M4 6l7 0"></path>
-                                            <path d="M4 12l7 0"></path>
-                                            <path d="M4 18l9 0"></path>
-                                            <path d="M15 9l3 -3l3 3"></path>
-                                            <path d="M18 6l0 12"></path>
-                                        </svg>
-                                    {:else if $sorted.direction === 'desc' && $sorted.identifier === 'fullname'}
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1.5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M4 6l9 0"></path>
-                                            <path d="M4 12l7 0"></path>
-                                            <path d="M4 18l7 0"></path>
-                                            <path d="M15 15l3 3l3 -3"></path>
-                                            <path d="M18 6l0 12"></path>
-                                        </svg>
-                                    {:else}
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1.5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M3 9l4 -4l4 4m-4 -4v14"></path>
-                                            <path d="M21 15l-4 4l-4 -4m4 4v-14"></path>
-                                        </svg>
-                                    {/if}
-                                </button>
-                            </th>
-                            <th scope="col" class="px-4 py-3">
-                                Username
-                                <button on:click={() => handler.sort('username')} class="absolute items-center" type="button">
-                                    {#if $sorted.direction === 'asc' && $sorted.identifier === 'username'}
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1.5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M4 6l7 0"></path>
-                                            <path d="M4 12l7 0"></path>
-                                            <path d="M4 18l9 0"></path>
-                                            <path d="M15 9l3 -3l3 3"></path>
-                                            <path d="M18 6l0 12"></path>
-                                        </svg>
-                                    {:else if $sorted.direction === 'desc' && $sorted.identifier === 'username'}
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1.5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M4 6l9 0"></path>
-                                            <path d="M4 12l7 0"></path>
-                                            <path d="M4 18l7 0"></path>
-                                            <path d="M15 15l3 3l3 -3"></path>
-                                            <path d="M18 6l0 12"></path>
-                                        </svg>
-                                    {:else}
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1.5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M3 9l4 -4l4 4m-4 -4v14"></path>
-                                            <path d="M21 15l-4 4l-4 -4m4 4v-14"></path>
-                                        </svg>
-                                    {/if}
-                                </button>
+                            </SortableTableHeader>
+                            <th scope="col" class="relative px-4 py-3">
+                                <div class="flex items-center justify-between">
+                                    <span>Username</span>
+                                    <button on:click={() => handler.sort('username')} type="button">
+                                        {#if $sorted.direction === 'asc' && $sorted.identifier === 'username'}
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1.5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M4 6l7 0"></path>
+                                                <path d="M4 12l7 0"></path>
+                                                <path d="M4 18l9 0"></path>
+                                                <path d="M15 9l3 -3l3 3"></path>
+                                                <path d="M18 6l0 12"></path>
+                                            </svg>
+                                        {:else if $sorted.direction === 'desc' && $sorted.identifier === 'username'}
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1.5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M4 6l9 0"></path>
+                                                <path d="M4 12l7 0"></path>
+                                                <path d="M4 18l7 0"></path>
+                                                <path d="M15 15l3 3l3 -3"></path>
+                                                <path d="M18 6l0 12"></path>
+                                            </svg>
+                                        {:else}
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1.5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M3 9l4 -4l4 4m-4 -4v14"></path>
+                                                <path d="M21 15l-4 4l-4 -4m4 4v-14"></path>
+                                            </svg>
+                                        {/if}
+                                    </button>
+                                </div>
                             </th>
                             <th scope="col" class="px-4 py-3">
                                 Email

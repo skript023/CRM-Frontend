@@ -23,6 +23,7 @@
 	<Route path="/dashboard/user/profile" component={Profile} />
 	<Route path="/dashboard/user/add" component={Add}/>
 	<Route path="/dashboard/user/edit" component={Edit}/>
+	<Route path="/dashboard/user/delete" component={Edit}/>
 	<Route path="/logout" component={Logout}/>
 	<Route path="/signup" component={Registration}/>
 	<Route path="/"><Login /></Route>
