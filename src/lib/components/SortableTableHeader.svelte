@@ -7,7 +7,7 @@
     const sorted = handler.getSort()
 </script>
 <th scope="col" class="relative px-4 py-3">
-    <div class="flex items-center justify-between">
+    <div class="flex items-center justify-start">
         <span><slot/></span>
         <button on:click={() => handler.sort(orderBy)} type="button">
             {#if $sorted.direction === 'asc' && $sorted.identifier === identifier}
