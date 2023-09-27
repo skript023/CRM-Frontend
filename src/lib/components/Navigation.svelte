@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
                                 <ul class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                    <li><a href="/profile">Profile</a></li>
+                                    <li><a href="/dashboard/user/profile">Profile</a></li>
                                     <li><a href="/logout">Logout</a></li>
                                 </ul>
                             </div>

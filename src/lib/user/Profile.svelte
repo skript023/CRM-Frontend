@@ -14,7 +14,7 @@
                 <!-- Profile Card -->
                 <div class="bg-gray-800 p-3 border-t-4 border-gray-950">
                     <div class="image overflow-hidden w-4/6 rounded-full md:mx-12">
-                        <img class="h-auto w-screen mx-auto" src={`https://crm-backend.glitch.me/user/avatar/${user?.image}`} alt="">
+                        <img class="h-auto w-screen mx-auto" src={`https://crm-backend.glitch.me/user/avatar/${user?.image}`} alt="avatar">
                     </div>
                     <h1 class="text-gray-300 font-bold text-xl leading-8 my-1 mt-5">{ user?.fullname }</h1>
                     <h3 class="text-gray-300 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3>
@@ -131,7 +131,7 @@
                     </div>
                     <div class="collapse bg-gray-800 hover:bg-base-200">
                         <input type="checkbox"/>
-                        <div class="collapse-title text-xl font-medium">
+                        <div class="collapse-title text-xl font-medium text-center">
                             Show More Information
                         </div>
                         <div class="collapse-content">
@@ -182,7 +182,6 @@
     
                 <!-- Experience and education -->
                 <div class="bg-gray-800 p-3 shadow-sm rounded-sm">
-    
                     <div class="grid grid-cols-2">
                         <div>
                             <div class="flex items-center space-x-2 font-semibold text-gray-500 leading-8 mb-3">
