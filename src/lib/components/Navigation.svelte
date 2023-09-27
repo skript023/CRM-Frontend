@@ -100,9 +100,9 @@
                             <p class="py-4">Press ESC key or click the button below to close</p>
                             <div class="modal-action">
                                 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                                <form method="dialog" on:keydown={() => navigate('/', {replace: true})}>
+                                <form method="dialog" on:keydown={() => navigate('/')}>
                                 <!-- if there is a button in form, it will close the modal -->
-                                <button class="btn" on:click={() => navigate('/', {replace: true})}>Close</button>
+                                <button class="btn" on:click={() => navigate('/')}>Close</button>
                                 </form>
                             </div>
                         </div>
