@@ -7,6 +7,7 @@
     import { API } from "../util/api.request";
     import Navigation from "../components/Navigation.svelte";
     import SortableTableHeader from '../components/SortableTableHeader.svelte';
+  import { PRODUCT } from "./delete.product";
 
     let search = ''
     let products = [] as Product[]
@@ -167,7 +168,7 @@
                                                     <a href="/dashboard/product/edit?product={product._id}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                                                 </li>
                                                 <li class="py-1">
-                                                    <a href="/dashboard/product/delete?product={product._id}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                                                    <button on:click={() => {PRODUCT.DELETE(product._id)}} type="button" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</button>
                                                 </li>
                                             </ul>
                                         </label>

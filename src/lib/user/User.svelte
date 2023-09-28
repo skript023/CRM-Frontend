@@ -5,8 +5,9 @@
     import { toast } from '@zerodevx/svelte-toast';
     import { navigate } from 'svelte-routing';
     import { DataHandler } from 'gros/datatable'
-  import SortableTableHeader from '../components/SortableTableHeader.svelte';
-  import { API } from '../util/api.request';
+    import SortableTableHeader from '../components/SortableTableHeader.svelte';
+    import { API } from '../util/api.request';
+  import { USER } from './delete.user';
 
     let search = ''
     let users = [] as User[]
@@ -211,7 +212,7 @@
                                                     <a href="/dashboard/user/edit?user={user._id}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                                                 </li>
                                                 <li class="py-1">
-                                                    <a href="/dashboard/user/delete?user={user._id}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                                                    <button on:click={() => {USER.DELETE(user._id)}} type="button" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</button>
                                                 </li>
                                             </ul>
                                         </label>
