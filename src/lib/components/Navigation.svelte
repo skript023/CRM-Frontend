@@ -103,17 +103,15 @@
             <main class="mb-auto h-10">
                 <div>
                     <slot/>
-                    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                    <dialog id="modal-disconnect" class="modal modal-bottom sm:modal-middle" on:keydown={Logout}>
+                    <dialog id="modal-disconnect" class="modal modal-bottom sm:modal-middle">
                         <div class="modal-box">
                             <h3 class="font-bold text-lg">Session invalid</h3>
                             <p class="py-4">Session invalid please re-login</p>
                             <p class="py-4">Press ESC key or click the button below to close</p>
                             <div class="modal-action">
-                                <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                                <form method="dialog" on:keydown={Logout}>
+                                <form method="dialog">
                                 <!-- if there is a button in form, it will close the modal -->
-                                <button class="btn" on:click={Logout}>Close</button>
+                                <button class="btn" on:click={() => navigate('/')} on:keydown={() => navigate('/')}>Close</button>
                                 </form>
                             </div>
                         </div>
