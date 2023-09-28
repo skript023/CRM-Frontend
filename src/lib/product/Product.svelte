@@ -21,7 +21,7 @@
     $: pages = handler.getPages({ ellipsis: true })
 
     onMount(() => {
-        API.GET('https://crm-backend.glitch.me/products/', 
+        API.GET('products/', 
         {
             credentials: 'include',
         }).
@@ -161,13 +161,13 @@
                                             </svg>
                                             <ul tabindex="-1" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52" aria-labelledby="apple-iphone-14-dropdown-button">
                                                 <li>
-                                                    <a href="/dashboard/product/detail" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
+                                                    <a href="/dashboard/product/detail?product={product._id}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/dashboard/product/edit?user={product._id}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                                    <a href="/dashboard/product/edit?product={product._id}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                                                 </li>
                                                 <li class="py-1">
-                                                    <a href="/dashboard/product/delete?user={product._id}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                                                    <a href="/dashboard/product/delete?product={product._id}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
                                                 </li>
                                             </ul>
                                         </label>
