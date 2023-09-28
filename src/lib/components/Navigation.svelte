@@ -6,7 +6,6 @@
     import { loading, Loading } from 'gros/loading';
     import { API } from "../util/api.request";
     import { Logout } from "../logout";
-  import { tokenExist } from "../util/token";
 
     export let user = {} as User;
     export let drawer_checked = false;
@@ -32,10 +31,6 @@
             }
             else
             {
-                if (!tokenExist()) 
-                {
-                    Logout()
-                }
                 const modal = document.getElementById('modal-disconnect') as HTMLElement | any
                 modal.showModal();
             }

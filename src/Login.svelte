@@ -5,16 +5,13 @@
   	import { API } from './lib/util/api.request';
   	import { onMount } from 'svelte';
   	import joaat from './lib/util/joaat.hash';
-  import { tokenExist } from './lib/util/token';
+  	import { authenticated } from './lib/util/authenticated';
 
 	let username = null as string | null
 	let password = null as string | null
 
-	onMount(() => {
-		if (tokenExist())
-		{
-			navigate('/dashboard', {replace: true});
-		}
+	onMount(async () => {
+		await authenticated();
 	})
 	
 	const onClick = async () => {
