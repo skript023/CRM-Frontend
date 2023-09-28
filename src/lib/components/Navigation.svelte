@@ -31,7 +31,6 @@
             }
             else
             {
-                localStorage.clear()
                 const modal = document.getElementById('modal-disconnect') as HTMLElement | any
                 modal.showModal();
             }
