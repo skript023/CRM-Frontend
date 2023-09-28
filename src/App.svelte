@@ -3,7 +3,6 @@
 	import { SvelteToast } from '@zerodevx/svelte-toast'
 	import Login from './Login.svelte';
 	import Home from './lib/Home.svelte';
-  	import Logout from './lib/Logout.svelte';
   	import User from './lib/user/User.svelte';
   	import Register from './Register.svelte';
 	import Profile from './lib/user/Profile.svelte';
@@ -29,7 +28,6 @@
 	<Route path="/dashboard/product" component={Product}/>
 	<Route path="/dashboard/product/add" component={AddProduct}/>
 	<Route path="/dashboard/product/edit" component={EditProduct}/>
-	<Route path="/logout" component={Logout}/>
 	<Route path="/signup" component={Register}/>
 	<Route path="/"><Login /></Route>
 </Router>

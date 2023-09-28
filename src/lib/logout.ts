@@ -1,8 +1,9 @@
-<script lang="ts">
-    import { toast } from "@zerodevx/svelte-toast";
-    import { navigate } from "svelte-routing";
-  import { API } from "./util/api.request";
+import { toast } from "@zerodevx/svelte-toast";
+import { navigate } from "svelte-routing";
+import { API } from "./util/api.request";
 
+export function Logout() 
+{
     API.GET('auth/logout', {
         credentials: 'include'
     }).
@@ -11,8 +12,6 @@
         {
             const json = await res.json();
             toast.push(`<p class="text-center">${json.message}</p>`)
-
-            navigate('/', {replace: true})
         }
     }).
     catch((e) => {
@@ -23,6 +22,8 @@
                 '--toastBarBackground': 'red'
             }
         })
-        navigate('/', {replace: true})
     })
-</script>
+
+    localStorage.clear()
+    navigate('/')
+}

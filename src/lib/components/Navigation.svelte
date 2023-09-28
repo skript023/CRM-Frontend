@@ -5,6 +5,7 @@
     import type { User } from "../interface/user.interface";
     import { loading, Loading } from 'gros/loading';
     import { API } from "../util/api.request";
+    import { Logout } from "../logout";
 
     export let user = {} as User;
     export let drawer_checked = false;
@@ -30,6 +31,7 @@
             }
             else
             {
+                localStorage.clear()
                 const modal = document.getElementById('modal-disconnect') as HTMLElement | any
                 modal.showModal();
             }
@@ -89,7 +91,7 @@
                                     </div>
                                     <ul class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                                         <li><a href="/dashboard/user/profile">Profile</a></li>
-                                        <li><a href="/logout">Logout</a></li>
+                                        <li><button on:click={Logout} type="button">Logout</button></li>
                                     </ul>
                                 </div>
                             {:else}
@@ -103,16 +105,16 @@
                 <div>
                     <slot/>
                     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                    <dialog id="modal-disconnect" class="modal modal-bottom sm:modal-middle" on:keydown={() => navigate('/', {replace: true})}>
+                    <dialog id="modal-disconnect" class="modal modal-bottom sm:modal-middle" on:keydown={Logout}>
                         <div class="modal-box">
                             <h3 class="font-bold text-lg">Session invalid</h3>
                             <p class="py-4">Session invalid please re-login</p>
                             <p class="py-4">Press ESC key or click the button below to close</p>
                             <div class="modal-action">
                                 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                                <form method="dialog" on:keydown={() => navigate('/')}>
+                                <form method="dialog" on:keydown={Logout}>
                                 <!-- if there is a button in form, it will close the modal -->
-                                <button class="btn" on:click={() => navigate('/')}>Close</button>
+                                <button class="btn" on:click={Logout}>Close</button>
                                 </form>
                             </div>
                         </div>

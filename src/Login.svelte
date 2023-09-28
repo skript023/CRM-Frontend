@@ -4,13 +4,15 @@
 	import { loading, Loading } from 'gros/loading'
   	import { API } from './lib/util/api.request';
   	import { onMount } from 'svelte';
+  	import joaat from './lib/util/joaat.hash';
 
 	let username = null as string | null
 	let password = null as string | null
-	export let auth = false;
 
 	onMount(() => {
-		if (auth)
+		const auth = localStorage.getItem(joaat('auth').toString())
+		
+		if (auth === joaat('success').toString())
 		{
 			navigate('/dashboard', {replace: true});
 		}
@@ -38,7 +40,7 @@
 				toast.push(`<p class="text-center">${json.message}</p>`)
 				
 				navigate('/dashboard', {replace: true})
-				auth = true
+				localStorage.setItem(joaat('auth').toString(), joaat('success').toString())
 			}
 
 			loading.stop()
