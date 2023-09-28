@@ -3,9 +3,18 @@
 	import { navigate } from 'svelte-routing';
 	import { loading, Loading } from 'gros/loading'
   	import { API } from './lib/util/api.request';
+  	import { onMount } from 'svelte';
 
 	let username = null as string | null
 	let password = null as string | null
+	export let auth = false;
+
+	onMount(() => {
+		if (auth)
+		{
+			navigate('/dashboard', {replace: true});
+		}
+	})
 	
 	const onClick = async () => {
 		try
@@ -29,6 +38,7 @@
 				toast.push(`<p class="text-center">${json.message}</p>`)
 				
 				navigate('/dashboard', {replace: true})
+				auth = true
 			}
 
 			loading.stop()
