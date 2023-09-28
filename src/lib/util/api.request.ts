@@ -1,11 +1,10 @@
 export namespace API
 {
-    const prod_url = 'https://crm-backend.glitch.me/';
-    const dev_url = 'http://localhost:3000/';
+    const url = 'https://crm-backend.glitch.me/'; //'http://localhost:3000/';
     
     export async function GET(route: string, init : RequestInit | undefined) 
     {
-        return fetch(`${dev_url}${route}`, {
+        return fetch(`${url}${route}`, {
             method: 'GET',
             credentials: init?.credentials,
             headers: init?.headers,
@@ -24,7 +23,7 @@ export namespace API
 
     export async function POST(route: string, init : RequestInit | undefined)
     {
-        return fetch(`${dev_url}${route}`, {
+        return fetch(`${url}${route}`, {
             method: 'POST',
             credentials: init?.credentials,
             headers: init?.headers,
@@ -43,7 +42,7 @@ export namespace API
 
     export async function PATCH(route: string, init : RequestInit | undefined)
     {
-        return fetch(`${dev_url}${route}`, {
+        return fetch(`${url}${route}`, {
             method: 'PATCH',
             credentials: init?.credentials,
             headers: init?.headers,
@@ -62,7 +61,7 @@ export namespace API
 
     export async function DELETE(route: string, init : RequestInit | undefined)
     {
-        return fetch(`${dev_url}${route}`, {
+        return fetch(`${url}${route}`, {
             method: 'DELETE',
             credentials: init?.credentials,
             headers: init?.headers,
