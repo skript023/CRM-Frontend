@@ -11,6 +11,7 @@
 	import EditUser from './lib/user/Edit.svelte';
   	import Product from './lib/product/Product.svelte';
 	import AddProduct from './lib/product/Add.svelte'
+  	import EditProduct from './lib/product/Edit.svelte';
 
 	export let url = "";
 	const options = {
@@ -27,6 +28,7 @@
 	<Route path="/dashboard/user/edit" component={EditUser}/>
 	<Route path="/dashboard/product" component={Product}/>
 	<Route path="/dashboard/product/add" component={AddProduct}/>
+	<Route path="/dashboard/product/edit" component={EditProduct}/>
 	<Route path="/logout" component={Logout}/>
 	<Route path="/signup" component={Register}/>
 	<Route path="/"><Login /></Route>
