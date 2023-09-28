@@ -39,22 +39,9 @@
             
             const json = await res.json()
 
-            if (res.status === 201)
-            {
-                toast.push(`<p class="text-center">${json.message}</p>`)
-                    
-                navigate('/', {replace: true})
-            }
-            else
-            {
-                toast.push(`message: ${json.message}`, {
-                    theme: {
-                        '--toastColor': 'mintcream',
-                        '--toastBackground': 'rgba(187,72,120,0.9)',
-                        '--toastBarBackground': 'red'
-                    }   
-                })
-            }
+            toast.push(`<p class="text-center">${json.message}</p>`)
+            
+            navigate('/', {replace: true})
 
             isSubmitted = false
         } 
