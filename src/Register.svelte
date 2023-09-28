@@ -1,6 +1,7 @@
 <script lang="ts">
     import { toast } from "@zerodevx/svelte-toast";
     import { navigate } from "svelte-routing";
+  import { API } from "./lib/util/api.request";
 
     let isSubmitted = false
 
@@ -16,8 +17,7 @@
         {
             data.set('fullname',  fullname)
 
-            const res = await fetch('https://crm-backend.glitch.me/user/add', {
-                method: 'POST',
+            const res = await API.POST('user/add', {
                 body: data
             })
             

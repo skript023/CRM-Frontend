@@ -4,6 +4,7 @@
     import { toast } from '@zerodevx/svelte-toast'
     import type { User } from "../interface/user.interface";
     import { loading, Loading } from 'gros/loading';
+    import { API } from "../util/api.request";
 
     export let user = {} as User;
     export let drawer_checked = false;
@@ -13,8 +14,7 @@
         {
             loading.start('Authorization', 'It may take a few seconds')
             
-            const res = await fetch('https://crm-backend.glitch.me/user/profile', {
-                method: 'GET',
+            const res = await API.GET('user/profile', {
                 credentials: 'include'
             })
 

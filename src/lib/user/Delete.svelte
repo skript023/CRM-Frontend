@@ -1,11 +1,11 @@
 <script lang="ts">
     import { toast } from "@zerodevx/svelte-toast";
+  import { API } from "../util/api.request";
 
     const url = new URL(window.location.href)
 
-    fetch(`https://crm-backend.glitch.me/user/detail/${url.searchParams.get('user')}`, 
+    API.DELETE(`user/detail/${url.searchParams.get('user')}`, 
     {
-        method: 'DELETE',
         credentials: 'include'
     }).
     then(async (res) => 

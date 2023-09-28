@@ -4,6 +4,7 @@
     import { navigate } from "svelte-routing";
     import type {Role, User} from '../interface/user.interface';
     import Navigation from "../components/Navigation.svelte";
+  import { API } from "../util/api.request";
 
     let selected_role =''
     let isSubmitted = false
@@ -46,7 +47,7 @@
         {
             data.set('fullname',  fullname)
 
-            const res = await fetch(`https://crm-backend.glitch.me/user/update/${url.searchParams.get('user')}`, {
+            const res = await API.PATCH(`user/update/${url.searchParams.get('user')}`, {
                 method: 'PATCH',
                 body: data
             })

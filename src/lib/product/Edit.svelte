@@ -1,22 +1,35 @@
 <script lang="ts">
     import { toast } from "@zerodevx/svelte-toast";
+    import { onMount } from "svelte";
     import { navigate } from "svelte-routing";
     import { API } from "../util/api.request";
     import Navigation from "../components/Navigation.svelte";
-    import joaat from "../util/joaat.hash";
+    import type { Product } from "../interface/product.interface";
 
     let isSubmitted = false
+    let product = {} as Product
+
+    const url = new URL(window.location.href)
+
+    onMount(() => {
+        API.GET(`products/detail/${url.searchParams.get('product')}`,
+        {
+            credentials: 'include'
+        }).
+        then(async (res) => 
+        {
+            product = await res.json()
+        })
+    })
 
     const onSubmit = async (e : any) => 
     {
         isSubmitted = true
         const data = new FormData(e.target)
-        const name = data.get('name') as string
-        data.set('code', joaat(name).toString())
-        console.log(data.get('file'))
+        
         try 
         {
-            const res = await API.POST('products/add', {
+            const res = await API.PATCH(`products/update/${url.searchParams.get('product')}`, {
                 credentials: 'include',
                 body: data
             })
@@ -58,7 +71,7 @@
 <Navigation>
     <div class="h-auto mx-auto py-12 mt-12 w-1/2 justify-center items-center">
         <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-xl border-2 border-gray-800 bg-gray-800 mt-12">
-            <h2 class="uppercase text-center mb-12">Add Product</h2>
+            <h2 class="uppercase text-center mb-12">Edit Product</h2>
             <form on:submit|preventDefault={onSubmit} id="register">
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Upload file</label>
                 <input name="file" class="mb-7 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="image" type="file">

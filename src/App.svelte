@@ -1,11 +1,11 @@
 <script lang="ts">
-	import {Router, Link, Route} from 'svelte-routing';
+	import {Router, Route} from 'svelte-routing';
 	import { SvelteToast } from '@zerodevx/svelte-toast'
 	import Login from './Login.svelte';
 	import Home from './lib/Home.svelte';
   	import Logout from './lib/Logout.svelte';
   	import User from './lib/user/User.svelte';
-  	import Registration from './Registration.svelte';
+  	import Register from './Register.svelte';
 	import Profile from './lib/user/Profile.svelte';
 	import AddUser from './lib/user/Add.svelte';
 	import EditUser from './lib/user/Edit.svelte';
@@ -30,6 +30,6 @@
 	<Route path="/dashboard/product" component={Product}/>
 	<Route path="/dashboard/product/add" component={AddProduct}/>
 	<Route path="/logout" component={Logout}/>
-	<Route path="/signup" component={Registration}/>
+	<Route path="/signup" component={Register}/>
 	<Route path="/"><Login /></Route>
 </Router>
