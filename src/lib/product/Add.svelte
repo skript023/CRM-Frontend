@@ -13,7 +13,7 @@
         const data = new FormData(e.target)
         const name = data.get('name') as string
         data.set('code', joaat(name).toString())
-        console.log(data.get('file'))
+        
         try 
         {
             const res = await API.POST('products/add', {
