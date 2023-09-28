@@ -1,10 +1,10 @@
 <script lang="ts">
     import { toast } from "@zerodevx/svelte-toast";
-  import { API } from "../util/api.request";
+    import { API } from "../util/api.request";
 
     const url = new URL(window.location.href)
 
-    API.DELETE(`user/detail/${url.searchParams.get('user')}`, 
+    API.DELETE(`user/delete/${url.searchParams.get('user')}`, 
     {
         credentials: 'include'
     }).

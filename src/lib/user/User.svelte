@@ -6,6 +6,7 @@
     import { navigate } from 'svelte-routing';
     import { DataHandler } from 'gros/datatable'
   import SortableTableHeader from '../components/SortableTableHeader.svelte';
+  import { API } from '../util/api.request';
 
     let search = ''
     let users = [] as User[]
@@ -20,9 +21,8 @@
     $: pages = handler.getPages({ ellipsis: true })
 
     onMount(() => {
-        fetch('https://crm-backend.glitch.me/user/', 
+        API.GET('user/', 
         {
-            method: 'GET',
             credentials: 'include',
             headers: {
                 "Content-Type": "application/json"

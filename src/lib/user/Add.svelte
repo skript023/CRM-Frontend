@@ -4,14 +4,13 @@
     import { navigate } from "svelte-routing";
     import type {Role} from '../interface/user.interface';
     import Navigation from "../components/Navigation.svelte";
-  import { API } from "../util/api.request";
+    import { API } from "../util/api.request";
 
-    let selected_role =''
     let isSubmitted = false
     let roles = [] as Role[]
 
     onMount(() => {
-        API.GET('https://crm-backend.glitch.me/role/', {
+        API.GET('role', {
             credentials: 'include'
         }).then(async (res) => {
             roles = await res.json()

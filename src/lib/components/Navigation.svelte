@@ -8,24 +8,30 @@
 
     export let user = {} as User;
     export let drawer_checked = false;
+    let isLoaded = false;
 
     onMount(async () => {
         try 
         {
-            loading.start('Authorization', 'It may take a few seconds')
+            loading.start('Loading Data', 'It may take a few seconds')
             
             const res = await API.GET('user/profile', {
+                headers: {
+					"Content-Type": "application/json"
+				},
                 credentials: 'include'
             })
 
             if (res.status === 200)
             {
                 user = await res.json();
+
+                isLoaded = true;
             }
             else
             {
                 const modal = document.getElementById('modal-disconnect') as HTMLElement | any
-                modal.showModal()
+                modal.showModal();
             }
 
             loading.stop()
@@ -74,17 +80,21 @@
                                     <span class="badge badge-xs badge-success"></span>
                                 </a>
                             </li>
-                            <div class="dropdown dropdown-left dropdown-hover">
-                                <div class="avatar online">
-                                    <div class="w-10 rounded-full">
-                                        <img alt="profile" src={`https://crm-backend.glitch.me/user/avatar/${user.image}`} />
+                            {#if isLoaded}
+                                <div class="dropdown dropdown-left dropdown-hover">
+                                    <div class="avatar online">
+                                        <div class="w-10 rounded-full">
+                                            <img alt="profile" src={`https://crm-backend.glitch.me/user/avatar/${user.image}`} />
+                                        </div>
                                     </div>
+                                    <ul class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                        <li><a href="/dashboard/user/profile">Profile</a></li>
+                                        <li><a href="/logout">Logout</a></li>
+                                    </ul>
                                 </div>
-                                <ul class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                    <li><a href="/dashboard/user/profile">Profile</a></li>
-                                    <li><a href="/logout">Logout</a></li>
-                                </ul>
-                            </div>
+                            {:else}
+                                <span class="loading loading-spinner ml-1"></span>
+                            {/if}
                         </ul>
                     </div>
                 </nav>
@@ -120,11 +130,15 @@
     <div class="drawer-side z-10">
         <label for="my-drawer" class="drawer-overlay"></label>
         <ul class="menu p-4 w-80 min-h-screen bg-base-200 text-base-content">
-            <div class="avatar mb-5 mt-5 justify-center">
-                <div class="w-48 rounded-full">
-                    <img alt="profile" src={`https://crm-backend.glitch.me/user/avatar/${user.image}`} />
+            {#if isLoaded}
+                <div class="avatar mb-5 mt-5 justify-center">
+                    <div class="w-48 rounded-full">
+                        <img alt="profile" src={`https://crm-backend.glitch.me/user/avatar/${user.image}`} />
+                    </div>
                 </div>
-            </div>
+            {:else}
+                <span class="loading loading-spinner ml-1"></span>
+            {/if}
             <div class="join join-vertical justify-center items-center text-lg mt-5 mb-10">
                 <p>{user?.fullname}</p>
             </div>

@@ -1,9 +1,9 @@
 <script lang="ts">
     import { toast } from "@zerodevx/svelte-toast";
     import { navigate } from "svelte-routing";
+  import { API } from "./util/api.request";
 
-    fetch('https://crm-backend.glitch.me/auth/logout', {
-        method: 'GET',
+    API.GET('auth/logout', {
         credentials: 'include'
     }).
     then(async (res) => {

@@ -18,6 +18,9 @@
             data.set('fullname',  fullname)
 
             const res = await API.POST('user/add', {
+                headers: {
+					"Content-Type": "application/json"
+				},
                 body: data
             })
             

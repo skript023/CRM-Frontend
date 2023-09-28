@@ -2,18 +2,21 @@
 	import { toast } from '@zerodevx/svelte-toast';
 	import { navigate } from 'svelte-routing';
 	import { loading, Loading } from 'gros/loading'
-  import { API } from './lib/util/api.request';
+  	import { API } from './lib/util/api.request';
 
 	let username = null as string | null
 	let password = null as string | null
 	
-	const onClick = async ()=> {
+	const onClick = async () => {
 		try
 		{
 			loading.start('Authenticating', 'It may take a few seconds')
 
 			const res = await API.POST('auth/login', {
 				credentials: 'include',
+				headers: {
+					"Content-Type": "application/json"
+				},
 				body: JSON.stringify({
 					username,
 					password
