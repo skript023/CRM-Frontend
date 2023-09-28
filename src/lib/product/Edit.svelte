@@ -41,7 +41,7 @@
 
             toast.push(`<p class="text-center">${json.message}</p>`)
             
-            navigate('/', {replace: true})
+            navigate('/dashboard/product', {replace: true})
 
             isSubmitted = false
         } 
