@@ -5,14 +5,13 @@
   	import { API } from './lib/util/api.request';
   	import { onMount } from 'svelte';
   	import joaat from './lib/util/joaat.hash';
+  import { tokenExist } from './lib/util/token';
 
 	let username = null as string | null
 	let password = null as string | null
 
 	onMount(() => {
-		const auth = localStorage.getItem(joaat('auth').toString())
-		
-		if (auth === joaat('success').toString())
+		if (tokenExist())
 		{
 			navigate('/dashboard', {replace: true});
 		}
