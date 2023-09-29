@@ -1,12 +1,9 @@
 <script lang="ts">
-    import { toast } from "@zerodevx/svelte-toast";
     import { onMount } from "svelte";
-    import { navigate } from "svelte-routing";
-    import type {Role, User} from '../interface/user.interface';
+    import { USER } from "./helper/user.action";
     import Navigation from "../components/Navigation.svelte";
-  import { API } from "../util/api.request";
+    import type {Role, User} from '../interface/user.interface';
 
-    let selected_role =''
     let isSubmitted = false
     let roles = [] as Role[]
     let user = {} as User
@@ -38,51 +35,10 @@
     const onSubmit = async (e : any) => 
     {
         isSubmitted = true
-        const data = new FormData(e.target)
-        const first = data.get('first_name') as string
-        const last = data.get('last_name') as string
-        const fullname = first + ' ' + last
         
-        try 
-        {
-            data.set('fullname',  fullname)
+        await USER.UPDATE(e, url)
 
-            const res = await API.PATCH(`user/update/${url.searchParams.get('user')}`, {
-                method: 'PATCH',
-                body: data
-            })
-            
-            const json = await res.json()
-
-            if (res.status === 201)
-            {
-                toast.push(`<p class="text-center">${json.message}</p>`)
-                    
-                navigate('/', {replace: true})
-            }
-            else
-            {
-                toast.push(`message: ${json.message}`, {
-                    theme: {
-                        '--toastColor': 'mintcream',
-                        '--toastBackground': 'rgba(187,72,120,0.9)',
-                        '--toastBarBackground': 'red'
-                    }   
-                })
-            }
-
-            isSubmitted = false
-        } 
-        catch (error : any) 
-        {
-            toast.push(`Error : ${error}`, {
-				theme: {
-					'--toastColor': 'mintcream',
-					'--toastBackground': 'rgba(187,72,120,0.9)',
-					'--toastBarBackground': 'red'
-				}   
-			})
-        }
+        isSubmitted = false
     }
 </script>
 
@@ -111,38 +67,38 @@
                     </select>
                 </div>
                 <div class="relative z-0 w-full mb-6 group">
-                    <input value={user?.email ?? ""} placeholder=" " type="email" name="email" id="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"  required />
+                    <input value={user?.email ?? ""} placeholder=" " type="email" name="email" id="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"   />
                     <label for="email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         Email address
                     </label>
                 </div>
                 <div class="relative z-0 w-full mb-6 group">
-                    <input value={user?.username ?? ""} placeholder=" " type="text" name="username" id="username" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"  required />
+                    <input value={user?.username ?? ""} placeholder=" " type="text" name="username" id="username" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"   />
                     <label for="username" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         Username
                     </label>
                 </div>
                 <div class="relative z-0 w-full mb-6 group">
-                    <input placeholder=" " type="password" name="password" id="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"  required />
+                    <input placeholder=" " type="password" name="password" id="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"   />
                     <label for="password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         Password
                     </label>
                 </div>
                 <div class="relative z-0 w-full mb-6 group">
-                    <input placeholder=" " type="password" name="repeat_password" id="repeat_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"  required />
+                    <input placeholder=" " type="password" name="repeat_password" id="repeat_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"   />
                     <label for="repeat_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         Confirm password
                     </label>
                 </div>
                 <div class="grid md:grid-cols-2 md:gap-6">
                     <div class="relative z-0 w-full mb-6 group">
-                        <input value={ first_name ?? "" } placeholder=" " type="text" name="first_name" id="first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"  required />
+                        <input value={ first_name ?? "" } placeholder=" " type="text" name="first_name" id="first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"   />
                         <label for="first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                             First name
                         </label>
                     </div>
                     <div class="relative z-0 w-full mb-6 group">
-                        <input value={ last_name ?? "" } placeholder=" " type="text" name="last_name" id="last_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"  required />
+                        <input value={ last_name ?? "" } placeholder=" " type="text" name="last_name" id="last_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"   />
                         <label for="last_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                             Last name
                         </label>

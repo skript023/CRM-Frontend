@@ -5,6 +5,7 @@
     import type {Role} from '../interface/user.interface';
     import Navigation from "../components/Navigation.svelte";
     import { API } from "../util/api.request";
+    import { USER } from "./helper/user.action";
 
     let isSubmitted = false
     let roles = [] as Role[]
@@ -20,51 +21,10 @@
     const onSubmit = async (e : any) => 
     {
         isSubmitted = true
-        const data = new FormData(e.target)
-        const first = data.get('first_name') as string
-        const last = data.get('last_name') as string
-        const fullname = first + ' ' + last
         
-        try 
-        {
-            data.set('fullname',  fullname)
+        await USER.ADD(e)
 
-            const res = await API.POST('user/add', {
-                method: 'POST',
-                body: data
-            })
-            
-            const json = await res.json()
-
-            if (res.status === 201)
-            {
-                toast.push(`<p class="text-center">${json.message}</p>`)
-                    
-                navigate('/', {replace: true})
-            }
-            else
-            {
-                toast.push(`message: ${json.message}`, {
-                    theme: {
-                        '--toastColor': 'mintcream',
-                        '--toastBackground': 'rgba(187,72,120,0.9)',
-                        '--toastBarBackground': 'red'
-                    }   
-                })
-            }
-
-            isSubmitted = false
-        } 
-        catch (error : any) 
-        {
-            toast.push(`Error : ${error}`, {
-				theme: {
-					'--toastColor': 'mintcream',
-					'--toastBackground': 'rgba(187,72,120,0.9)',
-					'--toastBarBackground': 'red'
-				}   
-			})
-        }
+        isSubmitted = false
     }
 </script>
 

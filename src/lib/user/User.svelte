@@ -7,7 +7,8 @@
     import { DataHandler } from 'gros/datatable'
     import SortableTableHeader from '../components/SortableTableHeader.svelte';
     import { API } from '../util/api.request';
-  import { USER } from './delete.user';
+    import { USER } from './helper/user.action';
+  import { Expired } from './helper/expired.realtime';
 
     let search = ''
     let users = [] as User[]
@@ -37,43 +38,7 @@
 
                 isLoaded = true
 
-                users.map((user, i) => {
-                    const endDate = new Date(user.expired);
-
-                    const intervalId  = setInterval(() => {
-                        const currentTime = new Date();
-                        const timeDifference = endDate.getTime() - currentTime.getTime();
-
-                        if (timeDifference <= 0) 
-                        {
-                            clearInterval(intervalId);
-                            document.getElementById(`day-${user._id}`)?.style.setProperty('--value', '0');
-                            document.getElementById(`hours-${user._id}`)?.style.setProperty('--value', '0');
-                            document.getElementById(`min-${user._id}`)?.style.setProperty('--value', '0');
-                            document.getElementById(`sec-${user._id}`)?.style.setProperty('--value', '0');
-                            return;
-                        }
-
-                        let remainingSeconds = Math.floor(timeDifference / 1000);
-
-                        const days = Math.floor(remainingSeconds / (3600 * 24));
-                        remainingSeconds -= days * 3600 * 24;
-
-                        const hours = Math.floor(remainingSeconds / 3600);
-                        remainingSeconds -= hours * 3600;
-                        
-                        const minutes = Math.floor(remainingSeconds / 60);
-                        remainingSeconds -= minutes * 60;
-
-                        const seconds = remainingSeconds;
-
-                        document.getElementById(`day-${user._id}`)?.style.setProperty('--value', days.toString());
-                        document.getElementById(`hours-${user._id}`)?.style.setProperty('--value', hours.toString());
-                        document.getElementById(`min-${user._id}`)?.style.setProperty('--value', minutes.toString());
-                        document.getElementById(`sec-${user._id}`)?.style.setProperty('--value', seconds.toString());
-                    }
-                    , 1000)
-                })
+                Expired(users);
             }
         }).
         catch((e) => 
@@ -189,12 +154,44 @@
                                     {#if (new Date(user?.expired).getTime() - new Date().getTime()) <= 0}
                                         <p class="text-red-700">Expired</p>
                                     {:else}
-                                        <span class="countdown font-mono text-2xl">
-                                            <span id={`day-${user._id}`} style={`--value:${0}`}></span>:
-                                            <span id={`hours-${user._id}`} style={`--value:${0}`}></span>:
-                                            <span id={`min-${user._id}`} style={`--value:${0}`}></span>:
-                                            <span id={`sec-${user._id}`} style={`--value:${0}`}></span>
-                                        </span>
+                                        <div class="flex gap-3">
+                                            <div id={`years-label-${user._id}`}>
+                                                <span class="countdown font-mono text-md">
+                                                    <div id={`years-${user._id}`} style={`--value:${0}`}></div>
+                                                </span>
+                                                years
+                                            </div> 
+                                            <div id={`months-label-${user._id}`}>
+                                                <span class="countdown font-mono text-md">
+                                                    <div id={`months-${user._id}`} style={`--value:${0}`}></div>
+                                                </span>
+                                                months
+                                            </div> 
+                                            <div id={`days-label-${user._id}`}>
+                                                <span class="countdown font-mono text-md">
+                                                    <div id={`days-${user._id}`} style={`--value:${0}`}></div>
+                                                </span>
+                                                days
+                                            </div> 
+                                            <div id={`hours-label-${user._id}`}>
+                                                <span class="countdown font-mono text-md">
+                                                    <div id={`hours-${user._id}`} style={`--value:${0}`}></div>
+                                                </span>
+                                                hours
+                                            </div> 
+                                            <div id={`minutes-label-${user._id}`}>
+                                                <span class="countdown font-mono text-md">
+                                                    <div id={`minutes-${user._id}`} style={`--value:${0}`}></div>
+                                                </span>
+                                                minutes
+                                            </div> 
+                                            <div id={`seconds-label-${user._id}`}>
+                                                <span class="countdown font-mono text-md">
+                                                    <div id={`seconds-${user._id}`} style={`--value:${0}`}></div>
+                                                </span>
+                                                seconds
+                                            </div> 
+                                        </div>
                                     {/if}
                                 </td>
                                 <td class="px-4 py-3"><progress class="progress progress-success w-56" value={(user.role.level * 100) / 6} max="100"></progress></td>
