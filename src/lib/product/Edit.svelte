@@ -1,11 +1,9 @@
 <script lang="ts">
-    import { toast } from "@zerodevx/svelte-toast";
     import { onMount } from "svelte";
-    import { navigate } from "svelte-routing";
     import { API } from "../util/api.request";
+    import { PRODUCT } from "./helper/product.action";
     import Navigation from "../components/Navigation.svelte";
     import type { Product } from "../interface/product.interface";
-    import joaat from "../util/joaat.hash";
 
     let isSubmitted = false
     let product = {} as Product
@@ -26,35 +24,8 @@
     const onSubmit = async (e : any) => 
     {
         isSubmitted = true
-        const data = new FormData(e.target)
-        const name = data.get('name') as string
-        data.set('code', joaat(name).toString())
-        
-        try 
-        {
-            const res = await API.PATCH(`products/update/${url.searchParams.get('product')}`, {
-                credentials: 'include',
-                body: data
-            })
-            
-            const json = await res.json()
-
-            toast.push(`<p class="text-center">${json.message}</p>`)
-            
-            navigate('/dashboard/product', {replace: true})
-
-            isSubmitted = false
-        } 
-        catch (error : any) 
-        {
-            toast.push(`Error : ${error}`, {
-				theme: {
-					'--toastColor': 'mintcream',
-					'--toastBackground': 'rgba(187,72,120,0.9)',
-					'--toastBarBackground': 'red'
-				}   
-			})
-        }
+        await PRODUCT.EDIT(e, url)
+        isSubmitted = false
     }
 </script>
 

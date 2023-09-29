@@ -7,7 +7,7 @@
     import { API } from "../util/api.request";
     import Navigation from "../components/Navigation.svelte";
     import SortableTableHeader from '../components/SortableTableHeader.svelte';
-  import { PRODUCT } from "./delete.product";
+  import { PRODUCT } from "./helper/product.action";
 
     let search = ''
     let products = [] as Product[]

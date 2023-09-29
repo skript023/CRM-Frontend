@@ -1,57 +1,14 @@
 <script lang="ts">
-    import { toast } from "@zerodevx/svelte-toast";
-    import { navigate } from "svelte-routing";
-    import { API } from "../util/api.request";
+    import { PRODUCT } from "./helper/product.action";
     import Navigation from "../components/Navigation.svelte";
-    import joaat from "../util/joaat.hash";
 
     let isSubmitted = false
 
     const onSubmit = async (e : any) => 
     {
         isSubmitted = true
-        const data = new FormData(e.target)
-        const name = data.get('name') as string
-        data.set('code', joaat(name).toString())
-        
-        try 
-        {
-            const res = await API.POST('products/add', {
-                credentials: 'include',
-                body: data
-            })
-            
-            const json = await res.json()
-
-            if (res.status === 201)
-            {
-                toast.push(`<p class="text-center">${json.message}</p>`)
-                    
-                navigate('/dashboard/product', {replace: true})
-            }
-            else
-            {
-                toast.push(`message: ${json.message}`, {
-                    theme: {
-                        '--toastColor': 'mintcream',
-                        '--toastBackground': 'rgba(187,72,120,0.9)',
-                        '--toastBarBackground': 'red'
-                    }   
-                })
-            }
-
-            isSubmitted = false
-        } 
-        catch (error : any) 
-        {
-            toast.push(`Error : ${error}`, {
-				theme: {
-					'--toastColor': 'mintcream',
-					'--toastBackground': 'rgba(187,72,120,0.9)',
-					'--toastBarBackground': 'red'
-				}   
-			})
-        }
+        await PRODUCT.ADD(e)
+        isSubmitted = false
     }
 </script>
 
