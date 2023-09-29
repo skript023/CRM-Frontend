@@ -1,11 +1,9 @@
 <script lang="ts">
-    import { toast } from "@zerodevx/svelte-toast";
     import { onMount } from "svelte";
-    import { navigate } from "svelte-routing";
-    import type {Role} from '../interface/user.interface';
-    import Navigation from "../components/Navigation.svelte";
     import { API } from "../util/api.request";
     import { USER } from "./helper/user.action";
+    import type {Role} from '../interface/user.interface';
+    import Navigation from "../components/Navigation.svelte";
 
     let isSubmitted = false
     let roles = [] as Role[]

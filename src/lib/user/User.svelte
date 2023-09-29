@@ -8,7 +8,7 @@
     import SortableTableHeader from '../components/SortableTableHeader.svelte';
     import { API } from '../util/api.request';
     import { USER } from './helper/user.action';
-  import { Expired } from './helper/expired.realtime';
+    import { Expired } from './helper/expired.realtime';
 
     let search = ''
     let users = [] as User[]
