@@ -88,11 +88,11 @@ export namespace USER
             
             const json = await res.json()
 
-            if (res.status === 201)
+            if (res.status === 200)
             {
                 toast.push(`<p class="text-center">${json.message}</p>`)
                     
-                navigate('/', {replace: true})
+                navigate('/dashboard/user', {replace: true})
             }
             else
             {

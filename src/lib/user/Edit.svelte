@@ -3,6 +3,7 @@
     import { USER } from "./helper/user.action";
     import Navigation from "../components/Navigation.svelte";
     import type {Role, User} from '../interface/user.interface';
+  import { API } from "../util/api.request";
 
     let isSubmitted = false
     let roles = [] as Role[]
@@ -11,24 +12,22 @@
     const url = new URL(window.location.href)
 
     onMount(() => {
-        fetch('https://crm-backend.glitch.me/role/', 
+        API.GET('role/', 
         {
-            method: 'GET',
             credentials: 'include'
         }).
         then(async (res) => {
             roles = await res.json()
         })
 
-        fetch(`https://crm-backend.glitch.me/user/detail/${url.searchParams.get('user')}`,
+        API.GET(`user/detail/${url.searchParams.get('user')}`,
         {
-            method: 'GET',
             credentials: 'include'
         }).
         then(async (res) => {
             user = await res.json()
-            const role = document.getElementById('role') as any
-            role.selectedIndex = 0
+            const role = document.getElementById('role_id') as HTMLSelectElement
+            role.value = user?.role?._id
         })
     })
 
@@ -42,7 +41,7 @@
     }
 </script>
 
-<Navigation>
+<Navigation>    
     {@const [first_name, last_name] = user?.fullname?.split(' ') ?? []}
     <div class="h-auto mx-auto py-12 mt-12 w-1/2 justify-center items-center">
         <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-xl border-2 border-gray-800 bg-gray-800 mt-12">
@@ -59,7 +58,7 @@
                     <label for="" class="label">
                         <span class="label-text">Role</span>
                     </label>
-                    <select id="role" name="role" class="select select-bordered select-sm bg-gray-700 text-center disabled:text-white">
+                    <select id="role_id" name="role_id" class="select select-bordered select-sm bg-gray-700 text-center disabled:text-white">
                         <option disabled selected value={null}>-- Select Role --</option>
                         {#each roles as role}
                             <option value={role?._id}>{role?.name}</option>

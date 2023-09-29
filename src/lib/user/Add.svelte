@@ -39,7 +39,7 @@
                     <label for="" class="label">
                         <span class="label-text">Role</span>
                     </label>
-                    <select name="role" class="select select-bordered select-sm bg-gray-700 text-center disabled:text-white">
+                    <select name="role_id" class="select select-bordered select-sm bg-gray-700 text-center disabled:text-white">
                         <option disabled selected value={null}>-- Select Role --</option>
                         {#each roles as role}
                             <option value={role?._id}>{role?.name}</option>
