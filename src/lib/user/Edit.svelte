@@ -1,9 +1,9 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { USER } from "./helper/user.action";
+    import { API } from "../util/api.request";
     import Navigation from "../components/Navigation.svelte";
     import type {Role, User} from '../interface/user.interface';
-  import { API } from "../util/api.request";
 
     let isSubmitted = false
     let roles = [] as Role[]
