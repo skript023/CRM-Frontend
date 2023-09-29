@@ -40,7 +40,7 @@ export namespace PRODUCT
             
             const json = await res.json()
 
-            if (res.status === 200)
+            if (res.status === 201)
             {
                 toast.push(`<p class="text-center">${json.message}</p>`)
                     
