@@ -15,7 +15,8 @@
 
             isLoaded = true
         }
-        else
+
+        if ($user?.fullname)
         {
             isLoaded = true
         }
