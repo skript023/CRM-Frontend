@@ -1,11 +1,9 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { USER } from "./helper/user.action";
+    import { isLoading } from "../util/loading";
     import Navigation from "../components/Navigation.svelte";
     import { user, roles, availableRoles, detailUser } from "./helper/user.store";
-  import { isLoading } from "../util/loading";
-
-    let isSubmitted = false
 
     const url = new URL(window.location.href)
 
