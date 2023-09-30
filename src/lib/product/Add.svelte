@@ -1,14 +1,10 @@
 <script lang="ts">
-    import { PRODUCT } from "./helper/product.action";
+    import { PRODUCT, isLoading } from "./helper/product.action";
     import Navigation from "../components/Navigation.svelte";
 
-    let isSubmitted = false
-
-    const onSubmit = async (e : any) => 
+    async function onSubmit(e : any) 
     {
-        isSubmitted = true
         await PRODUCT.ADD(e)
-        isSubmitted = false
     }
 </script>
 
@@ -63,7 +59,7 @@
                 </div>
                 <button  class="dropdown dropdown-end w-full md:w-auto lg:w-96 lg:mx-12 flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="submit">
                     Submit
-                    {#if isSubmitted}
+                    {#if $isLoading}
                     <span class="loading loading-spinner ml-1"></span>
                     {:else}
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-arrow-right ml-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

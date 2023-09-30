@@ -1,19 +1,14 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { toast } from '@zerodevx/svelte-toast';
-    import { navigate } from 'svelte-routing';
-    import { DataHandler } from 'gros/datatable'
-    import type { Product } from '../interface/product.interface';
-    import { API } from "../util/api.request";
+    import { DataHandler } from 'gros/datatable';
     import Navigation from "../components/Navigation.svelte";
+    import { PRODUCT, isLoading } from "./helper/product.action";
+    import { products, allProduct } from "./helper/product.store";
     import SortableTableHeader from '../components/SortableTableHeader.svelte';
-  import { PRODUCT } from "./helper/product.action";
 
     let search = ''
-    let products = [] as Product[]
-    let isLoaded = false
 
-    $: handler = new DataHandler(products, { rowsPerPage: 50 })
+    $: handler = new DataHandler($products, { rowsPerPage: 50 })
     $: rows = handler.getRows()
 
     $: rowCount = handler.getRowCount()
@@ -22,30 +17,10 @@
     $: pages = handler.getPages({ ellipsis: true })
 
     onMount(() => {
-        API.GET('products/', 
+        if ($products.length <= 0)
         {
-            credentials: 'include',
-        }).
-        then(async (res) => 
-        {
-            if (res.status === 200)
-            {
-                products = await res.json()
-
-                isLoaded = true
-            }
-        }).
-        catch((e) => 
-        {
-            toast.push(e, {
-                theme: {
-                    '--toastColor': 'white',
-                    '--toastBackground': 'rgba(187,72,120,0.9)',
-                    '--toastBarBackground': 'red'
-                }   
-            })
-            navigate('/', {replace: true})
-        })
+            allProduct()
+        }
     });
 </script>
 
@@ -168,7 +143,12 @@
                                                     <a href="/dashboard/product/edit?product={product._id}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                                                 </li>
                                                 <li class="py-1">
-                                                    <button on:click={() => {PRODUCT.DELETE(product._id)}} type="button" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</button>
+                                                    <button on:click={() => {PRODUCT.DELETE(product._id)}} type="button" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                                        Delete
+                                                        {#if $isLoading}
+                                                        <span class="loading loading-spinner ml-1"></span>
+                                                        {/if}
+                                                    </button>
                                                 </li>
                                             </ul>
                                         </label>

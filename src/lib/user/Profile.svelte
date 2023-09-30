@@ -1,12 +1,10 @@
 <script lang="ts">
     import Navigation from "../components/Navigation.svelte";
-    import type {User} from "../interface/user.interface";
-
-    let user: User;
+    import { user } from "../components/profile.store";
 </script>
 
-<Navigation bind:user>
-    {@const [first_name, last_name] = user?.fullname.split(' ') ?? []}
+<Navigation>
+    {@const [first_name, last_name] = $user?.fullname?.split(' ') ?? []}
     <div class="container mx-auto my-5 p-5">
         <div class="md:flex no-wrap md:-mx-2 ">
             <!-- Left Side -->
@@ -14,9 +12,9 @@
                 <!-- Profile Card -->
                 <div class="bg-gray-800 p-3 border-t-4 border-gray-950">
                     <div class="image overflow-hidden w-4/6 rounded-full md:mx-12">
-                        <img class="h-auto w-screen mx-auto" src={`https://crm-backend.glitch.me/user/avatar/${user?.image}`} alt="avatar">
+                        <img class="h-auto w-screen mx-auto" src={`https://crm-backend.glitch.me/user/avatar/${$user?.image}`} alt="avatar">
                     </div>
-                    <h1 class="text-gray-300 font-bold text-xl leading-8 my-1 mt-5">{ user?.fullname }</h1>
+                    <h1 class="text-gray-300 font-bold text-xl leading-8 my-1 mt-5">{ $user?.fullname }</h1>
                     <h3 class="text-gray-300 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3>
                     <p class="text-sm text-gray-300 hover:text-gray-600 leading-6">Lorem ipsum dolor sit amet
                         consectetur adipisicing elit.
@@ -29,7 +27,7 @@
                         </li>
                         <li class="flex items-center py-3">
                             <span>Member since</span>
-                            <span class="ml-auto">{new Date(user?.createdAt.toString()).toDateString()}</span>
+                            <span class="ml-auto">{new Date($user?.createdAt?.toString()).toDateString()}</span>
                         </li>
                     </ul>
                 </div>
@@ -103,11 +101,11 @@
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Username</div>
-                                <div class="px-4 py-2">{user?.username}</div>
+                                <div class="px-4 py-2">{$user?.username}</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Role</div>
-                                <div class="px-4 py-2">{user?.role?.name}</div>
+                                <div class="px-4 py-2">{$user?.role?.name}</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Current Address</div>
@@ -120,7 +118,7 @@
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Email</div>
                                 <div class="px-4 py-2">
-                                    <a class="text-blue-500" href="mailto:{user?.email}">{user?.email}</a>
+                                    <a class="text-blue-500" href="mailto:{$user?.email}">{$user?.email}</a>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2">
@@ -147,11 +145,11 @@
                                     </div>
                                     <div class="grid grid-cols-2">
                                         <div class="px-4 py-2 font-semibold">Username</div>
-                                        <div class="px-4 py-2">{user?.username}</div>
+                                        <div class="px-4 py-2">{$user?.username}</div>
                                     </div>
                                     <div class="grid grid-cols-2">
                                         <div class="px-4 py-2 font-semibold">Role</div>
-                                        <div class="px-4 py-2">{user?.role?.name}</div>
+                                        <div class="px-4 py-2">{$user?.role?.name}</div>
                                     </div>
                                     <div class="grid grid-cols-2">
                                         <div class="px-4 py-2 font-semibold">Current Address</div>
@@ -164,7 +162,7 @@
                                     <div class="grid grid-cols-2">
                                         <div class="px-4 py-2 font-semibold">Email</div>
                                         <div class="px-4 py-2">
-                                            <a class="text-blue-500" href="mailto:{user?.email}">{user?.email}</a>
+                                            <a class="text-blue-500" href="mailto:{$user?.email}">{$user?.email}</a>
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-2">

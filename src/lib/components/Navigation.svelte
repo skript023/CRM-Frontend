@@ -1,51 +1,23 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { navigate } from "svelte-routing";
-    import { toast } from '@zerodevx/svelte-toast'
-    import type { User } from "../interface/user.interface";
-    import { loading, Loading } from 'gros/loading';
-    import { API } from "../util/api.request";
     import { Logout } from "../logout";
+    import { Loading } from 'gros/loading';
+    import { navigate } from "svelte-routing";
+    import { user, getUser } from './profile.store'
 
-    export let user = {} as User;
     export let drawer_checked = false;
     let isLoaded = false;
 
     onMount(async () => {
-        try 
+        if (!$user?.fullname)
         {
-            loading.start('Loading Data', 'It may take a few seconds')
-            
-            const res = await API.GET('user/profile', {
-                headers: {
-					"Content-Type": "application/json"
-				},
-                credentials: 'include'
-            })
+            getUser()
 
-            if (res.status === 200)
-            {
-                user = await res.json();
-
-                isLoaded = true;
-            }
-            else
-            {
-                const modal = document.getElementById('modal-disconnect') as HTMLElement | any
-                modal.showModal();
-            }
-
-            loading.stop()
-        } 
-        catch (e : any) 
+            isLoaded = true
+        }
+        else
         {
-            toast.push(e, {
-                theme: {
-                    '--toastColor': 'mintcream',
-                    '--toastBackground': 'rgba(187,72,120,0.9)',
-                    '--toastBarBackground': 'red'
-                }
-            }) 
+            isLoaded = true
         }
     })
 </script>
@@ -85,7 +57,7 @@
                                 <div class="dropdown dropdown-left dropdown-hover">
                                     <div class="avatar online">
                                         <div class="w-10 rounded-full">
-                                            <img alt="profile" src={`https://crm-backend.glitch.me/user/avatar/${user.image}`} />
+                                            <img alt="profile" src={`https://crm-backend.glitch.me/user/avatar/${$user.image}`} />
                                         </div>
                                     </div>
                                     <ul class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
@@ -132,19 +104,19 @@
             {#if isLoaded}
                 <div class="avatar mb-5 mt-5 justify-center">
                     <div class="w-48 rounded-full">
-                        <img alt="profile" src={`https://crm-backend.glitch.me/user/avatar/${user.image}`} />
+                        <img alt="profile" src={`https://crm-backend.glitch.me/user/avatar/${$user.image}`} />
                     </div>
                 </div>
             {:else}
                 <span class="loading loading-spinner ml-1"></span>
             {/if}
             <div class="join join-vertical justify-center items-center text-lg mt-5 mb-10">
-                <p>{user?.fullname}</p>
+                <p>{$user?.fullname}</p>
             </div>
             <div class="divider uppercase">Menu</div> 
             <!-- Sidebar content here -->
             <li><a href="/dashboard">Dashboard</a></li>
-            {#if user?.role?.name === 'admin'}
+            {#if $user?.role?.name === 'admin'}
                 <div class="divider uppercase">admin</div>
                 <li>
                     <details open>

@@ -1,17 +1,20 @@
 import { navigate } from "svelte-routing"
 import { API } from "./api.request"
+import { writable } from "svelte/store"
 
-export async function authenticated()
-{
-    const res = await API.GET('user/profile', {
-        headers: {
-            "Content-Type": "application/json"
-        },
-        credentials: 'include'
-    })
+export const authenticated = writable(false)
 
-    if (res.status === 200)
-    {
-        navigate('/dashboard')
-    }
-}
+// export async function authenticated()
+// {
+//     const res = await API.GET('user/profile', {
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         credentials: 'include'
+//     })
+
+//     if (res.status === 200)
+//     {
+//         navigate('/dashboard')
+//     }
+// }

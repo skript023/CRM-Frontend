@@ -11,7 +11,10 @@
 	let password = null as string | null
 
 	onMount(async () => {
-		await authenticated();
+		if ($authenticated)
+		{
+			navigate('/dashboard')
+		}
 	})
 	
 	const onClick = async () => {
@@ -33,10 +36,12 @@
 			if (res.status === 200)
 			{
 				const json = await res.json()
+
+				authenticated.set(true)
+				
 				toast.push(`<p class="text-center">${json.message}</p>`)
 				
 				navigate('/dashboard', {replace: true})
-				localStorage.setItem(joaat('auth').toString(), joaat('success').toString())
 			}
 
 			loading.stop()

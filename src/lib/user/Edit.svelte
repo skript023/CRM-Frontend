@@ -31,7 +31,7 @@
         })
     })
 
-    const onSubmit = async (e : any) => 
+    async function onSubmit(e : any) 
     {
         isSubmitted = true
         

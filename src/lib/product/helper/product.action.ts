@@ -2,11 +2,29 @@ import { toast } from "@zerodevx/svelte-toast";
 import { API } from "../../util/api.request";
 import joaat from "../../util/joaat.hash";
 import { navigate } from "svelte-routing";
+import { writable } from "svelte/store";
+
+export const isLoading = writable(false)
+
+export namespace loading
+{
+    export function start() 
+    {
+        isLoading.set(true)
+    }
+
+    export function end()
+    {
+        isLoading.set(false)
+    }
+}
 
 export namespace PRODUCT 
 {
     export function DELETE(product_id : string)
     {
+        loading.start() 
+
         API.DELETE(`products/delete/${product_id}`, 
         {
             credentials: 'include'
@@ -16,6 +34,8 @@ export namespace PRODUCT
             const json = await res.json()
         
             toast.push(json.message)
+
+            loading.end()
 
             window.location.reload();
         }).
@@ -27,6 +47,8 @@ export namespace PRODUCT
 
     export async function ADD(e: any) 
     {
+        loading.start()
+        
         const data = new FormData(e.target)
         const name = data.get('name') as string
         data.set('code', joaat(name).toString())
@@ -43,11 +65,14 @@ export namespace PRODUCT
             if (res.status === 201)
             {
                 toast.push(`<p class="text-center">${json.message}</p>`)
-                    
+                loading.end()
+                
                 navigate('/dashboard/product')
             }
             else
             {
+                loading.end()
+                
                 toast.push(`message: ${json.message}`, {
                     theme: {
                         '--toastColor': 'mintcream',
@@ -61,6 +86,8 @@ export namespace PRODUCT
         } 
         catch (error : any) 
         {
+            loading.end()
+            
             toast.push(`Error : ${error}`, {
 				theme: {
 					'--toastColor': 'mintcream',
@@ -73,6 +100,8 @@ export namespace PRODUCT
 
     export async function EDIT(e: any, url:URL) 
     {
+        loading.start()
+        
         const data = new FormData(e.target)
         const name = data.get('name') as string
         data.set('code', joaat(name).toString())
@@ -85,6 +114,8 @@ export namespace PRODUCT
             })
             
             const json = await res.json()
+
+            loading.end()
 
             toast.push(`<p class="text-center">${json.message}</p>`)
             
