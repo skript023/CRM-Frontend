@@ -1,19 +1,16 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { API } from "../util/api.request";
     import { USER } from "./helper/user.action";
-    import type {Role} from '../interface/user.interface';
     import Navigation from "../components/Navigation.svelte";
+    import { roles, availableRoles } from "./helper/user.store";
 
     let isSubmitted = false
-    let roles = [] as Role[]
 
     onMount(() => {
-        API.GET('role', {
-            credentials: 'include'
-        }).then(async (res) => {
-            roles = await res.json()
-        })
+        if ($roles?.length <= 0)
+        {
+            availableRoles()
+        }
     })
 
     async function onSubmit(e : any) 
@@ -39,7 +36,7 @@
                     </label>
                     <select name="role_id" class="select select-bordered select-sm bg-gray-700 text-center disabled:text-white">
                         <option disabled selected value={null}>-- Select Role --</option>
-                        {#each roles as role}
+                        {#each $roles as role}
                             <option value={role?._id}>{role?.name}</option>
                         {/each}
                     </select>

@@ -1,53 +1,40 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { USER } from "./helper/user.action";
-    import { API } from "../util/api.request";
     import Navigation from "../components/Navigation.svelte";
-    import type {Role, User} from '../interface/user.interface';
+    import { user, roles, availableRoles, detailUser } from "./helper/user.store";
+  import { isLoading } from "../util/loading";
 
     let isSubmitted = false
-    let roles = [] as Role[]
-    let user = {} as User
 
     const url = new URL(window.location.href)
 
     onMount(() => {
-        API.GET('role/', 
+        if ($roles?.length <= 0)
         {
-            credentials: 'include'
-        }).
-        then(async (res) => {
-            roles = await res.json()
-        })
+            availableRoles()
+        }
 
-        API.GET(`user/detail/${url.searchParams.get('user')}`,
-        {
-            credentials: 'include'
-        }).
-        then(async (res) => {
-            user = await res.json()
-            const role = document.getElementById('role_id') as HTMLSelectElement
-            role.value = user?.role?._id
-        })
+        detailUser(url)
     })
 
     async function onSubmit(e : any) 
     {
-        isSubmitted = true
-        
         await USER.UPDATE(e, url)
-
-        isSubmitted = false
     }
 </script>
 
 <Navigation>    
-    {@const [first_name, last_name] = user?.fullname?.split(' ') ?? []}
+    {@const [first_name, last_name] = $user?.fullname?.split(' ') ?? []}
     <div class="h-auto mx-auto py-12 mt-12 w-1/2 justify-center items-center">
         <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-xl border-2 border-gray-800 bg-gray-800 mt-12">
             <div class="avatar mb-12 flex justify-center">
                 <div class="w-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <img src={`https://crm-backend.glitch.me/user/avatar/${user?.image}`} alt="avatar" />
+                    {#if $user.image}
+                    <img src={`https://crm-backend.glitch.me/user/avatar/${$user?.image}`} alt="avatar" />
+                    {:else}
+                    <span class="loading loading-spinner ml-1"></span>
+                    {/if}
                 </div>
             </div>
             <h2 class="uppercase text-center mb-12">Edit User</h2>
@@ -60,19 +47,19 @@
                     </label>
                     <select id="role_id" name="role_id" class="select select-bordered select-sm bg-gray-700 text-center disabled:text-white">
                         <option disabled selected value={null}>-- Select Role --</option>
-                        {#each roles as role}
+                        {#each $roles as role}
                             <option value={role?._id}>{role?.name}</option>
                         {/each}
                     </select>
                 </div>
                 <div class="relative z-0 w-full mb-6 group">
-                    <input value={user?.email ?? ""} placeholder=" " type="email" name="email" id="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"   />
+                    <input value={$user?.email ?? ""} placeholder=" " type="email" name="email" id="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"   />
                     <label for="email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         Email address
                     </label>
                 </div>
                 <div class="relative z-0 w-full mb-6 group">
-                    <input value={user?.username ?? ""} placeholder=" " type="text" name="username" id="username" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"   />
+                    <input value={$user?.username ?? ""} placeholder=" " type="text" name="username" id="username" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"   />
                     <label for="username" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         Username
                     </label>
@@ -105,7 +92,7 @@
                 </div>
                 <button  class="dropdown dropdown-end w-full md:w-auto lg:w-96 lg:mx-12 flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="submit">
                     Submit
-                    {#if isSubmitted}
+                    {#if $isLoading}
                     <span class="loading loading-spinner ml-1"></span>
                     {:else}
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-arrow-right ml-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

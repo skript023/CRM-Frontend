@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { PRODUCT, isLoading } from "./helper/product.action";
+    import { isLoading } from "../util/loading";
+    import { PRODUCT } from "./helper/product.action";
     import Navigation from "../components/Navigation.svelte";
     import { product, productDetail } from "./helper/product.store";
 

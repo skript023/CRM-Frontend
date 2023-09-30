@@ -1,11 +1,14 @@
 import { toast } from "@zerodevx/svelte-toast";
 import { API } from "../../util/api.request";
 import { navigate } from "svelte-routing";
+import { loading } from "../../util/loading";
 
 export namespace USER 
 {
     export function DELETE (userId : string)
     {
+        loading.end()
+
         API.DELETE(`user/delete/${userId}`, 
         {
             credentials: 'include'
@@ -13,17 +16,22 @@ export namespace USER
         then(async (res) => {
             const json = await res.json()
         
+            loading.end()
+
             toast.push(json.message)
 
             window.location.reload()
         }).
         catch((e) => {
+            loading.end()
             toast.push(e)
         })
     }
     
     export async function ADD (e : any)
     {
+        loading.start()
+        
         const data = new FormData(e.target)
         const first = data.get('first_name') as string
         const last = data.get('last_name') as string
@@ -42,12 +50,16 @@ export namespace USER
 
             if (res.status === 201)
             {
+                loading.end()
+
                 toast.push(`<p class="text-center">${json.message}</p>`)
-                    
+                
                 navigate('/dashboard/user', {replace: true})
             }
             else
             {
+                loading.end()
+
                 toast.push(`message: ${json.message}`, {
                     theme: {
                         '--toastColor': 'mintcream',
@@ -59,6 +71,8 @@ export namespace USER
         } 
         catch (error : any) 
         {
+            loading.end()
+
             toast.push(`Error : ${error}`, {
 				theme: {
 					'--toastColor': 'mintcream',
@@ -71,6 +85,8 @@ export namespace USER
     
     export async function UPDATE(e : any, url : URL)
     {
+        loading.start()
+
         const data = new FormData(e.target)
         const first = data.get('first_name')?.toString()
         const last = data.get('last_name')?.toString()
@@ -91,11 +107,14 @@ export namespace USER
             if (res.status === 200)
             {
                 toast.push(`<p class="text-center">${json.message}</p>`)
+
+                loading.end()
                     
                 navigate('/dashboard/user', {replace: true})
             }
             else
             {
+                loading.end()
                 toast.push(`message: ${json.message}`, {
                     theme: {
                         '--toastColor': 'mintcream',
@@ -107,6 +126,7 @@ export namespace USER
         } 
         catch (error : any) 
         {
+            loading.end()
             toast.push(`Error : ${error}`, {
 				theme: {
 					'--toastColor': 'mintcream',
