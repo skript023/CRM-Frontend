@@ -33,25 +33,32 @@ export namespace ROLE
     export async function ADD(e: any) 
     {
         loading.start()
-        
-        const data = new FormData(e.target)
-        
+
         try 
         {
+            const data = new FormData(e.target)
+
+            const abilities = {
+                create: data.get('create')?.toString() === 'on',
+                read: data.get('read')?.toString() === 'on',
+                update: data.get('update')?.toString() === 'on',
+                delete: data.get('delete')?.toString() === 'on',
+                suspend: data.get('suspend')?.toString() === 'on',
+                system: data.get('system')?.toString() === 'on'
+            }
+
+            const role = {
+                name: data.get('name'),
+                level: Object.values(abilities).filter((value) => value === true).length,
+                access: abilities
+            }
+
             const res = await API.POST('role/add', {
                 credentials: 'include',
-                body: JSON.stringify({
-                    name: data.get('name'),
-                    level: data.get('level'),
-                    access: {
-                        create: data.get('create'),
-                        read: data.get('read'),
-                        update: data.get('update'),
-                        delete: data.get('delete'),
-                        suspend: data.get('suspend'),
-                        system: data.get('system')
-                    }
-                })
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(role)
             })
             
             const json = await res.json()
@@ -98,22 +105,26 @@ export namespace ROLE
         
         const data = new FormData(e.target)
 
-        try 
+        try
         {
+            const abilities = {
+                create: data.get('create')?.toString() === 'on',
+                read: data.get('read')?.toString() === 'on',
+                update: data.get('update')?.toString() === 'on',
+                delete: data.get('delete')?.toString() === 'on',
+                suspend: data.get('suspend')?.toString() === 'on',
+                system: data.get('system')?.toString() === 'on'
+            }
+
+            const role = {
+                name: data.get('name'),
+                level: Object.values(abilities).filter((value) => value === true).length,
+                access: abilities
+            }
+
             const res = await API.PATCH(`role/update/${url.searchParams.get('product')}`, {
                 credentials: 'include',
-                body: JSON.stringify({
-                    name: data.get('name'),
-                    level: data.get('level'),
-                    access: {
-                        create: data.get('create'),
-                        read: data.get('read'),
-                        update: data.get('update'),
-                        delete: data.get('delete'),
-                        suspend: data.get('suspend'),
-                        system: data.get('system')
-                    }
-                })
+                body: JSON.stringify(role)
             })
             
             const json = await res.json()
