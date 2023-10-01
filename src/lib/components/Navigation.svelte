@@ -9,17 +9,9 @@
     let isLoaded = false;
 
     onMount(async () => {
-        if (!$user?.fullname)
-        {
-            getUser()
+        await getUser()
 
-            isLoaded = true
-        }
-
-        if ($user?.fullname)
-        {
-            isLoaded = true
-        }
+        isLoaded = true
     })
 </script>
 

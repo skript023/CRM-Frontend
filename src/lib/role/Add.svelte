@@ -7,8 +7,8 @@
 
     const url = new URL(window.location.href)
 
-    onMount(() => {
-        roleDetail(url)
+    onMount(async () => {
+        await roleDetail(url)
     })
 
     async function onSubmit(e : any) 
