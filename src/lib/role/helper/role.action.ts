@@ -122,8 +122,11 @@ export namespace ROLE
                 access: abilities
             }
 
-            const res = await API.PATCH(`role/update/${url.searchParams.get('product')}`, {
+            const res = await API.PATCH(`role/update/${url.searchParams.get('role')}`, {
                 credentials: 'include',
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 body: JSON.stringify(role)
             })
             
