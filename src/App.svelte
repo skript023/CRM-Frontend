@@ -11,6 +11,9 @@
   	import Product from './lib/product/Product.svelte';
 	import AddProduct from './lib/product/Add.svelte'
   	import EditProduct from './lib/product/Edit.svelte';
+	import Role from './lib/role/Role.svelte';
+	import RoleEdit from './lib/role/Edit.svelte';
+  	import RoleAdd from './lib/role/Add.svelte';
 
 	export let url = "";
 	const options = {
@@ -21,13 +24,20 @@
 <SvelteToast {options} />
 <Router {url}>
 	<Route path="/dashboard" component={Home} />
+
 	<Route path="/dashboard/user" component={User} />
 	<Route path="/dashboard/user/profile" component={Profile} />
 	<Route path="/dashboard/user/add" component={AddUser}/>
 	<Route path="/dashboard/user/edit" component={EditUser}/>
+
 	<Route path="/dashboard/product" component={Product}/>
 	<Route path="/dashboard/product/add" component={AddProduct}/>
 	<Route path="/dashboard/product/edit" component={EditProduct}/>
+
+	<Route path="/dashboard/role" component={Role} />
+	<Route path="/dashboard/role/add" component={RoleAdd}/>
+	<Route path="/dashboard/role/edit" component={RoleEdit}/>
+
 	<Route path="/signup" component={Register}/>
 	<Route path="/"><Login /></Route>
 </Router>

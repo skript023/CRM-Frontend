@@ -1,10 +1,14 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { USER } from "./helper/user.action";
+    import { isLoading } from "../util/loading";
     import Navigation from "../components/Navigation.svelte";
     import { roles, availableRoles } from "./helper/user.store";
 
-    let isSubmitted = false
+    let password = '';
+    let confirm_password = '';
+    let error = false;
+    let messages = [] as string[];
 
     onMount(() => {
         if ($roles?.length <= 0)
@@ -15,11 +19,35 @@
 
     async function onSubmit(e : any) 
     {
-        isSubmitted = true
-        
-        await USER.ADD(e)
+        if (error) error = false
 
-        isSubmitted = false
+        await USER.ADD(e)
+    }
+
+    function validatePassword() 
+    {
+        if (password != confirm_password)
+        {
+            if (!messages.includes('Check that your confirmed password matches your initial password.'))
+            {
+                messages.push('Check that your confirmed password matches your initial password.')
+            }
+            error = true
+        }
+
+        if (password.length < 8)
+        {
+            if (!messages.includes('Password must contain at least 8 characters.'))
+            {
+                messages.push('Password must contain at least 8 characters.')
+            }
+            error = true
+        }
+
+        if (password.length >= 8 && password === confirm_password)
+        {
+            error = false
+        }
     }
 </script>
 
@@ -27,6 +55,22 @@
     <div class="h-auto mx-auto py-12 mt-12 w-1/2 justify-center items-center">
         <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-xl border-2 border-gray-800 bg-gray-800 mt-12">
             <h2 class="uppercase text-center mb-12">Add User</h2>
+            {#if error}
+                <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 -mx-5" role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 mr-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                    </svg>
+                    <span class="sr-only">Danger</span>
+                    <div>
+                        <span class="font-medium">Ensure that these requirements are met:</span>
+                        <ul class="mt-1.5 ml-4 list-disc list-inside">
+                            {#each messages as message}
+                                <li>{message}</li>
+                            {/each}
+                        </ul>
+                    </div>
+                </div>
+            {/if}
             <form on:submit|preventDefault={onSubmit} id="register">
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Upload file</label>
                 <input name="image" class="mb-7 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="image" type="file">
@@ -54,13 +98,13 @@
                     </label>
                 </div>
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="password" name="password" id="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <input bind:value={password} type="password" name="password" id="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                     <label for="password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         Password
                     </label>
                 </div>
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="password" name="repeat_password" id="repeat_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <input bind:value={confirm_password} on:change={validatePassword} type="password" name="repeat_password" id="repeat_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                     <label for="repeat_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         Confirm password
                     </label>
@@ -81,7 +125,7 @@
                 </div>
                 <button  class="dropdown dropdown-end w-full md:w-auto lg:w-96 lg:mx-12 flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="submit">
                     Submit
-                    {#if isSubmitted}
+                    {#if $isLoading}
                     <span class="loading loading-spinner ml-1"></span>
                     {:else}
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-arrow-right ml-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

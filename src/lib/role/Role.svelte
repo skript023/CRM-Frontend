@@ -1,15 +1,16 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { USER } from './helper/user.action';
-    import { DataHandler } from 'gros/datatable';
-    import { allUser, users } from './helper/user.store';
+    import { isLoading } from "../util/loading";
+    import { ROLE } from "./helper/role.action";
+    import { DataHandler } from "gros/datatable";
     import Navigation from "../components/Navigation.svelte";
-    import SortableTableHeader from '../components/SortableTableHeader.svelte';
+    import { availableRoles, roles } from "../user/helper/user.store";
+    import SortableTableHeader from "../components/SortableTableHeader.svelte";
+  import { allowedAccess } from "./helper/role.store";
 
     let search = ''
-    let isLoaded = false
 
-    $: handler = new DataHandler($users, { rowsPerPage: 50 })
+    $: handler = new DataHandler($roles, { rowsPerPage: 50 })
     $: rows = handler.getRows()
 
     $: rowCount = handler.getRowCount()
@@ -18,22 +19,26 @@
     $: pages = handler.getPages({ ellipsis: true })
 
     onMount(() => {
-        allUser()
+        if ($roles.length <= 0)
+        {
+            availableRoles()
+        }
     });
 </script>
 
 <style>
-    @media(max-width: 650px)
-    {
-        td
-        {
-            display: block;
-        }
-
-        #table-head {
-            --tw-bg-opacity: 1;
-            background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-        }
+    td.list {
+        text-align: left;
+        white-space: nowrap;
+    }
+    td ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: square;
+    }
+    td li {
+        font-weight: bold;
+        font-size: 12px;
     }
 </style>
 
@@ -55,11 +60,11 @@
                     </form>
                 </div>
                 <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                    <a href="/dashboard/user/add" class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                    <a href="/dashboard/product/add" class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                         <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                         </svg>
-                        Add User
+                        Add Product
                     </a>
                     <div class="flex items-center space-x-3 w-full md:w-auto">
                         <button class="dropdown dropdown-end w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="button">
@@ -87,23 +92,14 @@
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead id="table-head" class="uppercase text-xs text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <SortableTableHeader {handler} orderBy="fullname">
-                                Fullname
+                            <SortableTableHeader {handler} orderBy="name">
+                                Name
                             </SortableTableHeader>
-                            <SortableTableHeader {handler} orderBy="username">
-                                Username
-                            </SortableTableHeader>
-                            <SortableTableHeader {handler} orderBy="email">
-                                Email
-                            </SortableTableHeader>
-                            <SortableTableHeader {handler} orderBy="role">
-                                Role
-                            </SortableTableHeader>
-                            <SortableTableHeader {handler} orderBy="expired">
-                                Expired
-                            </SortableTableHeader>
-                            <SortableTableHeader {handler} orderBy="role">
+                            <SortableTableHeader {handler} orderBy="level">
                                 Level
+                            </SortableTableHeader>
+                            <SortableTableHeader {handler} orderBy="access">
+                                Access
                             </SortableTableHeader>
                             <th scope="col" class="px-4 py-3">
                                 <span class="sr-only">Actions</span>
@@ -111,57 +107,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {#each $rows as user}
+                        {#each $rows as role}
                             <tr class="border-b dark:border-gray-700">
-                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.fullname}</th>
-                                <td class="px-4 py-3">{user.username}</td>
-                                <td class="px-4 py-3">{user.email}</td>
-                                <td class="px-4 py-3">{user.role.name}</td>
-                                <td class="px-4 py-3">
-                                    {#if (new Date(user?.expired).getTime() - new Date().getTime()) <= 0}
-                                        <p class="text-red-700">Expired</p>
-                                    {:else}
-                                        <div class="flex gap-3">
-                                            <div id={`years-label-${user._id}`}>
-                                                <span class="countdown font-mono text-md">
-                                                    <div id={`years-${user._id}`} style={`--value:${0}`}></div>
-                                                </span>
-                                                years
-                                            </div> 
-                                            <div id={`months-label-${user._id}`}>
-                                                <span class="countdown font-mono text-md">
-                                                    <div id={`months-${user._id}`} style={`--value:${0}`}></div>
-                                                </span>
-                                                months
-                                            </div> 
-                                            <div id={`days-label-${user._id}`}>
-                                                <span class="countdown font-mono text-md">
-                                                    <div id={`days-${user._id}`} style={`--value:${0}`}></div>
-                                                </span>
-                                                days
-                                            </div> 
-                                            <div id={`hours-label-${user._id}`}>
-                                                <span class="countdown font-mono text-md">
-                                                    <div id={`hours-${user._id}`} style={`--value:${0}`}></div>
-                                                </span>
-                                                hours
-                                            </div> 
-                                            <div id={`minutes-label-${user._id}`}>
-                                                <span class="countdown font-mono text-md">
-                                                    <div id={`minutes-${user._id}`} style={`--value:${0}`}></div>
-                                                </span>
-                                                minutes
-                                            </div> 
-                                            <div id={`seconds-label-${user._id}`}>
-                                                <span class="countdown font-mono text-md">
-                                                    <div id={`seconds-${user._id}`} style={`--value:${0}`}></div>
-                                                </span>
-                                                seconds
-                                            </div> 
-                                        </div>
-                                    {/if}
+                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{role.name}</th>
+                                <td class="list px-4 py-3">
+                                    <ul>
+                                        <li>Creation : {@html `${allowedAccess(role, 'create')}`}</li>
+                                        <li>Read : {@html allowedAccess(role, 'read')}</li>
+                                        <li>Update : {@html allowedAccess(role, 'update')}</li>
+                                        <li>Delete : {@html allowedAccess(role, 'delete')}</li>
+                                        <li>Suspend : {@html allowedAccess(role, 'suspend')}</li>
+                                        <li>System : {@html allowedAccess(role, 'system')}</li>
+                                    </ul>
                                 </td>
-                                <td class="px-4 py-3"><progress class="progress progress-success w-56" value={(user.role.level * 100) / 6} max="100"></progress></td>
+                                <td class="px-4 py-3"><progress class="progress progress-success w-56" value={(role.level * 100) / 6} max="100"></progress></td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <div class="dropdown dropdown-hover dropdown-end">
                                         <label tabindex="-1" for="" class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-800 hover:text-gray-950 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100">
@@ -170,13 +129,18 @@
                                             </svg>
                                             <ul tabindex="-1" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52" aria-labelledby="apple-iphone-14-dropdown-button">
                                                 <li>
-                                                    <a href="/dashboard/user/detail" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
+                                                    <a href="/dashboard/role/detail?role={role._id}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/dashboard/user/edit?user={user._id}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                                    <a href="/dashboard/role/edit?role={role._id}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                                                 </li>
                                                 <li class="py-1">
-                                                    <button on:click={() => {USER.DELETE(user._id)}} type="button" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</button>
+                                                    <button on:click={() => {ROLE.DELETE(role._id)}} type="button" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                                        Delete
+                                                        {#if $isLoading}
+                                                        <span class="loading loading-spinner ml-1"></span>
+                                                        {/if}
+                                                    </button>
                                                 </li>
                                             </ul>
                                         </label>

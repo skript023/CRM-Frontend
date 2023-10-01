@@ -137,6 +137,15 @@
                         </ul>
                     </details>
                 </li>
+                <li>
+                    <details open>
+                        <summary>Roles</summary>
+                        <ul>
+                            <li><a href="/dashboard/role">Manage Roles</a></li>
+                            <li><a href="/dashboard/role/add">Add Role</a></li>
+                        </ul>
+                    </details>
+                </li>
             {/if}
         </ul>
     </div>

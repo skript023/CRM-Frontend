@@ -1,6 +1,6 @@
 import type { User } from "../../interface/user.interface";
 
-export function Expired(params:User[]) 
+export function countdownExpires(params:User[]) 
 {
     params.map((user, i) => {
         const endDate = new Date(user.expired);
