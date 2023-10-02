@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import { Logout } from "../logout";
     import { Loading } from 'gros/loading';
-    import { navigate } from "svelte-routing";
+    import { Link, navigate } from "svelte-routing";
     import { user, getUser } from './profile.store'
 
     export let drawer_checked = false;
@@ -34,17 +34,17 @@
                         <ul class="menu menu-horizontal">
                             <!-- Navbar menu content here -->
                             <li class="right-10">
-                                <a href={null}>
+                                <Link replace to='/dashboard/inbox'>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
                                     Inbox
                                     <span class="badge badge-sm">99+</span>
-                                </a>
+                                </Link>
                             </li>
                             <li class="right-12">
-                                <a href={null}>
+                                <Link replace to=''>
                                     Status
                                     <span class="badge badge-xs badge-success"></span>
-                                </a>
+                                </Link>
                             </li>
                             {#if isLoaded}
                                 <div class="dropdown dropdown-left dropdown-hover">
@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
                                     <ul class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                        <li><a href="/dashboard/user/profile">Profile</a></li>
+                                        <li><Link replace to="/dashboard/user/profile">Profile</Link></li>
                                         <li><button on:click={Logout} type="button">Logout</button></li>
                                     </ul>
                                 </div>
@@ -108,15 +108,15 @@
             </div>
             <div class="divider uppercase">Menu</div> 
             <!-- Sidebar content here -->
-            <li><a href="/dashboard">Dashboard</a></li>
+            <li><Link replace to="/dashboard">Dashboard</Link></li>
             {#if $user?.role?.name === 'admin' || $user?.role?.name === 'staff'}
                 <div class="divider uppercase">admin</div>
                 <li>
                     <details open>
                         <summary>Users</summary>
                         <ul>
-                            <li><a href="/dashboard/user">Manage Users</a></li>
-                            <li><a href="/dashboard/user/add">Add User</a></li>
+                            <li><Link replace to="/dashboard/user">Manage Users</Link></li>
+                            <li><Link replace to="/dashboard/user/add">Add User</Link></li>
                         </ul>
                     </details>
                 </li>
@@ -124,8 +124,8 @@
                     <details open>
                         <summary>Products</summary>
                         <ul>
-                            <li><a href="/dashboard/product">Manage Products</a></li>
-                            <li><a href="/dashboard/product/add">Add Product</a></li>
+                            <li><Link replace to="/dashboard/product">Manage Products</Link></li>
+                            <li><Link replace to="/dashboard/product/add">Add Product</Link></li>
                         </ul>
                     </details>
                 </li>
@@ -133,8 +133,8 @@
                     <details open>
                         <summary>Roles</summary>
                         <ul>
-                            <li><a href="/dashboard/role">Manage Roles</a></li>
-                            <li><a href="/dashboard/role/add">Add Role</a></li>
+                            <li><Link replace to="/dashboard/role">Manage Roles</Link></li>
+                            <li><Link replace to="/dashboard/role/add">Add Role</Link></li>
                         </ul>
                     </details>
                 </li>

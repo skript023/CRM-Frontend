@@ -1,4 +1,3 @@
-import joaat from "../../util/joaat.hash";
 import { navigate } from "svelte-routing";
 import { API } from "../../util/api.request";
 import { loading } from "../../util/loading";
