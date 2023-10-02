@@ -70,13 +70,13 @@
                     <slot/>
                     <dialog id="modal-disconnect" class="modal modal-bottom sm:modal-middle">
                         <div class="modal-box">
-                            <h3 class="font-bold text-lg">Session invalid</h3>
-                            <p class="py-4">Session invalid please re-login</p>
+                            <h3 class="font-bold text-lg">Time Out</h3>
+                            <p class="py-4">Your login is time-out please re-login</p>
                             <p class="py-4">Press ESC key or click the button below to close</p>
                             <div class="modal-action">
                                 <form method="dialog">
                                 <!-- if there is a button in form, it will close the modal -->
-                                <button class="btn" on:click={() => navigate('/')} on:keydown={() => navigate('/')}>Close</button>
+                                <button class="btn" on:click={() => {navigate('/'); window.location.reload()}} on:keydown={() => {navigate('/'); window.location.reload()}}>Close</button>
                                 </form>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
             </main>
             <footer class="footer footer-center fixed inset-x-0 bottom-0">
                 <aside>
-                  <p>Copyright © 2023 - All right reserved by Ellohim Ltd</p>
+                    <p>Copyright © 2023 - All right reserved by Ellohim Ltd</p>
                 </aside>
             </footer>
         </div>
@@ -109,7 +109,7 @@
             <div class="divider uppercase">Menu</div> 
             <!-- Sidebar content here -->
             <li><a href="/dashboard">Dashboard</a></li>
-            {#if $user?.role?.name === 'admin'}
+            {#if $user?.role?.name === 'admin' || $user?.role?.name === 'staff'}
                 <div class="divider uppercase">admin</div>
                 <li>
                     <details open>
