@@ -14,6 +14,7 @@
 	import Role from './lib/role/Role.svelte';
 	import RoleEdit from './lib/role/Edit.svelte';
   	import RoleAdd from './lib/role/Add.svelte';
+  import NotFound from './NotFound.svelte';
 
 	export let url = "";
 	const options = {
@@ -40,4 +41,5 @@
 
 	<Route path="/signup" component={Register}/>
 	<Route path="/"><Login /></Route>
+	<Route component={NotFound}/>
 </Router>
