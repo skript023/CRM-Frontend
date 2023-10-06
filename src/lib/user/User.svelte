@@ -5,7 +5,7 @@
     import { allUser, users } from './query/user.store';
     import Navigation from "../components/Navigation.svelte";
     import SortableTableHeader from '../components/SortableTableHeader.svelte';
-  import { Link } from "svelte-routing";
+  import { Link, navigate } from "svelte-routing";
 
     let search = ''
     let isLoaded = false
@@ -18,8 +18,8 @@
     $: pageCount = handler.getPageCount()
     $: pages = handler.getPages({ ellipsis: true })
 
-    onMount(() => {
-        allUser()
+    onMount(async () => {
+        await allUser()
     });
 </script>
 
@@ -113,56 +113,59 @@
                     </thead>
                     <tbody>
                         {#each $rows as user}
+                            {@const expiration = new Date(user?.expired).getTime()}
+                            {@const current = new Date().getTime()}
+                            {@const access = ((user?.role?.level * 100) / 6) & 100}
                             <tr class="border-b dark:border-gray-700">
-                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.fullname}</th>
-                                <td class="px-4 py-3">{user.username}</td>
+                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user?.fullname}</th>
+                                <td class="px-4 py-3">{user?.username}</td>
                                 <td class="px-4 py-3">{user.email}</td>
-                                <td class="px-4 py-3">{user.role.name}</td>
+                                <td class="px-4 py-3">{user.role?.name}</td>
                                 <td class="px-4 py-3">
-                                    {#if (new Date(user?.expired).getTime() - new Date().getTime()) <= 0}
+                                    {#if (expiration - current) <= 0}
                                         <p class="text-red-700">Expired</p>
                                     {:else}
                                         <div class="flex gap-3">
-                                            <div id={`years-label-${user._id}`}>
+                                            <div id={`years-label-${user?._id}`}>
                                                 <span class="countdown font-mono text-md">
-                                                    <div id={`years-${user._id}`} style={`--value:${0}`}></div>
+                                                    <div id={`years-${user?._id}`} style={`--value:${0}`}></div>
                                                 </span>
                                                 years
                                             </div> 
-                                            <div id={`months-label-${user._id}`}>
+                                            <div id={`months-label-${user?._id}`}>
                                                 <span class="countdown font-mono text-md">
-                                                    <div id={`months-${user._id}`} style={`--value:${0}`}></div>
+                                                    <div id={`months-${user?._id}`} style={`--value:${0}`}></div>
                                                 </span>
                                                 months
                                             </div> 
-                                            <div id={`days-label-${user._id}`}>
+                                            <div id={`days-label-${user?._id}`}>
                                                 <span class="countdown font-mono text-md">
-                                                    <div id={`days-${user._id}`} style={`--value:${0}`}></div>
+                                                    <div id={`days-${user?._id}`} style={`--value:${0}`}></div>
                                                 </span>
                                                 days
                                             </div> 
-                                            <div id={`hours-label-${user._id}`}>
+                                            <div id={`hours-label-${user?._id}`}>
                                                 <span class="countdown font-mono text-md">
-                                                    <div id={`hours-${user._id}`} style={`--value:${0}`}></div>
+                                                    <div id={`hours-${user?._id}`} style={`--value:${0}`}></div>
                                                 </span>
                                                 hours
                                             </div> 
-                                            <div id={`minutes-label-${user._id}`}>
+                                            <div id={`minutes-label-${user?._id}`}>
                                                 <span class="countdown font-mono text-md">
-                                                    <div id={`minutes-${user._id}`} style={`--value:${0}`}></div>
+                                                    <div id={`minutes-${user?._id}`} style={`--value:${0}`}></div>
                                                 </span>
                                                 minutes
                                             </div> 
-                                            <div id={`seconds-label-${user._id}`}>
+                                            <div id={`seconds-label-${user?._id}`}>
                                                 <span class="countdown font-mono text-md">
-                                                    <div id={`seconds-${user._id}`} style={`--value:${0}`}></div>
+                                                    <div id={`seconds-${user?._id}`} style={`--value:${0}`}></div>
                                                 </span>
                                                 seconds
                                             </div> 
                                         </div>
                                     {/if}
                                 </td>
-                                <td class="px-4 py-3"><progress class="progress progress-success w-56" value={(user.role.level * 100) / 6} max="100"></progress></td>
+                                <td class="px-4 py-3"><progress class="progress progress-success w-56" value={access.toPrecision()} max="100"></progress></td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <div class="dropdown dropdown-hover dropdown-end">
                                         <label tabindex="-1" for="" class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-800 hover:text-gray-950 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100">
@@ -171,13 +174,13 @@
                                             </svg>
                                             <ul tabindex="-1" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52" aria-labelledby="apple-iphone-14-dropdown-button">
                                                 <li>
-                                                    <Link replace to="/dashboard/user/detail" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</Link>
+                                                    <button on:click={() => navigate(`/dashboard/user/detail/${user?._id}`)} class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</button>
                                                 </li>
                                                 <li>
-                                                    <Link replace to="/dashboard/user/edit?user={user._id}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</Link>
+                                                    <button on:click={() => navigate(`/dashboard/user/edit?user=${user?._id}`)} class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</button>
                                                 </li>
                                                 <li class="py-1">
-                                                    <button on:click={() => {USER.DELETE(user._id)}} type="button" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</button>
+                                                    <button on:click={() => {USER.DELETE(user?._id)}} type="button" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</button>
                                                 </li>
                                             </ul>
                                         </label>

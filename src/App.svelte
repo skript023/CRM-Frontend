@@ -16,6 +16,7 @@
   	import RoleAdd from './lib/role/Add.svelte';
   	import NotFound from './NotFound.svelte';
   	import Shop from './lib/Shop.svelte';
+  import Cart from './lib/Cart.svelte';
 
 	export let url = "";
 	const options = {
@@ -40,6 +41,8 @@
 	<Route path="/dashboard/role" component={Role} />
 	<Route path="/dashboard/role/add" component={RoleAdd}/>
 	<Route path="/dashboard/role/edit" component={RoleEdit}/>
+
+	<Route path="/dashboard/cart" component={Cart}/>
 
 	<Route path="/signup" component={Register}/>
 	<Route path="/"><Login /></Route>

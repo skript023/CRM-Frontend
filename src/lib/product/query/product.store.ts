@@ -7,6 +7,8 @@ export const product = writable({} as Product)
 
 export const products = writable([] as Product[])
 
+export const selectedProduct = writable({} as Product)
+
 export async function productDetail(url: URL) 
 {
     API.GET(`products/detail/${url.searchParams.get('product')}`,

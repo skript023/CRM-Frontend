@@ -127,6 +127,7 @@
                         {#each $rows as product}
                             <tr class="border-b dark:border-gray-700">
                                 <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{product.name}</th>
+                                <td class="px-4 py-3">IDR {product.price.toLocaleString('id-ID')}</td>
                                 <td class="px-4 py-3">{product.code}</td>
                                 <td class="px-4 py-3">{product.grade}</td>
                                 <td class="px-4 py-3">{product.game}</td>

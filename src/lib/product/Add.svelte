@@ -21,7 +21,7 @@
                         <span class="label-text">Product Grade</span>
                     </label>
                     <select id="grade" name="grade" class="select select-bordered select-sm bg-gray-700 text-center disabled:text-white">
-                        <option disabled selected value={null}>-- Select Role --</option>
+                        <option disabled selected value={null}>-- Select Grade --</option>
                         <option>DEVELOPMENT</option>
                         <option>ENTERPRISE</option>
                         <option>PREMIUM</option>
