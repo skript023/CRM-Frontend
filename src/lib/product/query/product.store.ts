@@ -7,7 +7,7 @@ export const product = writable({} as Product)
 
 export const products = writable([] as Product[])
 
-export const selectedProduct = writable({} as Product)
+export const carts = writable([] as Product[])
 
 export async function productDetail(url: URL) 
 {

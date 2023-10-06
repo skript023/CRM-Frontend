@@ -1,9 +1,9 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import Navigation from "./components/Navigation.svelte";
-    import { products, allProduct, selectedProduct } from "../lib/product/query/product.store";
+    import { products, allProduct, carts } from "../lib/product/query/product.store";
     import { navigate } from "svelte-routing";
-  import Product from "./product/Product.svelte";
+    import type { Product } from "./interface/product.interface";
 
     onMount(() => {
         if ($products.length <= 0)
@@ -12,9 +12,11 @@
         }
     });
 
-    function selectProduct(choosen : any)
+    function selectProduct(choosen : Product)
     {
-        selectedProduct.set(choosen)
+        const cart: Product[] = []
+        cart.push(choosen)
+        carts.set(cart)
         navigate('/dashboard/cart')
     }
     
