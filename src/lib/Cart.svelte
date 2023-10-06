@@ -1,6 +1,8 @@
 <script lang="ts">
     import Navigation from "./components/Navigation.svelte";
     import { selectedProduct } from "./product/query/product.store";
+
+    let counter = 1
 </script>
 
 
@@ -24,9 +26,9 @@
                         <div class="mt-4 flex items-center">
                             <span class="mr-2 text-gray-600">Quantity:</span>
                             <div class="flex items-center">
-                                <button class="bg-gray-200 rounded-l-lg px-2 py-1" disabled>-</button>
-                                <span class="mx-2 text-gray-600">1</span>
-                                <button class="bg-gray-200 rounded-r-lg px-2 py-1" disabled>+</button>
+                                <button on:click={() => counter--} class="bg-gray-200 rounded-l-lg px-2 py-1">-</button>
+                                <span class="mx-2 text-gray-600">{counter}</span>
+                                <button on:click={() => counter++ } class="bg-gray-200 rounded-r-lg px-2 py-1">+</button>
                             </div>
                             <span class="ml-auto font-bold">IDR {$selectedProduct?.price}</span>
                         </div>
@@ -35,7 +37,7 @@
             </div>
             <div class="flex justify-end items-center mt-8">
                 <span class="text-gray-600 mr-4">Subtotal:</span>
-                <span class="text-xl font-bold">$35.00</span>
+                <span class="text-xl font-bold">IDR {$selectedProduct?.price * counter}</span>
             </div>
         </div>
     </div>
