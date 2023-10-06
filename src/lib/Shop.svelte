@@ -12,12 +12,12 @@
         }
     });
 
-    function selectProduct(choosen : Product)
+    function add_to_cart(choosen : Product)
     {
         const cart: Product[] = []
         cart.push(choosen)
         carts.set(cart)
-        navigate('/dashboard/cart')
+        navigate('/dashboard/cart', {replace: true})
     }
     
 </script>
@@ -33,7 +33,7 @@
                             <h2 class="card-title">{product.name}</h2>
                             <p>{product.price.toLocaleString('id-ID')}</p>
                             <div class="card-actions justify-end">
-                                <button on:click={() => selectProduct(product)} class="btn btn-primary">Buy Now</button>
+                                <button on:click={() => add_to_cart(product)} class="btn btn-primary">Buy Now</button>
                             </div>
                         </div>
                     </div>
