@@ -1,5 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    import { format } from "./util/money.format";
     import Navigation from "./components/Navigation.svelte";
     import { products, allProduct } from "../lib/product/query/product.store";
 
@@ -18,7 +19,7 @@
                 <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
                 <div class="card-body">
                     <h2 class="card-title">{product.name}</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
+                    <p>{format.money(product.price)}</p>
                     <div class="card-actions justify-end">
                         <button class="btn btn-primary">Buy Now</button>
                     </div>

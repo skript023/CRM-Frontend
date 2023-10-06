@@ -11,6 +11,7 @@ export interface Product
     _id: string
     code: number
     name: string
+    price: number
     grade: ProductGrade
     game: string
     target: string

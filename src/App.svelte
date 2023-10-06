@@ -15,6 +15,7 @@
 	import RoleEdit from './lib/role/Edit.svelte';
   	import RoleAdd from './lib/role/Add.svelte';
   	import NotFound from './NotFound.svelte';
+  	import Shop from './lib/Shop.svelte';
 
 	export let url = "";
 	const options = {
@@ -24,7 +25,8 @@
 
 <SvelteToast {options} />
 <Router {url}>
-	<Route path="/dashboard" component={Home} />
+	<Route path="/dashboard" component={Shop} />
+	<Route path="/dashboard/statistic" component={Home} />
 
 	<Route path="/dashboard/user" component={User} />
 	<Route path="/dashboard/user/profile" component={Profile} />
