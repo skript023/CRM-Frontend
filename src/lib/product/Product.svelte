@@ -91,28 +91,31 @@
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead id="table-head" class="uppercase text-xs text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <SortableTableHeader {handler} orderBy="fullname">
+                            <SortableTableHeader {handler} orderBy="name">
                                 Name
                             </SortableTableHeader>
-                            <SortableTableHeader {handler} orderBy="username">
+                            <SortableTableHeader {handler} orderBy="price">
+                                Price
+                            </SortableTableHeader>
+                            <SortableTableHeader {handler} orderBy="code">
                                 Code
                             </SortableTableHeader>
-                            <SortableTableHeader {handler} orderBy="email">
+                            <SortableTableHeader {handler} orderBy="grade">
                                 Grade
                             </SortableTableHeader>
-                            <SortableTableHeader {handler} orderBy="role">
+                            <SortableTableHeader {handler} orderBy="game">
                                 Game
                             </SortableTableHeader>
-                            <SortableTableHeader {handler} orderBy="expired">
+                            <SortableTableHeader {handler} orderBy="target">
                                 Target
                             </SortableTableHeader>
-                            <SortableTableHeader {handler} orderBy="role">
+                            <SortableTableHeader {handler} orderBy="file">
                                 File
                             </SortableTableHeader>
-                            <SortableTableHeader {handler} orderBy="role">
+                            <SortableTableHeader {handler} orderBy="version">
                                 version
                             </SortableTableHeader>
-                            <SortableTableHeader {handler} orderBy="role">
+                            <SortableTableHeader {handler} orderBy="status">
                                 status
                             </SortableTableHeader>
                             <th scope="col" class="px-4 py-3">
