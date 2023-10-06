@@ -1,6 +1,6 @@
 <script lang="ts">
     import { isLoading } from "../util/loading";
-    import { PRODUCT } from "./helper/product.action";
+    import { PRODUCT } from "./query/product.action";
     import Navigation from "../components/Navigation.svelte";
 
     async function onSubmit(e : any) 

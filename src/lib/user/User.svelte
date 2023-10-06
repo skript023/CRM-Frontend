@@ -1,8 +1,8 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { USER } from './helper/user.action';
+    import { USER } from './query/user.action';
     import { DataHandler } from 'gros/datatable';
-    import { allUser, users } from './helper/user.store';
+    import { allUser, users } from './query/user.store';
     import Navigation from "../components/Navigation.svelte";
     import SortableTableHeader from '../components/SortableTableHeader.svelte';
   import { Link } from "svelte-routing";

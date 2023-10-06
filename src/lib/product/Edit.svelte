@@ -1,9 +1,9 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { isLoading } from "../util/loading";
-    import { PRODUCT } from "./helper/product.action";
+    import { PRODUCT } from "./query/product.action";
     import Navigation from "../components/Navigation.svelte";
-    import { product, productDetail } from "./helper/product.store";
+    import { product, productDetail } from "./query/product.store";
 
     const url = new URL(window.location.href)
 

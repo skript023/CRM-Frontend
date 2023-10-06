@@ -17,6 +17,10 @@
 
 <Loading process bootstrap/>
 <div class="drawer">
+    <script type="text/javascript"
+		src="https://app.stg.midtrans.com/snap/snap.js"
+        data-client-key={import.meta.env.VITE_CLIENT}>
+    </script>
     <input id="my-drawer" type="checkbox" class="drawer-toggle" bind:checked={drawer_checked}/>
     <div class="drawer-content">
         <!-- Page content here -->

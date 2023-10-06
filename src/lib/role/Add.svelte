@@ -1,8 +1,8 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { role, roleDetail } from "./helper/role.store";
+    import { role, roleDetail } from "./query/role.store";
     import { isLoading } from "../util/loading";
-    import { ROLE } from "./helper/role.action";
+    import { ROLE } from "./query/role.action";
     import Navigation from "../components/Navigation.svelte";
 
     const url = new URL(window.location.href)

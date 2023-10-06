@@ -1,7 +1,6 @@
 export namespace API
 {
-    const url = 'https://crm-backend.glitch.me/';
-    // const url = 'http://localhost:3000/';
+    const url = import.meta.env.VITE_ENVIRONMENT === 'prod' ? 'https://crm-backend.glitch.me/' : 'http://localhost:3000/';
     
     export async function GET(route: string, init : RequestInit | undefined) 
     {

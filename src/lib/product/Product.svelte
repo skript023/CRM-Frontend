@@ -1,12 +1,12 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    import { Link } from "svelte-routing";
     import { isLoading } from "../util/loading";
     import { DataHandler } from 'gros/datatable';
-    import { PRODUCT } from "./helper/product.action";
+    import { PRODUCT } from "./query/product.action";
     import Navigation from "../components/Navigation.svelte";
-    import { products, allProduct } from "./helper/product.store";
+    import { products, allProduct } from "./query/product.store";
     import SortableTableHeader from '../components/SortableTableHeader.svelte';
-  import { Link } from "svelte-routing";
 
     let search = ''
 

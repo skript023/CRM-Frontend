@@ -1,12 +1,12 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { isLoading } from "../util/loading";
-    import { ROLE } from "./helper/role.action";
+    import { ROLE } from "./query/role.action";
     import { DataHandler } from "gros/datatable";
     import Navigation from "../components/Navigation.svelte";
-    import { availableRoles, roles } from "../user/helper/user.store";
+    import { availableRoles, roles } from "../user/query/user.store";
     import SortableTableHeader from "../components/SortableTableHeader.svelte";
-    import { allowedAccess } from "./helper/role.store";
+    import { allowedAccess } from "./query/role.store";
     import { Link } from "svelte-routing";
 
     let search = ''

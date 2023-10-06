@@ -1,9 +1,9 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { USER } from "./helper/user.action";
+    import { USER } from "./query/user.action";
     import { isLoading } from "../util/loading";
     import Navigation from "../components/Navigation.svelte";
-    import { roles, availableRoles } from "./helper/user.store";
+    import { roles, availableRoles } from "./query/user.store";
 
     let password = '';
     let confirm_password = '';

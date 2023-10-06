@@ -1,9 +1,9 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { USER } from "./helper/user.action";
+    import { USER } from "./query/user.action";
     import { isLoading } from "../util/loading";
     import Navigation from "../components/Navigation.svelte";
-    import { user, roles, availableRoles, detailUser } from "./helper/user.store";
+    import { user, roles, availableRoles, detailUser } from "./query/user.store";
 
     const url = new URL(window.location.href)
 
