@@ -16,7 +16,7 @@
   	import RoleAdd from './lib/role/Add.svelte';
   	import NotFound from './NotFound.svelte';
   	import Shop from './lib/Shop.svelte';
-  import Cart from './lib/Cart.svelte';
+  import Cart from './lib/cart/Cart.svelte';
 
 	export let url = "";
 	const options = {

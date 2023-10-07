@@ -1,9 +1,9 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    import { carts } from "./cart/query/cart.store";
     import Navigation from "./components/Navigation.svelte";
-    import { products, allProduct, carts } from "../lib/product/query/product.store";
-    import { navigate } from "svelte-routing";
     import type { Product } from "./interface/product.interface";
+    import { products, allProduct } from "../lib/product/query/product.store";
 
     onMount(() => {
         if ($products.length <= 0)
@@ -14,12 +14,8 @@
 
     function add_to_cart(choosen : Product)
     {
-        const cart: Product[] = []
-        cart.push(choosen)
-        carts.set(cart)
-        navigate('/dashboard/cart', {replace: true})
+        carts.update(arr => [...arr, choosen])
     }
-    
 </script>
 
 <Navigation>
@@ -33,7 +29,7 @@
                             <h2 class="card-title">{product.name}</h2>
                             <p>{product.price.toLocaleString('id-ID')}</p>
                             <div class="card-actions justify-end">
-                                <button on:click={() => add_to_cart(product)} class="btn btn-primary">Buy Now</button>
+                                <button on:click={() => add_to_cart(product)} class="btn btn-primary">Add to Cart</button>
                             </div>
                         </div>
                     </div>

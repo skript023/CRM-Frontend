@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Navigation from "./components/Navigation.svelte";
-    import { carts } from "./product/query/product.store";
+    import Navigation from "../components/Navigation.svelte";
+    import { carts } from "./query/cart.store";
 
     let counter = 1
 
@@ -10,7 +10,6 @@
         carts.set(new_cart)
     }
 </script>
-
 
 <Navigation>
     {@const total = $carts.reduce((total, currentItem) => total + currentItem.price, 0)}
