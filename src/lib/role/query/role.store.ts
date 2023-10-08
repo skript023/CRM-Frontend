@@ -9,7 +9,10 @@ export async function roleDetail(url: URL)
 {
     API.GET(`role/detail/${url.searchParams.get('role')}`,
     {
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+            "Content-Type": "application/json"
+        },
     }).
     then(async (res) => {
         const json = await res.json()

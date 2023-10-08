@@ -3,17 +3,23 @@
     import { Logout } from "../logout";
     import { Loading } from 'gros/loading';
     import { Link, navigate } from "svelte-routing";
-    import { user, getUser } from './profile.store'
-    import { carts } from "../cart/query/cart.store";
+    import { user, getUser } from './profile.store';
+    import { CART } from "../cart/query/cart.action";
+    import { carts, getCarts } from "../cart/query/cart.store";
 
     export let drawer_checked = false;
     let isLoaded = false;
 
     onMount(async () => {
         await getUser()
-
+        getCarts($user._id)
         isLoaded = true
     })
+
+    function remove()
+    {
+        CART.DELETE($user._id)
+    }
 </script>
 
 <Loading process bootstrap/>
@@ -48,8 +54,14 @@
                             <li class="right-12">
                                 
                                 <div class="dropdown dropdown-hover dropdown-left">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                    <label for="" tabindex="-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                                        <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                                        <path d="M17 17h-11v-14h-2"></path>
+                                        <path d="M6 5l14 1l-1 7h-13"></path>
+                                     </svg>
+                                     <label for="" tabindex="-1">
                                         Cart
                                     </label>
                                     <ul tabindex="-1" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4">
@@ -70,20 +82,20 @@
                                                     <div class="p-2 flex bg-gray-900 hover:bg-gray-700 cursor-pointer border-b border-gray-900" style="">
                                                         <div class="p-2 w-12"><img src="https://dummyimage.com/50x50/bababa/0011ff&amp;text=50x50" alt="img product"></div>
                                                         <div class="flex-auto text-sm w-32">
-                                                            <div class="font-bold">{cart.name}</div>
-                                                            <div class="truncate">{cart.code}</div>
-                                                            <div class="text-gray-400">Qty: 1</div>
+                                                            <div class="font-bold">{cart.product?.name}</div>
+                                                            <div class="truncate">{cart.product?.code}</div>
+                                                            <div class="text-gray-400">Qty: {cart.quantity}</div>
                                                         </div>
                                                         <div class="flex flex-col w-18 font-medium items-end">
-                                                            <div class="w-4 h-4 mb-6 hover:bg-red-200 rounded-full cursor-pointer text-red-700">
+                                                            <button on:click={remove} class="w-4 h-4 mb-6 hover:bg-red-200 rounded-full cursor-pointer text-red-700">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 ">
                                                                     <polyline points="3 6 5 6 21 6"></polyline>
                                                                     <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                                                     <line x1="10" y1="11" x2="10" y2="17"></line>
                                                                     <line x1="14" y1="11" x2="14" y2="17"></line>
                                                                 </svg>
-                                                            </div>
-                                                            {cart.price}
+                                                            </button>
+                                                            {cart.product?.price}
                                                         </div>
                                                     </div>
                                                 </li>
@@ -97,7 +109,7 @@
                                                     border duration-200 ease-in-out 
                                                     border-gray-900 transition"
                                                     on:click={() => navigate('/dashboard/cart')}>
-                                                    Checkout {$carts.reduce((sum, item) => sum + item.price, 0)}
+                                                    Checkout {$carts.reduce((sum, item) => sum + item.product?.price, 0)}
                                                 </button>
                                             </div>
                                         {/if }

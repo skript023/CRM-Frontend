@@ -14,7 +14,10 @@ export const users = writable([] as User[])
 export function availableRoles() {
     API.GET('role/', 
     {
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+            "Content-Type": "application/json"
+        },
     }).
     then(async (res) => {
         const json = await res.json()
@@ -26,7 +29,10 @@ export function detailUser(url: URL)
 {
     API.GET(`user/detail/${url.searchParams.get('user')}`,
     {
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+            "Content-Type": "application/json"
+        },
     }).
     then(async (res) => {
         const json = await res.json()

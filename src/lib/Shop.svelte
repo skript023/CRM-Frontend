@@ -1,6 +1,8 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { carts } from "./cart/query/cart.store";
+    import { CART } from "./cart/query/cart.action";
+    import { user } from "./components/profile.store";
+    import { getCarts } from "./cart/query/cart.store";
     import Navigation from "./components/Navigation.svelte";
     import type { Product } from "./interface/product.interface";
     import { products, allProduct } from "../lib/product/query/product.store";
@@ -12,9 +14,15 @@
         }
     });
 
-    function add_to_cart(choosen : Product)
+    async function add_to_cart(choosen : Product)
     {
-        carts.update(arr => [...arr, choosen])
+        const data = {
+            product_id: choosen._id,
+            user_id: $user._id,
+            quantity: 1
+        }
+        await CART.ADD(data)
+        getCarts($user._id)
     }
 </script>
 
