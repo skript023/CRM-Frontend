@@ -32,23 +32,6 @@ export namespace CART
                 },
                 body: JSON.stringify(data)
             })
-            
-            const json = await res.json()
-
-            if (res.status === 201)
-            {
-                //toast.push(`<p class="text-center">${json.message}</p>`)
-            }
-            else
-            {
-                toast.push(`message: ${json.message}`, {
-                    theme: {
-                        '--toastColor': 'mintcream',
-                        '--toastBackground': 'rgba(187,72,120,0.9)',
-                        '--toastBarBackground': 'red'
-                    }   
-                })
-            }
         } 
         catch (error : any) 
         {
@@ -74,23 +57,6 @@ export namespace CART
                 },
                 body: JSON.stringify(data)
             })
-            
-            const json = await res.json()
-
-            if (res.status === 200)
-            {
-                toast.push(`<p class="text-center">${json.message}</p>`)
-            }
-            else
-            {
-                toast.push(`message: ${json.message}`, {
-                    theme: {
-                        '--toastColor': 'mintcream',
-                        '--toastBackground': 'rgba(187,72,120,0.9)',
-                        '--toastBarBackground': 'red'
-                    }   
-                })
-            }
         } 
         catch (error : any) 
         {
