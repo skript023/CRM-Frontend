@@ -2,17 +2,20 @@
     import { onMount } from "svelte";
     import { navigate } from "svelte-routing";
     import { CART } from "./query/cart.action";
-    import { carts } from "./query/cart.store";
     import { user } from "../components/profile.store";
+    import { carts, getCarts } from "./query/cart.store";
     import Navigation from "../components/Navigation.svelte";
 
-    async function update(qty: number)
+    async function update(qty: number, id: string)
     {
         if (qty <= 0)
         {
-            CART.DELETE($user._id)
+            await CART.DELETE(id)
 
-            navigate('/dashboard', {replace: true})
+            if ($carts.length <= 1)
+            {
+                navigate('/dashboard', {replace: true})
+            }
         }
         else
         {
@@ -20,14 +23,18 @@
                 quantity: qty
             }
 
-            await CART.UPDATE(data, $user._id)
+            await CART.UPDATE(data, id)
         }
+
+        await getCarts($user._id)
     }
     
-    function remove()
+    async function remove(id: string)
     {
-        CART.DELETE($user._id)
-        
+        await CART.DELETE(id)
+
+        await getCarts($user._id)
+
         if ($carts.length <= 1)
         {
             navigate('/dashboard', {replace: true})
@@ -35,7 +42,7 @@
     }
 
     onMount(() => {
-        if ($carts.length === 0)
+        if ($carts.length <= 0)
         {
             navigate('/dashboard', {replace: true})
         }
@@ -59,13 +66,13 @@
                             </div>
                             <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                                 <div class="flex items-center border-gray-100">
-                                    <button on:click={() => {update(cart.quantity - 1)}} class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"> - </button>
-                                    <input value={cart.quantity} class="h-8 w-8 border bg-white text-center text-xs outline-none" type="text" min="1" />
-                                    <button on:click={() => {update(cart.quantity + 1)}} class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"> + </button>
+                                    <button on:click={() => {update(cart.quantity -= 1, cart.product._id)}} class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"> - </button>
+                                    <input value={cart?.quantity} class="h-8 w-8 border bg-white text-center text-xs outline-none" type="text" min="1" />
+                                    <button on:click={() => {update(cart.quantity += 1, cart.product._id)}} class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"> + </button>
                                 </div>
                                 <div class="flex items-center space-x-4">
                                     <p class="text-sm">IDR {cart?.product?.price?.toLocaleString()}</p>
-                                    <button on:click={remove}>
+                                    <button on:click={() => remove(cart.product._id)}>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 cursor-pointer duration-150 hover:text-red-500">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                                         </svg>

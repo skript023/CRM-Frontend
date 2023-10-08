@@ -5,16 +5,18 @@ import type { Carts } from "../../interface/cart.interface";
 
 export const carts = writable([] as Carts[])
 
-export function getCarts(id : string)
+export async function getCarts(id : string)
 {
-    API.GET(`carts/${id}`, {
+    const res = await API.GET(`carts/${id}`, {
         credentials: 'include',
         headers: {
             "Content-Type": "application/json"
         },
     })
-    .then(async (res) => {
+
+    if (res.status === 200)
+    {
         const data = await res.json()
         carts.set(data)
-    })
+    }
 }

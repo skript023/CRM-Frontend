@@ -7,10 +7,10 @@
     import type { Product } from "./interface/product.interface";
     import { products, allProduct } from "../lib/product/query/product.store";
 
-    onMount(() => {
+    onMount(async () => {
         if ($products.length <= 0)
         {
-            allProduct()
+            await allProduct()
         }
     });
 
@@ -22,7 +22,7 @@
             quantity: 1
         }
         await CART.ADD(data)
-        getCarts($user._id)
+        await getCarts($user._id)
     }
 </script>
 

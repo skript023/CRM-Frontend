@@ -5,20 +5,19 @@ import { getCarts } from "./cart.store";
 
 export namespace CART
 {
-    export function DELETE (id : string)
+    export async function DELETE (id : string)
     {
-        API.DELETE(`carts/${id}`, 
+        try 
         {
-            credentials: 'include'
-        }).
-        then(async (res) => {
-            const json = await res.json()
-
-            getCarts(id)
-        }).
-        catch((e) => {
-            toast.push(e)
-        })
+            const res = await API.DELETE(`carts/${id}`, 
+            {
+                credentials: 'include'
+            })
+        } 
+        catch (error : any) 
+        {
+            toast.push(error)
+        }
     }
     
     export async function ADD (data : any)
@@ -80,7 +79,7 @@ export namespace CART
 
             if (res.status === 200)
             {
-                getCarts(id)//toast.push(`<p class="text-center">${json.message}</p>`)
+                toast.push(`<p class="text-center">${json.message}</p>`)
             }
             else
             {
