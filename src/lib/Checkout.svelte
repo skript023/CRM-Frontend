@@ -11,7 +11,6 @@
         const ev = window as any
         const payButton = document.getElementById('pay-button');
         payButton?.addEventListener('click', function () {
-            console.log(token)
             ev.snap.embed(token, {
                 embedId: 'snap-container',
                 onSuccess: async function (result: any) {
