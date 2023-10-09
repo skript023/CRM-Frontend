@@ -42,6 +42,7 @@ export namespace PAYMENT
 
             const json = await res.json()
             payment.set(json)
+            console.log(json)
             navigate('/dashboard/checkout')
         } 
         catch (error : any) 
@@ -49,4 +50,27 @@ export namespace PAYMENT
             toast.push(error)
         }
     }
+
+    export async function UPDATE(id: string, data: any)
+    {
+        try 
+        {
+            const res = await API.PATCH(`payment/${id}`, {
+                credentials: 'include',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+
+            const json = await res.json()
+
+            toast.push(json.message);
+        }
+        catch (error: any) 
+        {
+            toast.push(error)
+        }
+    }
+    
 }

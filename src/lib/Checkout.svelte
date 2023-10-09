@@ -1,27 +1,37 @@
 <script lang="ts" type="text/javascript">
     import Navigation from "./components/Navigation.svelte";
     import { carts } from "./cart/query/cart.store";
-    import { payment } from "./cart/query/payment.action";
-  import { onMount } from "svelte";
+    import { PAYMENT, payment } from "./cart/query/payment.action";
+    import { onMount } from "svelte";
 
-    const token = $payment.token ?? "invalid"
+    const token = $payment?.token
+    const payment_id = $payment?.payment
 
     onMount(() => {
+        const ev = window as any
         const payButton = document.getElementById('pay-button');
-        payButton.addEventListener('click', function () {
-            window.snap.embed(token, {
+        payButton?.addEventListener('click', function () {
+            console.log(token)
+            ev.snap.embed(token, {
                 embedId: 'snap-container',
-                onSuccess: function (result) {
-                alert("payment success!"); console.log(result);
+                onSuccess: async function (result: any) {
+                    await PAYMENT.UPDATE(payment_id, {
+                        status: 'Completed'
+                    })
                 },
-                onPending: function (result) {
-                alert("wating your payment!"); console.log(result);
+                onPending: async function (result: any) 
+                {
+                    await PAYMENT.UPDATE(payment_id, {
+                        status: 'Pending'
+                    })
                 },
-                onError: function (result) {
-                alert("payment failed!"); console.log(result);
+                onError: async function (result: any) {
+                    await PAYMENT.UPDATE(payment_id, {
+                        status: 'Failed'
+                    })
                 },
-                onClose: function () {
-                alert('you closed the popup without finishing the payment');
+                onClose: async function () {
+                    alert('you closed the popup without finishing the payment');
                 }
             });
         });
