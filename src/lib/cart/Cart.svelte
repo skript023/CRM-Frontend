@@ -5,6 +5,9 @@
     import { user } from "../components/profile.store";
     import { carts, getCarts } from "./query/cart.store";
     import Navigation from "../components/Navigation.svelte";
+    import { PAYMENT } from "./query/payment.action";
+
+    let PAYMENT_TOKEN: any;
 
     async function update(qty: number, id: string)
     {
@@ -35,7 +38,7 @@
 
         await getCarts($user._id)
 
-        if ($carts.length <= 1)
+        if ($carts.length < 1)
         {
             navigate('/dashboard', {replace: true})
         }
@@ -101,34 +104,8 @@
                         <p class="text-sm text-gray-100">including VAT</p>
                     </div>
                 </div>
-                <button id="pay-button" class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Check out</button>
+                <button on:click={() => PAYMENT.CREATE($carts, $user._id)} class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Check out</button>
             </div>
         </div>
     </div>
-
-    <script type="text/javascript">
-        // For example trigger on button clicked, or any time you need
-        var payButton = document.getElementById('pay-button');
-        payButton.addEventListener('click', function () {
-          // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-        window.snap.pay('TRANSACTION_TOKEN_HERE', {
-            onSuccess: function(result){
-                /* You may add your own implementation here */
-                alert("payment success!"); console.log(result);
-            },
-            onPending: function(result){
-                /* You may add your own implementation here */
-                alert("wating your payment!"); console.log(result);
-            },
-            onError: function(result){
-                /* You may add your own implementation here */
-                alert("payment failed!"); console.log(result);
-            },
-            onClose: function(){
-                /* You may add your own implementation here */
-                alert('you closed the popup without finishing the payment');
-            }
-        })
-    });
-    </script>
 </Navigation>

@@ -26,7 +26,6 @@ export namespace CART
         {
             const res = await API.POST('carts', {
                 credentials: 'include',
-                method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -50,7 +49,6 @@ export namespace CART
         try 
         {
             const res = await API.PATCH(`carts/${id}`, {
-                method: 'PATCH',
                 credentials: 'include',
                 headers: {
                     "Content-Type": "application/json"
