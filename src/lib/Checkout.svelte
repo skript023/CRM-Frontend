@@ -30,7 +30,9 @@
                     })
                 },
                 onClose: async function () {
-                    alert('you closed the popup without finishing the payment');
+                    await PAYMENT.UPDATE(payment_id, {
+                        status: 'Cancelled'
+                    })
                 }
             });
         });
