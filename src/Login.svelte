@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { toast } from '@zerodevx/svelte-toast';
+	import { onMount } from 'svelte';
 	import { navigate } from 'svelte-routing';
+	import { API } from './lib/util/api.request';
+	import { toast } from '@zerodevx/svelte-toast';
 	import { loading, Loading } from 'gros/loading'
-  	import { API } from './lib/util/api.request';
-  	import { onMount } from 'svelte';
-  	import joaat from './lib/util/joaat.hash';
   	import { authenticated } from './lib/util/authenticated';
 
 	let username = null as string | null
@@ -18,10 +17,9 @@
 	})
 	
 	const onClick = async () => {
+		loading.start('Authenticating', 'It may take a few seconds')
 		try
 		{
-			loading.start('Authenticating', 'It may take a few seconds')
-
 			const res = await API.POST('auth/login', {
 				credentials: 'include',
 				headers: {
@@ -43,8 +41,6 @@
 				
 				navigate('/dashboard', {replace: true})
 			}
-
-			loading.stop()
 		}
 		catch (error : any)
 		{
@@ -56,29 +52,31 @@
 				}   
 			})
 		}
+
+		loading.stop()
 	}
 </script>
 
 <Loading process bootstrap/>
 <p></p>
-<div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+<div class="h-screen w-auto p-4 mx-auto">
 	<!-- Breadcrumb Start -->
-	<div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+	<!-- <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 		<h2 class="text-title-md2 font-bold text-black dark:text-white">
 			Sign In
 		</h2>
 
 		<nav>
 			<ol class="flex items-center gap-2">
-				<li><a class="font-medium" href="index.html">Dashboard /</a></li>
+				<li><a class="font-medium" href="/">Dashboard /</a></li>
 				<li class="font-medium text-primary">Sign In</li>
 			</ol>
 		</nav>
-	</div>
+	</div> -->
 	<!-- Breadcrumb End -->
 
 	<!-- ====== Forms Section Start -->
-	<div class="lg:h-screen rounded-sm border border-stroke bg-gray-800 shadow-default dark:border-strokedark border-gray-600 dark:bg-boxdark">
+	<div class="lg:h-screen rounded-sm border border-stroke dark:bg-gray-800 shadow-default dark:border-strokedark dark:border-gray-600 dark:bg-boxdark">
 		<div class="flex flex-wrap items-center lg:h-screen">
 			<div class="hidden w-full xl:block xl:w-1/2">
 				<div class="py-17.5 px-26 text-center">
@@ -171,7 +169,7 @@
 					</span>
 				</div>
 			</div>
-			<div class="w-full border-stroke dark:border-strokedark border-gray-600 xl:w-1/2 xl:border-l-2">
+			<div class="w-full border-stroke dark:border-strokedark border-gray-600 xl:w-1/2 xl:border-l-2 h-max">
 				<div class="w-full p-4 sm:p-12.5 xl:p-17.5">
 					<span class="mb-1.5 block font-medium">Start for free</span>
 					<h2 class="mb-9 text-2xl font-bold sm:text-title-xl2 text-center">

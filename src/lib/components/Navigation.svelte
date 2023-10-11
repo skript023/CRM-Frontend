@@ -35,7 +35,7 @@
         <!-- Page content here -->
         <div class="flex flex-col h-screen justify-between">
             <header class="mb-10 h-10">
-                <nav class="navbar bg-base-100">
+                <nav class="navbar bg-base-100 shadow-md shadow-gray-400">
                     <div class="flex-none">
                         <label for="my-drawer" class="btn btn-square btn-ghost">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -63,25 +63,29 @@
                                         <path d="M17 17h-11v-14h-2"></path>
                                         <path d="M6 5l14 1l-1 7h-13"></path>
                                      </svg>
-                                     <label for="" tabindex="-1">
+                                     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+                                    <label for="" tabindex="0">
                                         Cart
                                     </label>
-                                    <ul tabindex="-1" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+                                    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+                                    <ul tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-auto mt-4">
                                         {#if $carts.length === 0}
                                         <div class="p-4 justify-center flex">
-                                            <button class="text-base  undefined  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-                                                hover:bg-teal-700 hover:text-teal-100 
-                                                bg-teal-100 
-                                                text-teal-700 
+                                            <button class="text-base undefined  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
+                                                hover:bg-gray-100 
+                                                dark:hover:bg-gray-700 
+                                                dark:hover:text-gray-100 
+                                                dark:bg-gray-800 
+                                                dark:text-gray-100 
                                                 border duration-200 ease-in-out 
-                                                border-teal-600 transition">
+                                                dark:border-gray-600 transition">
                                             No Data
                                             </button>
                                         </div>
                                         {:else}
                                             {#each $carts as cart}
                                                 <li>
-                                                    <div class="p-2 flex bg-gray-900 hover:bg-gray-700 cursor-pointer border-b border-gray-900" style="">
+                                                    <div class="p-2 flex dark:bg-gray-900 dark:hover:bg-gray-700 cursor-pointer shadow-sm shadow-gray-100" style="">
                                                         <div class="p-2 w-12"><img src="https://dummyimage.com/50x50/bababa/0011ff&amp;text=50x50" alt="img product"></div>
                                                         <div class="flex-auto text-sm w-32">
                                                             <div class="font-bold">{cart.product?.name}</div>
@@ -89,7 +93,7 @@
                                                             <div class="text-gray-400">Qty: {cart.quantity}</div>
                                                         </div>
                                                         <div class="flex flex-col w-18 font-medium items-end">
-                                                            <button on:click={() => remove(cart.product._id)} class="w-4 h-4 mb-6 hover:bg-red-200 rounded-full cursor-pointer text-red-700">
+                                                            <button on:click={() => remove(cart.product._id)} class="w-4 h-4 mb-6 hover:bg-red-200 rounded-full text-red-700" type="button">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 ">
                                                                     <polyline points="3 6 5 6 21 6"></polyline>
                                                                     <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -104,12 +108,13 @@
                                             {/each}
                                             <div class="p-4 justify-center flex">
                                                 <button class="text-base  undefined  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-                                                    hover:bg-gray-700 
-                                                    hover:text-gray-100 
-                                                    bg-gray-900 
-                                                    text-gray-100 
+                                                    hover:bg-gray-100 
+                                                    dark:hover:bg-gray-700 
+                                                    dark:hover:text-gray-100 
+                                                    dark:bg-gray-800 
+                                                    dark:text-gray-100 
                                                     border duration-200 ease-in-out 
-                                                    border-gray-900 transition"
+                                                    dark:border-gray-600 transition"
                                                     on:click={() => navigate('/dashboard/cart')}>
                                                     Checkout {$carts.reduce((sum, item) => sum + item.product?.price, 0)}
                                                 </button>
@@ -143,7 +148,7 @@
                     </div>
                 </nav>
             </header>
-            <main class="mb-auto h-10">
+            <main class="mb-auto h-10 mt-5">
                 <div>
                     <slot/>
                     <dialog id="modal-disconnect" class="modal modal-bottom sm:modal-middle">
@@ -169,7 +174,7 @@
         </div>
     </div> 
     
-    <div class="drawer-side z-10">
+    <div class="drawer-side z-10 shadow-sm shadow-gray-200">
         <label for="my-drawer" class="drawer-overlay"></label>
         <ul class="menu p-4 w-80 min-h-screen bg-base-200 text-base-content">
             {#if isLoaded}

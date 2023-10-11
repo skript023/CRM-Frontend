@@ -60,7 +60,7 @@
         <div class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
             <div class="rounded-lg md:w-11/12">
                 {#each $carts as cart}
-                    <div class="justify-between mb-6 rounded-lg bg-gray-800 p-6 shadow-md sm:flex sm:justify-start">
+                    <div class="justify-between mb-6 rounded-lg dark:bg-gray-800 p-6 shadow-md sm:flex sm:justify-start">
                         <img src="https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="productimage" class="w-full rounded-lg sm:w-40" />
                         <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                             <div class="mt-5 sm:mt-0">
@@ -87,14 +87,14 @@
                 {/each}
             </div>
           <!-- Sub total -->
-            <div class="mt-6 h-full rounded-lg border bg-gray-800 p-6 shadow-md md:mt-0 md:w-2/5 border-gray-800">
+            <div class="mt-6 h-full rounded-lg border dark:bg-gray-800 p-6 shadow-md md:mt-0 md:w-2/5 dark:border-gray-800">
                 <div class="mb-2 flex justify-between">
-                    <p class="text-gray-100">Subtotal</p>
-                    <p class="text-gray-100">IDR {sub_total?.toLocaleString()}</p>
+                    <p class="dark:text-gray-100">Subtotal</p>
+                    <p class="dark:text-gray-100">IDR {sub_total?.toLocaleString()}</p>
                 </div>
                 <div class="flex justify-between">
-                    <p class="text-gray-100">Shipping</p>
-                    <p class="text-gray-100">IDR 0</p>
+                    <p class="dark:text-gray-100">Shipping</p>
+                    <p class="dark:text-gray-100">Free</p>
                 </div>
                 <hr class="my-4" />
                 <div class="flex justify-between">
@@ -104,7 +104,7 @@
                         <p class="text-sm text-gray-100">including VAT</p>
                     </div>
                 </div>
-                <button on:click={() => PAYMENT.CREATE($carts, $user._id)} class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Check out</button>
+                <button on:click={async () => await PAYMENT.CREATE($carts, $user._id)} class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Check out</button>
             </div>
         </div>
     </div>

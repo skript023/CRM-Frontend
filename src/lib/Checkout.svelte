@@ -3,6 +3,7 @@
     import { carts } from "./cart/query/cart.store";
     import { PAYMENT, payment } from "./cart/query/payment.action";
     import { onMount } from "svelte";
+  import { CART } from "./cart/query/cart.action";
 
     const token = $payment?.token
     const payment_id = $payment?.payment
@@ -16,6 +17,10 @@
                 onSuccess: async function (result: any) {
                     await PAYMENT.UPDATE(payment_id, {
                         status: 'Completed'
+                    })
+
+                    $carts.map((v) => {
+                        CART.DELETE(v.product_id)
                     })
                 },
                 onPending: async function (result: any) 
