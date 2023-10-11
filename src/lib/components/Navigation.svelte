@@ -64,7 +64,8 @@
                                         <path d="M6 5l14 1l-1 7h-13"></path>
                                      </svg>
                                      <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-                                    <label for="" tabindex="0">
+                                    <!-- svelte-ignore a11y-label-has-associated-control -->
+                                    <label tabindex="0">
                                         Cart
                                     </label>
                                     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
