@@ -5,7 +5,7 @@ import joaat from "../../util/joaat.hash"
 import { writable } from "svelte/store"
 import { navigate } from "svelte-routing"
 
-export const payment = writable({} as any)
+export const payment = writable({} as any | null)
 
 export namespace PAYMENT
 {
@@ -40,10 +40,12 @@ export namespace PAYMENT
                 })
             })
 
-            const json = await res.json()
-            payment.set(json)
-            console.log(json)
-            navigate('/dashboard/checkout')
+            if (res.status === 201)
+            {
+                const json = await res.json()
+                payment.set(json)
+                navigate('/dashboard/checkout')
+            }
         } 
         catch (error : any) 
         {
@@ -66,6 +68,8 @@ export namespace PAYMENT
             const json = await res.json()
 
             toast.push(json.message);
+
+            navigate('/dashboard/', {replace: true})
         }
         catch (error: any) 
         {

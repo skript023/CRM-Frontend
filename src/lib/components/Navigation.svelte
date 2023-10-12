@@ -55,7 +55,7 @@
                             </li>
                             <li class="right-12">
                                 
-                                <div class="dropdown dropdown-hover dropdown-left">
+                                <div class="dropdown dropdown-hover dropdown-bottom flex justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                         <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
@@ -69,10 +69,10 @@
                                         Cart
                                     </label>
                                     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-                                    <ul tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-auto mt-4">
+                                    <ul tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-auto">
                                         {#if $carts.length === 0}
                                         <div class="p-4 justify-center flex">
-                                            <button class="text-base undefined  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
+                                            <button class="text-base undefined hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
                                                 hover:bg-gray-100 
                                                 dark:hover:bg-gray-700 
                                                 dark:hover:text-gray-100 

@@ -25,7 +25,7 @@
 <Navigation>    
     {@const [first_name, last_name] = $user?.fullname?.split(' ') ?? []}
     <div class="h-auto mx-auto py-12 mt-12 w-1/2 justify-center items-center">
-        <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-xl border-2 border-gray-800 bg-gray-800 mt-12">
+        <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-xl border-2 dark:border-gray-800 dark:bg-gray-800 mt-12">
             <div class="avatar mb-12 flex justify-center">
                 <div class="w-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                     {#if $user.image}

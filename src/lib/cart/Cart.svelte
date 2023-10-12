@@ -7,8 +7,6 @@
     import Navigation from "../components/Navigation.svelte";
     import { PAYMENT } from "./query/payment.action";
 
-    let PAYMENT_TOKEN: any;
-
     async function update(qty: number, id: string)
     {
         if (qty <= 0)
@@ -104,7 +102,7 @@
                         <p class="text-sm text-gray-100">including VAT</p>
                     </div>
                 </div>
-                <button on:click={async () => await PAYMENT.CREATE($carts, $user._id)} class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Check out</button>
+                <button on:click={() => PAYMENT.CREATE($carts, $user._id)} class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Check out</button>
             </div>
         </div>
     </div>

@@ -10,7 +10,7 @@
             <!-- Left Side -->
             <div class="w-full md:w-3/12 md:mx-2">
                 <!-- Profile Card -->
-                <div class="bg-gray-800 p-3 border-t-4 border-gray-950">
+                <div class="dark:bg-gray-800 p-3 border-t-4 border-gray-950">
                     <div class="image overflow-hidden w-4/6 rounded-full md:mx-12">
                         <img class="h-auto w-screen mx-auto" src={`https://crm-backend.glitch.me/user/avatar/${$user?.image}`} alt="avatar">
                     </div>
@@ -34,7 +34,7 @@
                 <!-- End of profile card -->
                 <div class="my-4"></div>
                 <!-- Friends card -->
-                <div class="bg-gray-800 p-3 hover:shadow hover:shadow-gray-700">
+                <div class="dark:bg-gray-800 p-3 hover:shadow hover:shadow-gray-700">
                     <div class="flex items-center space-x-3 font-semibold text-gray-900 text-xl leading-8">
                         <span class="text-green-500">
                             <svg class="h-5 fill-current" xmlns="http://www.w3.org/2000/svg" fill="none"

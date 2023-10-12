@@ -40,7 +40,7 @@
 
 <Navigation>
     <div class="mx-auto w-11/12 h-auto">
-        <div class="bg-sky-100 dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+        <div class="dark:bg-gray-800 relative shadow-md shadow-gray-100 border border-gray-100 sm:rounded-lg overflow-hidden">
             <div class="flex flex-col md:flex-row items-center justify-center space-y-3 md:space-y-0 md:space-x-4 p-4">
                 <div class="w-full md:w-1/2">
                     <form class="flex items-center">

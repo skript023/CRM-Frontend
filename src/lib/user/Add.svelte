@@ -53,7 +53,7 @@
 
 <Navigation>
     <div class="h-auto mx-auto py-12 mt-12 w-1/2 justify-center items-center">
-        <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-xl border-2 border-gray-800 bg-gray-800 mt-12">
+        <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-xl border-2 dark:border-gray-800 dark:bg-gray-800 mt-12">
             <h2 class="uppercase text-center mb-12">Add User</h2>
             {#if error}
                 <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 -mx-5" role="alert">
@@ -78,7 +78,7 @@
                     <label for="" class="label">
                         <span class="label-text">Role</span>
                     </label>
-                    <select name="role_id" class="select select-bordered select-sm bg-gray-700 text-center disabled:text-white">
+                    <select name="role_id" class="select select-bordered select-sm dark:bg-gray-700 text-center disabled:text-white">
                         <option disabled selected value={null}>-- Select Role --</option>
                         {#each $roles as role}
                             <option value={role?._id}>{role?.name}</option>
@@ -123,7 +123,7 @@
                         </label>
                     </div>
                 </div>
-                <button class="dropdown dropdown-end w-full md:w-auto lg:w-96 lg:mx-12 flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="submit">
+                <button class="w-full md:w-auto lg:w-96 lg:mx-12 flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-blue-500 rounded-lg border border-gray-200 hover:bg-blue-700 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="submit">
                     Submit
                     {#if $isLoading}
                     <span class="loading loading-spinner ml-1"></span>
